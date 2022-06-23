@@ -2,10 +2,11 @@ package com.emusic.school.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
 public class Merch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -15,6 +16,9 @@ public class Merch {
     private String type;
     private double price;
     private String waist;
+
+    @OneToMany(mappedBy = "merch", fetch = FetchType.EAGER)
+    private Set<PurchaseOrder> purchaseOrders = new HashSet<>();
 
     public Merch() {}
 
@@ -38,4 +42,12 @@ public class Merch {
 
     public String getWaist() {return waist;}
     public void setWaist(String waist) {this.waist = waist;}
+
+    public Set<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
 }

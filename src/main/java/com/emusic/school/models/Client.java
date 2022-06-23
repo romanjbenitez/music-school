@@ -2,10 +2,9 @@ package com.emusic.school.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -18,6 +17,9 @@ public class Client {
     private String email;
     private String password;
     private boolean isActive;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Ticket> tickets = new HashSet<>();
 
     public Client() {}
 
@@ -45,4 +47,7 @@ public class Client {
 
     public boolean isActive() {return isActive;}
     public void setActive(boolean active) {isActive = active;}
+
+    public Set<Ticket> getTickets() {return tickets;}
+    public void setTickets(Set<Ticket> tickets) {this.tickets = tickets;}
 }
