@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Teacher {
@@ -58,5 +59,13 @@ public class Teacher {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+    public void addCourses(Course course) {
+        course.setTeacher(this);
+        courses.add(course);
     }
 }

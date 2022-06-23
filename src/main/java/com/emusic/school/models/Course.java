@@ -2,13 +2,10 @@ package com.emusic.school.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Curso {
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -20,11 +17,13 @@ public class Curso {
     private int lessons,price,duration;
 
     private boolean active;
-
-    public Curso() {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="teacher_id")
+    private Teacher teacher;
+    public Course() {
     }
 
-    public Curso(String level, String name, int lessons, int price, int duration, boolean active) {
+    public Course(String level, String name, int lessons, int price, int duration, boolean active) {
         this.level = level;
         this.name = name;
         this.lessons = lessons;
@@ -71,6 +70,14 @@ public class Curso {
     }
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public boolean isActive() {
