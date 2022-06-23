@@ -1,10 +1,15 @@
 package com.emusic.school.dtos;
 
+import com.emusic.school.models.Course;
 import com.emusic.school.models.Teacher;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class TeacherDTO {
     private Long id;
     private String firstName, lastName, email, password;
+    private Set<CourseDTO> courses = new HashSet<>();
 
     public TeacherDTO() {
     }
@@ -50,5 +55,9 @@ public class TeacherDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<CourseDTO> getCourses() {
+        return courses;
     }
 }
