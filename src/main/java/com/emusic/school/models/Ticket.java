@@ -26,10 +26,17 @@ public class Ticket {
     public Ticket(double totalPrice, Client client) {
         this.totalPrice = totalPrice;
         this.client = client;
-
     }
 
     public long getId() {return id;}
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public Client getClient() {return client;}
     public void setClient(Client client) {this.client = client;}
