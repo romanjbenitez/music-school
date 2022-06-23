@@ -1,10 +1,19 @@
 package com.emusic.school.dtos;
 
+import com.emusic.school.models.Teacher;
+
 public class TeacherDTO {
     private Long id;
     private String firstName, lastName, email, password;
 
     public TeacherDTO() {
+    }
+    public TeacherDTO(Teacher teacher) {
+        this.id = teacher.getId();
+        this.firstName = teacher.getFirstName();
+        this.lastName = teacher.getLastName();
+        this.email = teacher.getEmail();
+        this.password = teacher.getPassword();
     }
 
     public Long getId() {
