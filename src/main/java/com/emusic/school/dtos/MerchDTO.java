@@ -1,30 +1,31 @@
 package com.emusic.school.dtos;
 
 import com.emusic.school.models.Merch;
-import com.emusic.school.models.PurchaseOrder;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MerchDto {
-
+public class MerchDTO {
+    private long id;
     private int stock;
     private String type;
     private double price;
     private String waist;
 
-    private Set<PurchaseOrderDTO> purchaseOrders = new HashSet<>();
-
-    public MerchDto() {
+    public MerchDTO() {
     }
 
-    public MerchDto(Merch merch) {
+    public MerchDTO(Merch merch) {
+        this.id = merch.getId();
         this.stock = merch.getStock();
         this.type = merch.getType();
         this.price = merch.getPrice();
         this.waist = merch.getWaist();
-        this.purchaseOrders = merch.getPurchaseOrders().stream().map(purchaseOrder -> new PurchaseOrderDTO(purchaseOrder)).collect(Collectors.toSet());
+    }
+
+    public long getId() {
+        return id;
     }
 
     public int getStock() {
@@ -55,10 +56,4 @@ public class MerchDto {
         this.waist = waist;
     }
 
-    public Set<PurchaseOrderDTO> getPurchaseOrders() {
-        return purchaseOrders;
-    }
-    public void setPurchaseOrders(Set<PurchaseOrderDTO> purchaseOrders) {
-        this.purchaseOrders = purchaseOrders;
-    }
 }
