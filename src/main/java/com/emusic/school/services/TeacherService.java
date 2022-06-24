@@ -10,5 +10,6 @@ public interface TeacherService {
 
     Teacher getTeacherByEmail(String email);
 
-    TeacherDTO getTeacherById(Long id);
+    TeacherDTO getTeacherDTOById(Long id);
+    Teacher getTeacherById(Long id);
 }

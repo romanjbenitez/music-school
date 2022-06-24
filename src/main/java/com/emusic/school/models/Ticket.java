@@ -12,7 +12,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private double totalPrice;
+    private Double totalPrice;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
