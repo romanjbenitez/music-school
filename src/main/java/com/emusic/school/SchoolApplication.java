@@ -42,7 +42,7 @@ public class SchoolApplication {
 			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com","123456");
 			teacherRepository.save(teacher);
 
-			Course course = new Course("principiante","guitarra",4,20000,20,true,teacher);
+			Course course = new Course("principiante","guitarra",4,20000D,20,true,teacher);
 			courseRepository.save(course);
 
 
