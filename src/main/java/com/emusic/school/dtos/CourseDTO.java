@@ -17,7 +17,7 @@ public class CourseDTO {
 
     private boolean active;
 
-    private Teacher teacher;
+    private TeacherDTO teacher;
 
     public CourseDTO() {
     }
@@ -30,7 +30,7 @@ public class CourseDTO {
         this.price = course.getPrice();
         this.duration = course.getDuration();
         this.active = course.isActive();
-        this.teacher = course.getTeacher();
+        this.teacher = new TeacherDTO(course.getTeacher());
     }
 
     public long getId() {
@@ -85,11 +85,11 @@ public class CourseDTO {
         this.active = active;
     }
 
-    public Teacher getTeacher() {
+    public TeacherDTO getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(TeacherDTO teacher) {
         this.teacher = teacher;
     }
 }

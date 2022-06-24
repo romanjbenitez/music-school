@@ -1,6 +1,7 @@
 package com.emusic.school.dtos;
 
 import com.emusic.school.models.Client;
+import com.emusic.school.models.CourseTicket;
 import com.emusic.school.models.PurchaseOrder;
 import com.emusic.school.models.Ticket;
 
@@ -13,6 +14,8 @@ public class TicketDTO {
     private double totalPrice;
     private Set<PurchaseOrderDTO> purchaseOrder = new HashSet<>();
 
+    private Set<CourseTicketDTO> courseTickets = new HashSet<>();
+
     public TicketDTO() {
     }
 
@@ -20,6 +23,7 @@ public class TicketDTO {
         this.id = ticket.getId();
         this.totalPrice = ticket.getTotalPrice();
         this.purchaseOrder = ticket.getPurchaseOrder().stream().map(PurchaseOrderDTO::new).collect(Collectors.toSet());
+        this.courseTickets = ticket.getCourseTickets().stream().map(courseTicket -> new CourseTicketDTO(courseTicket)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -40,5 +44,12 @@ public class TicketDTO {
 
     public void setPurchaseOrder(Set<PurchaseOrderDTO> purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
+    }
+
+    public Set<CourseTicketDTO> getCourseTickets() {
+        return courseTickets;
+    }
+    public void setCourseTickets(Set<CourseTicketDTO> courseTickets) {
+        this.courseTickets = courseTickets;
     }
 }
