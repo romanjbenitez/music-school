@@ -1,11 +1,13 @@
 package com.emusic.school.controllers;
 
 import com.emusic.school.dtos.ClientDTO;
+import com.emusic.school.models.Client;
 import com.emusic.school.repositories.ClientRepository;
+import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +17,31 @@ import java.util.stream.Collectors;
 public class ClientController {
 
     @Autowired
-    private ClientRepository clientRepository;
-
+    private ClientService clientService;
 
     @GetMapping("/clients")
-    public List<ClientDTO> getClients(){return clientRepository.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());}
+    public List<ClientDTO> getClients(){return clientService.getClientsDTO();}
+
+    @PostMapping("/clients")
+    public ResponseEntity<Object> register(
+            @RequestParam String firstName, @RequestParam String lastName,
+            @RequestParam String email, @RequestParam String password) {
+
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()){
+            return new ResponseEntity<>("Fill in all the fields.", HttpStatus.FORBIDDEN);
+        }
+
+        if (clientService.getClientByEmail(email) != null){
+            return new ResponseEntity<>("Email in use.", HttpStatus.FORBIDDEN);
+        }
+
+        if(!email.contains("@")){
+            return new ResponseEntity<>("Email invalid.", HttpStatus.FORBIDDEN);
+        }
+
+        Client newClient = new Client(firstName,lastName,email,password,true);
+        clientService.saveClient(newClient);
+        return new ResponseEntity<>("Successfully registered.", HttpStatus.CREATED);
+
+    }
 }
