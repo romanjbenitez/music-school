@@ -11,7 +11,7 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private Long id;
     private double totalPrice;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -24,6 +24,7 @@ public class Ticket {
     @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER)
     private Set<CourseTicket> courseTickets = new HashSet<>();
 
+
     public Ticket() {}
 
     public Ticket(double totalPrice, Client client) {
@@ -31,7 +32,7 @@ public class Ticket {
         this.client = client;
     }
 
-    public long getId() {return id;}
+    public Long getId() {return id;}
 
     public double getTotalPrice() {
         return totalPrice;
@@ -50,8 +51,8 @@ public class Ticket {
     public Set<CourseTicket> getCourseTickets() {
         return courseTickets;
     }
-
     public void setCourseTickets(Set<CourseTicket> courseTickets) {
         this.courseTickets = courseTickets;
+
     }
 }

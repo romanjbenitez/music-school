@@ -12,8 +12,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
-
+    private Long id;
     private String level,name;
 
     private int lessons,price,duration;
@@ -38,7 +37,7 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -8,7 +8,9 @@ import java.util.Set;
 
 public class TeacherDTO {
     private Long id;
+
     private String firstName, lastName, email, password;
+
 
     public TeacherDTO() {
     }
@@ -17,7 +19,6 @@ public class TeacherDTO {
         this.firstName = teacher.getFirstName();
         this.lastName = teacher.getLastName();
         this.email = teacher.getEmail();
-        this.password = teacher.getPassword();
     }
 
     public Long getId() {
@@ -46,14 +47,6 @@ public class TeacherDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 }

@@ -11,7 +11,7 @@ public class Merch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private Long id;
     private int stock;
     private String type;
     private double price;
@@ -29,7 +29,7 @@ public class Merch {
         this.waist = waist;
     }
 
-    public long getId() {return id;}
+    public Long getId() {return id;}
 
     public int getStock() {return stock;}
     public void setStock(int stock) {this.stock = stock;}
