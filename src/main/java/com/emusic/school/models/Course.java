@@ -3,6 +3,8 @@ package com.emusic.school.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -20,6 +22,9 @@ public class Course {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="teacher_id")
     private Teacher teacher;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private Set<CourseTicket> courseTickets = new HashSet<>();
     public Course() {
     }
 
@@ -85,5 +90,12 @@ public class Course {
     }
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<CourseTicket> getCourseTickets() {
+        return courseTickets;
+    }
+    public void setCourseTickets(Set<CourseTicket> courseTickets) {
+        this.courseTickets = courseTickets;
     }
 }
