@@ -1,8 +1,6 @@
 package com.emusic.school.dtos;
 
-
 import com.emusic.school.models.PurchaseOrder;
-
 
 public class PurchaseOrderDTO {
 
@@ -16,7 +14,6 @@ public class PurchaseOrderDTO {
         this.id = purchaseOrder.getId();
         this.merch = new MerchDTO(purchaseOrder.getMerch());
     }
-
 
     public long getId() {
         return id;
