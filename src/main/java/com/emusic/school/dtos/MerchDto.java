@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MerchDto {
-
     private int stock;
     private String type;
     private double price;
@@ -26,7 +25,6 @@ public class MerchDto {
         this.waist = merch.getWaist();
         this.purchaseOrders = merch.getPurchaseOrders().stream().map(purchaseOrder -> new PurchaseOrderDTO(purchaseOrder)).collect(Collectors.toSet());
     }
-
     public int getStock() {
         return stock;
     }

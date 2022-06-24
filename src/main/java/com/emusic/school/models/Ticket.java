@@ -21,6 +21,9 @@ public class Ticket {
     @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER)
     private Set<PurchaseOrder> purchaseOrder = new HashSet<>();
 
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER)
+    private Set<CourseTicket> courseTickets = new HashSet<>();
+
     public Ticket() {}
 
     public Ticket(double totalPrice, Client client) {
@@ -43,4 +46,12 @@ public class Ticket {
 
     public Set<PurchaseOrder> getPurchaseOrder() {return purchaseOrder;}
     public void setPurchaseOrder(Set<PurchaseOrder> purchaseOrder) {this.purchaseOrder = purchaseOrder;}
+
+    public Set<CourseTicket> getCourseTickets() {
+        return courseTickets;
+    }
+
+    public void setCourseTickets(Set<CourseTicket> courseTickets) {
+        this.courseTickets = courseTickets;
+    }
 }
