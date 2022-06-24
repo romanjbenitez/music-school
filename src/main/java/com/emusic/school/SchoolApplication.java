@@ -1,13 +1,7 @@
 package com.emusic.school;
 
-import com.emusic.school.models.Client;
-import com.emusic.school.models.Merch;
-import com.emusic.school.models.PurchaseOrder;
-import com.emusic.school.models.Ticket;
-import com.emusic.school.repositories.ClientRepository;
-import com.emusic.school.repositories.MerchRepository;
-import com.emusic.school.repositories.PurchaseOrderRepository;
-import com.emusic.school.repositories.TicketRepository;
+import com.emusic.school.models.*;
+import com.emusic.school.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,8 +15,17 @@ public class SchoolApplication {
 	}
 	@Bean
 	public CommandLineRunner initDate(ClientRepository clientRepository, MerchRepository merchRepository,
-									  TicketRepository ticketRepository, PurchaseOrderRepository purchaseOrderRepository) {
+									  TicketRepository ticketRepository, PurchaseOrderRepository purchaseOrderRepository,
+									  CourseRepository courseRepository,CourseTicketRepository courseTicketRepository,
+									  TeacherRepository teacherRepository) {
 		return (args) -> {
+
+			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com","123456");
+			teacherRepository.save(teacher);
+
+			Course course = new Course("principiante","guitarra",4,20000,20,true,teacher);
+			courseRepository.save(course);
+
 
 			Client client1 = new Client("Juan","Perez","dsada@gmail.com","1234",true);
 			clientRepository.save(client1);
@@ -34,6 +37,9 @@ public class SchoolApplication {
 
 			Ticket ticket1 = new Ticket(500,client1);
 			ticketRepository.save(ticket1);
+
+			CourseTicket courseTicket = new CourseTicket(ticket1,course);
+			courseTicketRepository.save(courseTicket);
 
 			Ticket ticket2 = new Ticket(400,client1);
 			ticketRepository.save(ticket2);

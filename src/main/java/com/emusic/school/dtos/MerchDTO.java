@@ -2,9 +2,7 @@ package com.emusic.school.dtos;
 
 import com.emusic.school.models.Merch;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 public class MerchDTO {
     private long id;
@@ -27,7 +25,6 @@ public class MerchDTO {
     public long getId() {
         return id;
     }
-
     public int getStock() {
         return stock;
     }

@@ -1,8 +1,8 @@
 package com.emusic.school.dtos;
 
-import com.emusic.school.models.Merch;
+
 import com.emusic.school.models.PurchaseOrder;
-import com.emusic.school.models.Ticket;
+
 
 public class PurchaseOrderDTO {
 
