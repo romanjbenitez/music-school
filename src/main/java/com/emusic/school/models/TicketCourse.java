@@ -2,44 +2,48 @@ package com.emusic.school.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class TicketCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private Long ticketId, cursoId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="course_id")
+    private Course course;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ticket_id")
+    private Ticket ticket;
 
     public TicketCourse() {
     }
 
-    public TicketCourse(Long ticketId, Long cursoId) {
-        this.ticketId = ticketId;
-        this.cursoId = cursoId;
+    public TicketCourse(Course course, Ticket ticket) {
+        this.course = course;
+        this.ticket = ticket;
     }
 
     public Long getId() {
         return id;
     }
 
-
-    public Long getTicketId() {
-        return ticketId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public Long getCursoId() {
-        return cursoId;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setCursoId(Long cursoId) {
-        this.cursoId = cursoId;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }
