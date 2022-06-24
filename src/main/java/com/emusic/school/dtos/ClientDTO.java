@@ -7,10 +7,6 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static java.util.stream.Collectors.toSet;
 
 public class ClientDTO {
     private long id;
