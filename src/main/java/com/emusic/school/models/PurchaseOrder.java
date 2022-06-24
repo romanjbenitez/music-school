@@ -9,7 +9,7 @@ public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="ticket_id")
@@ -26,7 +26,7 @@ public class PurchaseOrder {
         this.merch = merch;
     }
 
-    public long getId() {return id;}
+    public Long getId() {return id;}
 
     public Ticket getTicket() {return ticket;}
     public void setTicket(Ticket ticket) {this.ticket = ticket;}

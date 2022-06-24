@@ -42,6 +42,10 @@ public class SchoolApplication {
 			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2);
 			purchaseOrderRepository.save(purchaseOrder);
 			purchaseOrderRepository.save(purchaseOrder2);
+
+
+
+			System.out.println("Aplicacion iniciada");
 		};
 	}
 }

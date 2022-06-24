@@ -11,7 +11,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -31,7 +31,7 @@ public class Client {
         this.isActive = isActive;
     }
 
-    public long getId() {return id;}
+    public Long getId() {return id;}
 
     public String getFirstName() {return firstName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
