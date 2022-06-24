@@ -6,28 +6,27 @@ import com.emusic.school.models.Ticket;
 
 public class PurchaseOrderDTO {
 
-    private Ticket ticket;
-    private Merch merch;
+    private long id;
+    private MerchDTO merch;
 
     public PurchaseOrderDTO() {
     }
 
     public PurchaseOrderDTO(PurchaseOrder purchaseOrder) {
-        this.ticket = purchaseOrder.getTicket();
-        this.merch = purchaseOrder.getMerch();
+        this.id = purchaseOrder.getId();
+        this.merch = new MerchDTO(purchaseOrder.getMerch());
     }
 
-    public Ticket getTicket() {
-        return ticket;
-    }
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+
+    public long getId() {
+        return id;
     }
 
-    public Merch getMerch() {
+    public MerchDTO getMerch() {
         return merch;
     }
-    public void setMerch(Merch merch) {
+
+    public void setMerch(MerchDTO merch) {
         this.merch = merch;
     }
 }

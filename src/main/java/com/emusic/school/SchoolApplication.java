@@ -35,8 +35,11 @@ public class SchoolApplication {
 			Ticket ticket1 = new Ticket(500,client1);
 			ticketRepository.save(ticket1);
 
+			Ticket ticket2 = new Ticket(400,client1);
+			ticketRepository.save(ticket2);
+
 			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1);
-			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket1,merch2);
+			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2);
 			purchaseOrderRepository.save(purchaseOrder);
 			purchaseOrderRepository.save(purchaseOrder2);
 		};
