@@ -26,7 +26,7 @@ public class SchoolApplication {
 	}
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder(){return PasswordEncoderFactories.createDelegatingPasswordEncoder();}
 
 	@Bean
 	public CommandLineRunner initDate(ClientRepository clientRepository, MerchRepository merchRepository,
@@ -36,7 +36,7 @@ public class SchoolApplication {
 		return (args) -> {
 
 
-			Client client1 = new Client("Juan","Perez","dsada@gmail.com", passwordEncoder.encode("1234"), true);
+			Client client1 = new Client("Juan","Perez","dsada@gmail.com", passwordEncoder().encode("1234"), true);
 			clientRepository.save(client1);
 
 			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com","123456");
