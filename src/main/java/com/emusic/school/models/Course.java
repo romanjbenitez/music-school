@@ -28,13 +28,14 @@ public class Course {
     public Course() {
     }
 
-    public Course(String level, String name, int lessons, int price, int duration, boolean active) {
+    public Course(String level, String name, int lessons, int price, int duration, boolean active,Teacher teacher) {
         this.level = level;
         this.name = name;
         this.lessons = lessons;
         this.price = price;
         this.duration = duration;
         this.active = active;
+        this.teacher = teacher;
     }
 
     public long getId() {
@@ -98,4 +99,6 @@ public class Course {
     public void setCourseTickets(Set<CourseTicket> courseTickets) {
         this.courseTickets = courseTickets;
     }
+
+
 }
