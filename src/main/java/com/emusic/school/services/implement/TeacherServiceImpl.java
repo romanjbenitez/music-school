@@ -1,4 +1,4 @@
-package com.emusic.school.services.implementations;
+package com.emusic.school.services.implement;
 
 import com.emusic.school.dtos.TeacherDTO;
 import com.emusic.school.models.Teacher;
