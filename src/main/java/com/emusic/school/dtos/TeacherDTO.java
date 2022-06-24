@@ -9,7 +9,6 @@ import java.util.Set;
 public class TeacherDTO {
     private Long id;
     private String firstName, lastName, email, password;
-    private Set<CourseDTO> courses = new HashSet<>();
 
     public TeacherDTO() {
     }
@@ -57,7 +56,4 @@ public class TeacherDTO {
         this.password = password;
     }
 
-    public Set<CourseDTO> getCourses() {
-        return courses;
-    }
 }
