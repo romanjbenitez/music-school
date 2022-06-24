@@ -13,8 +13,8 @@ public class CourseDTO {
 
     private String level,name;
 
-    private int lessons,price,duration;
-
+    private int lessons,duration;
+    private Double price;
     private boolean active;
 
     private TeacherDTO teacher;
@@ -61,11 +61,11 @@ public class CourseDTO {
         this.lessons = lessons;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

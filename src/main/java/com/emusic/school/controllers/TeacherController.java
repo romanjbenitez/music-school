@@ -20,7 +20,7 @@ public class TeacherController{
     }
     @GetMapping("/teacher/{id}")
     public TeacherDTO getTeacher(@PathVariable Long id){
-        return teacherService.getTeacherById(id);
+        return teacherService.getTeacherDTOById(id);
     }
     @PostMapping("teachers")
     public ResponseEntity<?> createAccountTeacher(@RequestParam String firstName,

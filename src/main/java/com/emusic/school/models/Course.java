@@ -15,8 +15,8 @@ public class Course {
     private Long id;
     private String level,name;
 
-    private int lessons,price,duration;
-
+    private int lessons,duration;
+    private Double price;
     private boolean active;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="teacher_id")
@@ -27,7 +27,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String level, String name, int lessons, int price, int duration, boolean active,Teacher teacher) {
+    public Course(String level, String name, int lessons, Double price, int duration, boolean active,Teacher teacher) {
         this.level = level;
         this.name = name;
         this.lessons = lessons;
@@ -63,10 +63,11 @@ public class Course {
         this.lessons = lessons;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
-    public void setPrice(int price) {
+
+    public void setPrice(Double price) {
         this.price = price;
     }
 

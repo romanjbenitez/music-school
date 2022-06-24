@@ -27,7 +27,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public TeacherDTO getTeacherById(Long id) {
+    public TeacherDTO getTeacherDTOById(Long id) {
         return teacherRepository.findById(id).map(TeacherDTO :: new).orElse(null);
+    }
+
+    @Override
+    public Teacher getTeacherById(Long id) {
+        return teacherRepository.findById(id).orElse(null);
     }
 }

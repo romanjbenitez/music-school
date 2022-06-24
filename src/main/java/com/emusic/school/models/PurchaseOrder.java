@@ -3,6 +3,7 @@ package com.emusic.school.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashMap;
 
 @Entity
 public class PurchaseOrder {
