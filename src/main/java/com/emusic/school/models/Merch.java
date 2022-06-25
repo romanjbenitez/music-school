@@ -15,18 +15,21 @@ public class Merch {
     private int stock;
     private String type;
     private double price;
-    private String waist;
+    private MerchWaist waist;
+
+    private boolean active;
 
     @OneToMany(mappedBy = "merch", fetch = FetchType.EAGER)
     private Set<PurchaseOrder> purchaseOrders = new HashSet<>();
 
     public Merch() {}
 
-    public Merch(int stock, String type, double price, String waist) {
+    public Merch(int stock, String type, double price, MerchWaist waist,boolean active) {
         this.stock = stock;
         this.type = type;
         this.price = price;
         this.waist = waist;
+        this.active = active;
     }
 
     public Long getId() {return id;}
@@ -40,8 +43,12 @@ public class Merch {
     public double getPrice() {return price;}
     public void setPrice(double price) {this.price = price;}
 
-    public String getWaist() {return waist;}
-    public void setWaist(String waist) {this.waist = waist;}
+    public MerchWaist getWaist() {
+        return waist;
+    }
+    public void setWaist(MerchWaist waist) {
+        this.waist = waist;
+    }
 
     public Set<PurchaseOrder> getPurchaseOrders() {
         return purchaseOrders;
@@ -49,5 +56,12 @@ public class Merch {
 
     public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
         this.purchaseOrders = purchaseOrders;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
