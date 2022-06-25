@@ -15,8 +15,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static com.emusic.school.models.MerchWaist.df;
+import static com.emusic.school.models.MerchWaist.m;
 
 @SpringBootApplication
 public class SchoolApplication {
@@ -26,7 +28,7 @@ public class SchoolApplication {
 	}
 
 	@Autowired
-	private PasswordEncoder passwordEncoder(){return PasswordEncoderFactories.createDelegatingPasswordEncoder();}
+	private PasswordEncoder passwordEncoder;
 
 	@Bean
 	public CommandLineRunner initDate(ClientRepository clientRepository, MerchRepository merchRepository,
@@ -36,18 +38,18 @@ public class SchoolApplication {
 		return (args) -> {
 
 
-			Client client1 = new Client("Juan","Perez","dsada@gmail.com", passwordEncoder().encode("1234"), true);
+			Client client1 = new Client("Juan","Perez","dsada@gmail.com", passwordEncoder.encode("1234"), true);
 			clientRepository.save(client1);
 
-			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com","123456");
+			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com",passwordEncoder.encode("123456"));
 			teacherRepository.save(teacher);
 
 			Course course = new Course("principiante","guitarra",4,20000D,20,true,teacher);
 			courseRepository.save(course);
 
 
-			Merch merch1= new Merch(10,"Gorra",200,"Adulto");
-			Merch merch2= new Merch(10,"Remara",200,"Adulto");
+			Merch merch1= new Merch(10,"Gorra",200,df,true);
+			Merch merch2= new Merch(10,"Remara",200,m,true);
 			merchRepository.save(merch1);
 			merchRepository.save(merch2);
 
