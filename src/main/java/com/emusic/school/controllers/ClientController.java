@@ -7,6 +7,7 @@ import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,11 @@ public class ClientController {
         clientService.saveClient(newClient);
         return new ResponseEntity<>("Successfully registered.", HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/client/current")
+    public ClientDTO getCurrent(Authentication authentication){
+        Client client = clientService.getClientByEmail(authentication.getName());
+        return new ClientDTO(client);
     }
 }

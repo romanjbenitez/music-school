@@ -1,30 +1,17 @@
 package com.emusic.school.dtos;
 
-import com.emusic.school.models.Merch;
 import com.emusic.school.models.MerchWaist;
 
+public class NewMerchDTO {
 
-public class MerchDTO {
-    private long id;
     private int stock;
     private String type;
     private double price;
     private MerchWaist waist;
 
-    public MerchDTO() {
+    public NewMerchDTO() {
     }
 
-    public MerchDTO(Merch merch) {
-        this.id = merch.getId();
-        this.stock = merch.getStock();
-        this.type = merch.getType();
-        this.price = merch.getPrice();
-        this.waist = merch.getWaist();
-    }
-
-    public long getId() {
-        return id;
-    }
     public int getStock() {
         return stock;
     }
