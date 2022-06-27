@@ -1,17 +1,28 @@
 Vue.createApp({
      data() {
      return {
-     header : null 
+     header : null,
+     courses: "",
+     teachers:[],
      }
      },
 
      created() {
+
+          
+     axios.get(`http://localhost:8080/api/courses`)
+     .then(datos => {
+          this.courses = datos.data
+          this.teachers = this.courses[0].teacher
+     })
+
      },
      
      mounted(){
      this.$nextTick(function () {
      this.header = document.querySelector(".nav");
      })
+
      },
      methods: {
      
