@@ -4,6 +4,9 @@ Vue.createApp({
      header : null,
      courses: "",
      teachers:[],
+     firstName : "",
+     lastName : "",
+     isLogin: false,
      }
      },
 
@@ -15,7 +18,12 @@ Vue.createApp({
           this.courses = datos.data
           this.teachers = this.courses[0].teacher
      })
-
+     axios
+     .get("/api/client/current").then(api => {
+       this.firstName = api.data.firstName
+       this.lastName = api.data.lastName
+       this.isLogin = true;
+     })
      },
      
      mounted(){
