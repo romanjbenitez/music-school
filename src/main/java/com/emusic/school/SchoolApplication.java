@@ -57,10 +57,23 @@ public class SchoolApplication {
 			Course course5 = new Course("principiante", "Piano", 10, 12000D, 20, true,teacher);
 			courseRepository.save(course5);
 
-			Merch merch1= new Merch(10,"Gorra",200,df,true);
-			Merch merch2= new Merch(10,"Remara",200,m,true);
+			Merch merch1= new Merch(10,"cap",650,df,true);
 			merchRepository.save(merch1);
+			Merch merch2= new Merch(10,"t-shirt",1200,m,true);
 			merchRepository.save(merch2);
+			Merch merch3= new Merch(10,"key-ring",250,m,true);
+			merchRepository.save(merch3);
+			Merch merch4= new Merch(10,"logbook",420,m,true);
+			merchRepository.save(merch4);
+			Merch merch5= new Merch(10,"cover",3700,m,true);
+			merchRepository.save(merch5);
+			Merch merch6= new Merch(10,"cup",450,m,true);
+			merchRepository.save(merch6);
+			Merch merch7= new Merch(10,"t-shirt",1200,m,true);
+			merchRepository.save(merch7);
+			Merch merch8= new Merch(10,"cap",650,m,true);
+			merchRepository.save(merch8);
+
 
 			Ticket ticket1 = new Ticket(500,client1);
 			ticketRepository.save(ticket1);
