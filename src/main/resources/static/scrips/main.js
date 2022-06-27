@@ -6,10 +6,19 @@ Vue.createApp({
         studentCourse : "",
         studentImg : "",
         studentReview : "",
+        firstName : "",
+        lastName : "",
+        isLogin: false,
         }
       },
 
     created() {
+      axios
+      .get("/api/client/current").then(api => {
+        this.firstName = api.data.firstName
+        this.lastName = api.data.lastName
+        this.isLogin = true;
+      })
     },
         
     mounted(){
