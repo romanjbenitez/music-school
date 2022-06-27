@@ -44,9 +44,18 @@ public class SchoolApplication {
 			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com",passwordEncoder.encode("123456"));
 			teacherRepository.save(teacher);
 
-			Course course = new Course("principiante","guitarra",4,20000D,20,true,teacher);
+			Course course = new Course("principiante","Guitar",4,20000D,20,true,teacher);
 			courseRepository.save(course);
-
+			Course course1 = new Course("principiante", "Drums", 4, 30000D, 23, true,teacher);
+			courseRepository.save(course1);
+			Course course2 = new Course("principiante", "Sing", 8, 18500D, 25, true,teacher);
+			courseRepository.save(course2);
+			Course course3 = new Course("principiante", "Sax", 6, 15900D, 18, true,teacher);
+			courseRepository.save(course3);
+			Course course4 = new Course("principiante", "Bass", 6, 18500D, 21, true,teacher);
+			courseRepository.save(course4);
+			Course course5 = new Course("principiante", "Piano", 10, 12000D, 20, true,teacher);
+			courseRepository.save(course5);
 
 			Merch merch1= new Merch(10,"Gorra",200,df,true);
 			Merch merch2= new Merch(10,"Remara",200,m,true);
@@ -68,8 +77,9 @@ public class SchoolApplication {
 			purchaseOrderRepository.save(purchaseOrder2);
 
 
-
-			System.out.println("Aplicacion iniciada");
+			System.out.println("---------------------------------");
+			System.out.println("EMusic App iniciada, Let's Rock! ");
+			System.out.println("---------------------------------");
 		};
 	}
 }
