@@ -21,7 +21,7 @@
                         <a class="underline-hover-effect ms-3 me-3" href="./merchandise.html">Merchandise</a>
                         <a class="underline-hover-effect ms-3 me-3" href="./aboutUs.html">About us</a>
                     </div>
-                    <div v-if="isLogin === 'false'">
+                    <div v-if="!isLogin">
                         <a  href="./login.html" id="btn-login">Login</a>
                     </div>
                     <div v-else class="student-header-container me-4">

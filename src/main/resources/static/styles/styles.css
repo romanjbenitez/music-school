@@ -620,7 +620,7 @@ transition: all 0.3s;
 .student-header-container{
   display: flex;
   align-items: center;
-
+  justify-content: center;
 }
 .student-header-container img{
   height: 4rem;
