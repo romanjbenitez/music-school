@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static com.emusic.school.models.MerchWaist.df;
+import static com.emusic.school.models.MerchWaist.DEFAULT;
 import static com.emusic.school.models.MerchWaist.m;
 
 @SpringBootApplication
@@ -48,7 +48,7 @@ public class SchoolApplication {
 			courseRepository.save(course);
 
 
-			Merch merch1= new Merch(10,"Gorra",200,df,true);
+			Merch merch1= new Merch(10,"Gorra",200,DEFAULT,true);
 			Merch merch2= new Merch(10,"Remara",200,m,true);
 			merchRepository.save(merch1);
 			merchRepository.save(merch2);

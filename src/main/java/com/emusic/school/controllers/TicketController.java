@@ -39,39 +39,37 @@ public class TicketController {
     @Autowired
     CourseService courseService;
     @PostMapping("/ticket_transaction")
-    public ResponseEntity<?> ticketTransaction(Authentication authentication){
-        List<Course> courses = courseRepository.findAll();
-        List<Merch> merches = merchRepository.findAll();
+    public ResponseEntity<?> ticketTransaction(Authentication authentication, @RequestParam  List<Course> courses, @RequestParam List<Merch> merches){
+//        List<Course> courses = courseRepository.findAll();
+//        List<Merch> merches = merchRepository.findAll();
         Client client = clientService.getClientByEmail(authentication.getName());
         AtomicReference<Double> totalPrice = new AtomicReference<>(0D);
         if(courses.size() == 0 && merches.size() == 0){
             return new ResponseEntity<>("MISSING DATA", HttpStatus.FORBIDDEN);
         }
-        if(courses.size()>0){
-            courses.stream().forEach(course -> {
-                totalPrice.set(totalPrice.get() + course.getPrice());
-            });
-       }
-        if(merches.size()>0){
-            merches.stream().forEach(merch -> {
-                totalPrice.set(totalPrice.get() + merch.getPrice());
-            });
-        }
+
+        courses.forEach(course -> {
+            totalPrice.set(totalPrice.get() + course.getPrice());
+
+        });
+
+        merches.forEach(merch -> {
+            merch.setStock(merch.getStock() - 1);
+            totalPrice.set(totalPrice.get() + merch.getPrice());
+            merchRepository.save(merch);
+        });
+
         Ticket ticket = new Ticket(totalPrice.get(), client);
         ticketService.saveTicket(ticket);
-        if(courses.size()>0){
-            courses.stream().forEach(course -> {courseService.saveTicketCourse(course, ticket);
-            });
-        }
-        if(merches.size()>0){
-            merches.stream().forEach(merch -> {
-                PurchaseOrder purchaseOrder = new PurchaseOrder(ticket, merch);
-                purchaseOrderRepository.save(purchaseOrder);
-            });
-        }
-
-
+        courses.forEach(course -> {
+            courseService.saveTicketCourse(course, ticket);
+        });
+        merches.forEach(merch -> {
+            PurchaseOrder purchaseOrder = new PurchaseOrder(ticket, merch);
+            purchaseOrderRepository.save(purchaseOrder);
+        });
 
         return new ResponseEntity<>("", HttpStatus.OK);
     }
+
 }

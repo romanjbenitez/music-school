@@ -6,5 +6,5 @@ public enum MerchWaist {
     m,
     l,
     xl,
-    df
+    DEFAULT
 }

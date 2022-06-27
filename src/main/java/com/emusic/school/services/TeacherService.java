@@ -12,4 +12,6 @@ public interface TeacherService {
 
     TeacherDTO getTeacherDTOById(Long id);
     Teacher getTeacherById(Long id);
+
+    void saveTeacher(Teacher teacher);
 }

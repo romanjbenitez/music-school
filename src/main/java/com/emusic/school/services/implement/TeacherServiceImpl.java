@@ -35,4 +35,9 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher getTeacherById(Long id) {
         return teacherRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void saveTeacher(Teacher teacher) {
+        teacherRepository.save(teacher);
+    }
 }
