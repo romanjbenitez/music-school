@@ -616,7 +616,16 @@ transition: all 0.3s;
 .logo-header:hover{
   transform: scale(0.95) ;
 }
+.student-header-container{
+  display: flex;
+  align-items: center;
 
+}
+.student-header-container img{
+  height: 4rem;
+  border-radius: 50%;
+  border:solid 2px var(--red);
+}
 /*  ------------------------- Courses ------------------------- */
 
 .courses{
