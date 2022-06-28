@@ -91,7 +91,7 @@ public class ClientController {
         helper.setTo(toAddress);
         helper.setSubject(subject);
 
-        content = content.replace("[[name]]",newClient.getFirstName() + newClient.getLastName());
+        content = content.replace("[[name]]",newClient.getFirstName() + " " +  " " + newClient.getLastName());
         String verifyURL = "http://localhost:8080/activateClient.html?token=" + newClient.getToken();
 
         content = content.replace("[[URL]]",verifyURL);
