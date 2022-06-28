@@ -170,8 +170,13 @@ margin-bottom: 5px;
 }
 
 .courses-filter{
-  width: 20%;
+  min-width: 20%;
   box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
+}
+.notCourses{
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 }
 .level-img{
   height: 1rem;
