@@ -45,8 +45,7 @@ Vue.createApp({
 			axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,
 			{headers:{'content-type':'application/x-www-form-urlencoded'}})
 			.then(response => 
-				console.log('registered'))
-			.then(this.signUp())
+				console.log('registered')).catch(err => console.log(err))
 		},
 
 	},

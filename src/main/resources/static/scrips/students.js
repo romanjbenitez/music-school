@@ -6,6 +6,10 @@ Vue.createApp({
      lastName : "",
      isLogin: false,
      tickets: [],
+     courses: [],
+     merch: [],
+     coursesFakes: []
+    
      }
      },
 
@@ -16,6 +20,9 @@ Vue.createApp({
                this.lastName = api.data.lastName
                this.isLogin = true;
                this.tickets = api.data.tickets
+               this.courses = this.tickets.filter(ticket => ticket.courseTickets.length != 0).map(ticket => ticket.courseTickets).map((course, index) => course.map(course => course.course)).flat()
+               this.merch = this.tickets.filter(ticket => ticket.purchaseOrder.length != 0).map(ticket => ticket.purchaseOrder).map((merch, index) => merch.map(merch => merch.merch)).flat()
+               this.coursesFakes = new Array(6 - this.courses.length).fill(1)
           })
      },
      
