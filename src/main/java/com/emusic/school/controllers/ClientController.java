@@ -4,11 +4,14 @@ import com.emusic.school.dtos.ClientDTO;
 import com.emusic.school.models.Client;
 import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -28,7 +31,11 @@ public class ClientController {
     private ClientService clientService;
 
     @Autowired
+
+    private PasswordEncoder passwordEncoder;
+
     private JavaMailSender javaMailSender;
+
 
     @GetMapping("/clients")
     public List<ClientDTO> getClients(){return clientService.getClientsDTO();}
@@ -51,11 +58,15 @@ public class ClientController {
         }
 
 
-        Client newClient = new Client(firstName,lastName,email,password,true);
+        Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true);
+
+
+    
 
         String randomCode = generateToken(64);
         newClient.setToken(randomCode);
         newClient.setVerified(false);
+
 
         clientService.saveClient(newClient);
         sendVerificationEmail(newClient);
@@ -109,4 +120,6 @@ public class ClientController {
         Client client = clientService.getClientByEmail(authentication.getName());
         return new ClientDTO(client);
     }
+
+
 }
