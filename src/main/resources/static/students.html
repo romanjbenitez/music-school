@@ -32,12 +32,19 @@
                          <div v-if="!isLogin">
                              <a  href="./login.html" id="btn-login">Login</a>
                          </div>
-                         <div v-else class="student-header-container">
-                             <p>{{firstName}}  {{lastName}}</p>
-                             <img src="./assets/harvey.png" alt="student" >
-                             <ul>
-                                 <li class="d-flex justify-content-between align-items-center"><i class="fa-solid fa-right-from-bracket me-2"></i><p>Logout</p></li>
-                             </ul>
+                         <div v-else class="student-cart-container">
+                             <!------------------- Shop Car--------------------->
+                             <div class="cart">
+                                 <div class="cart-amount">0</div>
+                                 <img src="/assets/cart-01.png">
+                             </div>
+                             <div class="student-header-container">
+                                 <p>{{firstName}}  {{lastName}}</p>
+                                 <img src="./assets/harvey.png" alt="student" >
+                                 <ul>
+                                     <li class="d-flex justify-content-between align-items-center"><i class="fa-solid fa-right-from-bracket me-2"></i><p>Logout</p></li>
+                                 </ul>
+                             </div>
                          </div>
                      </nav>
                     <div class="header-container-title">
@@ -51,6 +58,7 @@
 
                <!-------------------------------- MAIN -------------------------------->
                <main id="students-main">
+                    <!----------------- MAIN - Left Container ----------------->
                     <div id="students-left-container">
                          <div id="encabezado_students">
                               <img src="./assets/harvey.png" alt="student" class="student-avatar">
@@ -105,11 +113,12 @@
                               </p>
                          </div>
                     </div>
-                    <div id="panel_derecho">
+                    <!----------------- MAIN - Right Container ----------------->
+                    <div id="students-right-container">
                          <div id="calificaciones">
                               <div id="encabezado_calificaciones">
                                    <p class="no_margin"><span class="encabezados_chicos">Califications</span></p>
-                                   <h2 class="bold_white">Aliquam tincidunt mauris</h2>
+                                   <h3 class="bold_white">These are your purchased courses</h3>
                               </div>
                               <table class="table table-striped table-hover">
                                    <thead>
