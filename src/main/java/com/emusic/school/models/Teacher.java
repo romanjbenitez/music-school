@@ -12,17 +12,18 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String firstName, lastName, email, password;
+    private String firstName, lastName, email, password, subject;
 
     @OneToMany(mappedBy="teacher", fetch=FetchType.EAGER)
     private Set<Course> courses = new HashSet<>();
     public Teacher() {}
 
-    public Teacher(String firstName, String lastName, String email, String password) {
+    public Teacher(String firstName, String lastName, String email, String password, String subject) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.subject = subject;
     }
 
     public Long getId() {
@@ -68,4 +69,8 @@ public class Teacher {
         course.setTeacher(this);
         courses.add(course);
     }
+
+    public String getSubject() {return subject;}
+
+    public void setSubject(String subject) {this.subject = subject;}
 }

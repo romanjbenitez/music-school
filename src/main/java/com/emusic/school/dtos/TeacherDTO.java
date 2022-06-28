@@ -9,7 +9,7 @@ import java.util.Set;
 public class TeacherDTO {
     private Long id;
 
-    private String firstName, lastName, email, password;
+    private String firstName, lastName, email, password, subject;
 
 
     public TeacherDTO() {
@@ -19,6 +19,7 @@ public class TeacherDTO {
         this.firstName = teacher.getFirstName();
         this.lastName = teacher.getLastName();
         this.email = teacher.getEmail();
+        this.subject = teacher.getSubject();
     }
 
     public Long getId() {
@@ -49,4 +50,7 @@ public class TeacherDTO {
         this.email = email;
     }
 
+    public String getSubject() {return subject;}
+
+    public void setSubject(String subject) {this.subject = subject;}
 }
