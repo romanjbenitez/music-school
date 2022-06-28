@@ -16,6 +16,8 @@ public class ClientDTO {
     private String password;
     private boolean isActive;
     private Set<TicketDTO> tickets = new HashSet<>();
+    private String token;
+    private boolean isVerified;
 
 
     public ClientDTO() {}
@@ -28,6 +30,8 @@ public class ClientDTO {
         this.password = client.getPassword();
         this.isActive = client.isActive();
         this.tickets = client.getTickets().stream().map(ticket -> new TicketDTO(ticket)).collect(toSet());
+        this.token = client.getToken();
+        this.isVerified = client.isVerified();
     }
 
     public long getId() {return id;}
@@ -50,4 +54,20 @@ public class ClientDTO {
 
     public Set<TicketDTO> getTickets() {return tickets;}
     public void setTickets(Set<TicketDTO> tickets) {this.tickets = tickets;}
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
 }
