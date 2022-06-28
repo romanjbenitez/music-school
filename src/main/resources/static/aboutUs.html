@@ -24,11 +24,20 @@
                     <div v-if="!isLogin">
                         <a  href="./login.html" id="btn-login">Login</a>
                     </div>
-                    <div v-else class="student-header-container me-4">
-                        <img src="./assets/harvey.png" alt="student" >
-                        <p>{{firstName}}  {{lastName}}</p>
+                    <div v-else class="student-cart-container">
+                        <!------------------- Shop Car--------------------->
+                        <div class="cart">
+                            <div class="cart-amount">0</div>
+                            <img src="/assets/cart-01.png">
+                        </div>
+                        <div class="student-header-container">
+                            <p>{{firstName}}  {{lastName}}</p>
+                            <img src="./assets/harvey.png" alt="student" >
+                            <ul>
+                                <li class="d-flex justify-content-between align-items-center"><i class="fa-solid fa-right-from-bracket me-2"></i><p>Logout</p></li>
+                            </ul>
+                        </div>
                     </div>
-                    
                 </nav>
                 <div class="header-container-title">
                     <h1 class="header-title">Who <span class="font">we </span> are ?</h1>
@@ -187,6 +196,10 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
         crossorigin="anonymous">
       </script>
+         <script
+         src="https://kit.fontawesome.com/2544a6d2ae.js"
+         crossorigin="anonymous"
+     ></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://unpkg.com/vue@3"></script>

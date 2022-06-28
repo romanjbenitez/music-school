@@ -6,10 +6,39 @@ Vue.createApp({
         studentCourse : "",
         studentImg : "",
         studentReview : "",
+        firstName : "",
+        lastName : "",
+        isLogin: false,
+        courses: "",
+        students: "",
+        teachers: "",
         }
       },
 
     created() {
+      axios
+      .get("/api/client/current").then(api => {
+        this.firstName = api.data.firstName
+        this.lastName = api.data.lastName
+        this.isLogin = true;
+      }),
+
+      axios.get("/api/courses")
+        .then(api => {
+          this.courses = api.data
+      }),
+
+      axios.get("/api/clients")
+        .then(api => {
+          this.students = api.data
+      })
+
+      axios.get("/api/teachers")
+        .then(api => {
+          this.teachers = api.data
+          console.log(this.teachers)
+      })
+
     },
         
     mounted(){
@@ -69,7 +98,7 @@ Vue.createApp({
           icon: 'success',
           title: 'Successfully subscribed!'
         })
-      }
+      },
 
     },
     computed: {

@@ -6,7 +6,10 @@ Vue.createApp({
      filteredCourses: [],
      teachers:[],
      priceRange:[],
-     filteredByPrice: []
+     filteredByPrice: [],
+     firstName : "",
+     lastName : "",
+     isLogin: false,
      }
      },
 
@@ -17,7 +20,12 @@ Vue.createApp({
           this.filteredCourses = datos.data
           this.teachers = this.courses[0].teacher
      })
-
+     axios
+     .get("/api/client/current").then(api => {
+       this.firstName = api.data.firstName
+       this.lastName = api.data.lastName
+       this.isLogin = true;
+     })
      },
      
      mounted(){

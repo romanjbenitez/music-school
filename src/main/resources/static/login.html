@@ -23,21 +23,25 @@
               <div class="form sign-up">
                 <div class="input-group">
                   <i class="bx bxs-user"></i>
-                  <input type="text" placeholder="Username" />
+                  <input type="text" placeholder="First Name" v-model="firstName"/>
+                  {{firstName}}
+                </div>
+                <div class="input-group">
+                  <i class="bx bxs-lock-alt"></i>
+                  <input type="text" placeholder="Last Name" v-model="lastName"/>
+                  {{lastName}}
                 </div>
                 <div class="input-group">
                   <i class="bx bx-mail-send"></i>
-                  <input type="email" placeholder="Email" />
+                  <input type="email" placeholder="Email" v-model="email"/>
+                  {{email}}
                 </div>
                 <div class="input-group">
                   <i class="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Password" />
+                  <input type="password" placeholder="Password" v-model="password"/>
+                  {{password}}
                 </div>
-                <div class="input-group">
-                  <i class="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Confirm password" />
-                </div>
-                <button @click="signUp">Sign up</button>
+                <button @click="register">Sign up</button>
                 <p>
                   <span class="white"> Already have an account?</span>
                   <p @click="toggle" class="pointer underline-hover-effect ms-3 me-3 white"> Sign in here </p>
