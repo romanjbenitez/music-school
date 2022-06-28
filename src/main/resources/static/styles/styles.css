@@ -187,7 +187,6 @@ margin-bottom: 5px;
   flex-wrap: wrap;
   justify-content: center;
   width: 80%;
-
 }
 
 #filter-wrapper {
@@ -197,6 +196,8 @@ margin-bottom: 5px;
 #collapse_filters .inner-scroller {
   padding-top: 25px;
   padding-bottom: 30px;
+  overflow: scroll;
+  height: 60vh;
 }
 .sidebar-filter.filter-level {
     margin: 0;
@@ -736,6 +737,8 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
 }
 .filters-ul{
   padding: 0;
+  height: 100vh;
+  overflow: scroll;
 }
 .filters-li:first-child{
   color: #fff;
