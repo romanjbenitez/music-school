@@ -5,15 +5,17 @@ Vue.createApp({
      firstName : "",
      lastName : "",
      isLogin: false,
+     tickets: [],
      }
      },
 
      created() {
           axios
           .get("/api/client/current").then(api => {
-            this.firstName = api.data.firstName
-            this.lastName = api.data.lastName
-            this.isLogin = true;
+               this.firstName = api.data.firstName
+               this.lastName = api.data.lastName
+               this.isLogin = true;
+               this.tickets = api.data.tickets
           })
      },
      
