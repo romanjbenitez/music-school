@@ -39,6 +39,7 @@ public class SchoolApplication {
 
 
 			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true);
+			client1.setVerified(true);
 			clientRepository.save(client1);
 			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
 			clientRepository.save(client2);
