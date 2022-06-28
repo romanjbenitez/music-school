@@ -5,9 +5,12 @@ import com.emusic.school.models.Client;
 import com.emusic.school.repositories.ClientRepository;
 import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,9 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/clients")
     public List<ClientDTO> getClients(){return clientService.getClientsDTO();}
@@ -40,7 +46,7 @@ public class ClientController {
             return new ResponseEntity<>("Email invalid.", HttpStatus.FORBIDDEN);
         }
 
-        Client newClient = new Client(firstName,lastName,email,password,true);
+        Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true);
         clientService.saveClient(newClient);
         return new ResponseEntity<>("Successfully registered.", HttpStatus.CREATED);
 
@@ -51,4 +57,6 @@ public class ClientController {
         Client client = clientService.getClientByEmail(authentication.getName());
         return new ClientDTO(client);
     }
+
+
 }
