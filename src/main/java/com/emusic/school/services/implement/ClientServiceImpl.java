@@ -24,4 +24,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void saveClient(Client client) {clientRepository.save(client);}
+
+    @Override
+    public Client getClientToken(String token) {
+       return clientRepository.findByToken(token);
+    }
 }
