@@ -17,6 +17,8 @@ public class Client {
     private String email;
     private String password;
     private boolean isActive;
+    private boolean isVerified;
+    private String token;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Ticket> tickets = new HashSet<>();
@@ -50,4 +52,25 @@ public class Client {
 
     public Set<Ticket> getTickets() {return tickets;}
     public void setTickets(Set<Ticket> tickets) {this.tickets = tickets;}
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void deleteToken(){
+        this.token = "";
+    }
+
 }
