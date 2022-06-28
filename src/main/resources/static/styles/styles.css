@@ -942,13 +942,13 @@ background-color: #ce0202;
 }
 .card {
   width: 17rem;
-  height: 25rem;
+  height: 21rem;
   border-radius: 1rem;
   padding: 2rem;
   background: #dadada;
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   transition: 0.4s ease-out;
   box-shadow:rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
   margin: 1rem;
@@ -982,6 +982,7 @@ background-color: #ce0202;
  .text-title {
   font-size: 1.7rem;
   font-weight: 500;
+  text-shadow: 2px 2px 2px #000;
  }
  
  .text-body {
@@ -1004,13 +1005,13 @@ background-color: #ce0202;
  }
  
 
- .card-img {
-  width: 100%;
+.card-img {
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-
+  filter: grayscale(2);
+  border-radius: 10px;
 }
 .card:hover {
 transform: translateY(5%);
