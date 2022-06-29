@@ -19,7 +19,7 @@
             <header class="header bg-hero">
                 <nav class="nav">
                     <a href="./index.html"><img src="./assets/logo-nav.png" alt="logo" id="logo" class="logo-header"></a>
-                    <div>
+                    <div class="nav-button-container">
                         <a class="underline-hover-effect ms-3 me-3" href="./index.html">Home</a>
                         <a class="underline-hover-effect ms-3 me-3" href="./courses.html">Courses</a>
                         <a class="underline-hover-effect ms-3 me-3" href="./merchandise.html">Merchandise</a>
@@ -145,18 +145,12 @@
                             specimen book. It has survived not only five centuries, but also the leap into 
                             electronic typesetting
                         </p>
-                        <div class="d-flex">
+                        <div class="students-conatiner-home">
                             <div v-for="student in students" class="student-container">
-                                <img v-if="student.firstName === 'Paul'" src="/assets/paul.png" alt="student" class="student">
-                            </div>
-                            <div v-for="student in students" class="student-container">
-                                <img v-if="student.firstName === 'Juan'" src="./assets/harvey.png" alt="student" class="student">
-                            </div>
-                            <div v-for="student in students" class="student-container">
-                                <img v-if="student.firstName === 'Emilia'" src="./assets/emilia.png" alt="student" class="student">
-                            </div>
-                            <div v-for="student in students" class="student-container">
-                                <img v-if="student.firstName === 'Riley'" src="./assets/riley.png" alt="student" class="student">
+                                <img v-if="student.firstName === 'Paul'" src="/assets/paul.png" alt="student" class="student" id="student-1">
+                                <img v-if="student.firstName === 'Juan'" src="./assets/harvey.png" alt="student" class="student" id="student-2">
+                                <img v-if="student.firstName === 'Emilia'" src="./assets/emilia.png" alt="student" class="student" id="student-3">
+                                <img v-if="student.firstName === 'Riley'" src="./assets/riley.png" alt="student" class="student" id="student-4">
                             </div>
                         </div>
                     </div>
@@ -178,7 +172,7 @@
 
                 <!------------------ Main - Teachers Section ------------------>
                 <section class="teachers">
-                    <div class="d-flex justify-content-center">
+                    <div class="teachers-container">
                         <div v-for="teacher in teachers" class="card">
                             <img v-if="teacher.lastName === 'Jordison'" src="/assets/Joey.png" class="card-img">
                             <img v-if="teacher.lastName === 'Portnoy'" src="/assets/mikePortnoy.png" class="card-img">
@@ -200,9 +194,9 @@
             <!-------------------------------------- Footer -------------------------------------->
             <footer class="container-footer">
 
-                    <div class="container-footer-col#1 col-3">
+                    <div class="container-footer-col-1">
                         <img src="./assets/logo-nav.png" alt="logo" class="mb-4">
-                        <ul class="d-flex flex-column gap-3 p-0">
+                        <ul class="d-flex flex-column gap-2 p-0">
                             <li>Copyright © 2021.</li>
                             <li>Emusic All rights reserved.</li>
                             <li class="d-flex gap-2">
@@ -232,8 +226,8 @@
                         </ul>
                     </div>
 
-                    <div class="container-footer-col#2 col-3">
-                        <ul class="d-flex flex-column gap-3 p-0">
+                    <div class="container-footer-col-2">
+                        <ul class="d-flex flex-column gap-2 p-0">
                             <h3 class="bold">GOT LOST?</h3>
                             <li><a href="http://">Home</a></li>
                             <li><a href="http://">Student's Profile</a></li>
@@ -244,8 +238,8 @@
                         </ul>
                     </div>
 
-                    <div class="container-footer-col#3 col-3">
-                        <ul class="d-flex flex-column gap-3 p-0">
+                    <div class="container-footer-col-3">
+                        <ul class="d-flex flex-column gap-2 p-0">
                             <h3 class="bold">ABOUT EMUSIC</h3>
                             <li><a href="http://">FAQ</a></li>
                             <li><a href="http://">Privicy Policy</a></li>
@@ -254,7 +248,7 @@
                         </ul>
                     </div>
 
-                    <div class="container-footer-col#4 col-3">
+                    <div class="container-footer-col-4">
                         <h3 class="bold">FOLLOW US</h3>
                         <ul class="d-flex gap-4 p-0">
                             <li><a href="http://"><img src="./assets/facebook.png" alt="facebook" class="social"></a></li>

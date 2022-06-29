@@ -44,8 +44,18 @@ Vue.createApp({
 		register(){
 			axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,
 			{headers:{'content-type':'application/x-www-form-urlencoded'}})
-			.then(response => 
-				console.log('registered')).catch(err => console.log(err))
+
+			.then(console.log('registered'))
+			.then(Swal.fire({
+				title: 'Now confirm your mail!',
+				text: 'Check your inbox',
+				imageUrl: '/assets/modal-register.png',
+				imageWidth: 400,
+				imageHeight: 200,
+				imageAlt: 'Custom image',
+				})
+			)
+
 		},
 
 	},
