@@ -99,7 +99,9 @@ Vue.createApp({
           title: 'Successfully subscribed!'
         })
       },
-
+      goToTeacherCourses(teacher){
+        window.location = "courses.html"
+      }
     },
     computed: {
       headershow(){
