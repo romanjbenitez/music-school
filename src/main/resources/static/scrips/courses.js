@@ -1,6 +1,8 @@
 Vue.createApp({
      data() {
      return {
+     charging: true,
+     hidden: "",
      header : null,
      courses: "",
      filteredCourses: [],
@@ -25,14 +27,17 @@ Vue.createApp({
        this.firstName = api.data.firstName
        this.lastName = api.data.lastName
        this.isLogin = true;
-     })
+     }).catch(err => null)
      axios.get('/api/teachers')
      .then(res => this.teachers = res.data)
+     setTimeout(() => { this.charging = false }, 1500)
      },
      
      mounted(){
      this.$nextTick(function () {
      this.header = document.querySelector(".nav");
+ 
+     
      })
      },
 

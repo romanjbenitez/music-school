@@ -1,6 +1,9 @@
 Vue.createApp({
      data() {
           return {
+               charging: true,
+               hidden: "",
+               header : null,
                header : null,
                courses: "",
                merchandises: [],
@@ -23,7 +26,7 @@ Vue.createApp({
        this.isLogin = true;
      })
 
-
+     setTimeout(() => { this.charging = false }, 1500)
      },
      
      mounted(){
