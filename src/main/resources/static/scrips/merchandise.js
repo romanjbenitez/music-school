@@ -5,7 +5,7 @@ Vue.createApp({
                courses: "",
                merchandises: [],
 
-               filteredMerch:[]
+               filteredMerch:[],
 
                firstName : "",
                lastName : "",
@@ -85,7 +85,7 @@ Vue.createApp({
           },
           getAll(){
                this.filteredMerch = this.merchandises
-          }
+          },
           
 
                logout() {
