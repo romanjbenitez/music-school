@@ -31,8 +31,8 @@
                 </div>
                 <div class="student-header-container">
                     <p>{{firstName}}  {{lastName}}</p>
-                    <img :src="`./assets/${firstName.toLowerCase()}.png`" alt="student" >
-                    <ul @click="logout">
+                    <img src="./assets/harvey.png" alt="student" >
+                    <ul>
                         <li class="d-flex justify-content-between align-items-center"><i class="fa-solid fa-right-from-bracket me-2"></i><p>Logout</p></li>
                     </ul>
                 </div>
@@ -52,8 +52,8 @@
               <div class="filters">
                 <ul class="filters-ul">
                   <li class="filters-li">FILTERS</li>
-                  <li class="filters-li">
-                    <img alt="All" src="" class="instrument-img" @click="getAll">
+                  <li class="filters-li"  @click="getAll">
+                    <img alt="All" src="" class="instrument-img">
                     All
                   </li>
                   <li class="filters-li" data-merch-type="cup" @click="filterBy($event)">
@@ -222,10 +222,6 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
         crossorigin="anonymous">
       </script>
-       <script
-       src="https://kit.fontawesome.com/2544a6d2ae.js"
-       crossorigin="anonymous"
-   ></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://unpkg.com/vue@3"></script>
