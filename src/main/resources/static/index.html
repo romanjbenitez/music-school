@@ -178,6 +178,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="students-subcontainer-two">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <img :src="studentImg" alt="student" class="student student-selected">
+                                    <div>
+                                        <h5 class="fs-3">{{studentName}}</h5> 
+                                        <h6 class="red fs-4">{{studentCourse}}</h6>
+                                        <p class="fs-5">
+                                            {{studentReview}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -195,20 +209,7 @@
                                 <p class="text-title">{{teacher.firstName}}</p>
                                 <p class="text-body">{{teacher.subject}}</p>
                                 <button class="card-button" @click="goToTeacherCourses(teacher.email)">Discover Courses</button>
-                        <div class="students-subcontainer-two">
-                            <div class="d-flex flex-column align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <img :src="studentImg" alt="student" class="student student-selected">
-                                    <div>
-                                        <h5 class="fs-3">{{studentName}}</h5> 
-                                        <h6 class="red fs-4">{{studentCourse}}</h6>
-                                        <p class="fs-5">
-                                            {{studentReview}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </section>
     
                 
