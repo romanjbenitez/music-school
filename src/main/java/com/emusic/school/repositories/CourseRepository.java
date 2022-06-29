@@ -8,9 +8,5 @@ import java.util.Optional;
 
 
 @RepositoryRestResource
-
-
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    @Override
-    Optional<Course> findById(Long id);
 }

@@ -47,17 +47,17 @@ public class SchoolApplication {
 			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
 			clientRepository.save(client4);
 
-			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums");
+			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);
 			teacherRepository.save(teacher);
-			Teacher teacher1 = new Teacher("Mike","Thompson","mikethompson@gmail.com",passwordEncoder.encode("123456"), "Guitar");
+			Teacher teacher1 = new Teacher("Mike","Thompson","mikethompson@gmail.com",passwordEncoder.encode("123456"), "Guitar",true);
 			teacherRepository.save(teacher1);
-			Teacher teacher2 = new Teacher("Richard","Kotzen","richiekotzen@gmail.com",passwordEncoder.encode("123456"), "Sing");
+			Teacher teacher2 = new Teacher("Richard","Kotzen","richiekotzen@gmail.com",passwordEncoder.encode("123456"), "Sing",true);
 			teacherRepository.save(teacher2);
-			Teacher teacher3 = new Teacher("Tom","Morello","tommorello@gmail.com",passwordEncoder.encode("123456"), "Bass");
+			Teacher teacher3 = new Teacher("Tom","Morello","tommorello@gmail.com",passwordEncoder.encode("123456"), "Bass",true);
 			teacherRepository.save(teacher3);
-			Teacher teacher4 = new Teacher("Maynard","Keenan","maynardkeenan@gmail.com",passwordEncoder.encode("123456"), "Piano");
+			Teacher teacher4 = new Teacher("Maynard","Keenan","maynardkeenan@gmail.com",passwordEncoder.encode("123456"), "Piano",true);
 			teacherRepository.save(teacher4);
-			Teacher teacher5 = new Teacher("Joey","Jordison","joeyjordison@gmail.com",passwordEncoder.encode("123456"), "Sax");
+			Teacher teacher5 = new Teacher("Joey","Jordison","joeyjordison@gmail.com",passwordEncoder.encode("123456"), "Sax",true);
 			teacherRepository.save(teacher5);
 
 
