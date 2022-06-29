@@ -49,7 +49,7 @@ public class TicketController {
             return new ResponseEntity<>("ID MERCH INVALID", HttpStatus.FORBIDDEN);
         }
 
-        boolean invalidDataCourseId = idsCourses.stream().anyMatch(idCourse -> idCourse == null || courseService.getCourseById(idCourse) == null);
+        boolean invalidDataCourseId = idsCourses.stream().anyMatch(idCourse -> idCourse == null || courseService.findById(idCourse) == null);
         if (invalidDataCourseId){
             return new ResponseEntity<>("ID COURSE INVALID", HttpStatus.FORBIDDEN);
         }
@@ -61,7 +61,7 @@ public class TicketController {
         }
 
         idsCourses.forEach(idCourse -> {
-            totalPrice.set(totalPrice.get() + courseService.getCourseById(idCourse).getPrice());
+            totalPrice.set(totalPrice.get() + courseService.findById(idCourse).getPrice());
         });
 
         merchTicketDTOS.forEach(merchTicketDTO -> {
@@ -74,7 +74,7 @@ public class TicketController {
         ticketService.saveTicket(ticket);
 
         idsCourses.forEach(idCourse -> {
-            courseService.saveTicketCourse(courseService.getCourseById(idCourse), ticket);
+            courseService.saveTicketCourse(courseService.findById(idCourse), ticket);
         });
 
         merchTicketDTOS.forEach(merchTicketDTO -> {

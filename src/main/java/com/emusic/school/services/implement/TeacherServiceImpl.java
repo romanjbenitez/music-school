@@ -18,7 +18,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<TeacherDTO> getTeachersDTO() {
-        return teacherRepository.findAll().stream().map(TeacherDTO::new).collect(Collectors.toList());
+        return teacherRepository.findAll().stream().filter(Teacher::isActive).map(TeacherDTO::new).collect(Collectors.toList());
     }
 
     @Override

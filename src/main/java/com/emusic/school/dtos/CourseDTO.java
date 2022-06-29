@@ -1,19 +1,14 @@
 package com.emusic.school.dtos;
 
 import com.emusic.school.models.Course;
-import com.emusic.school.models.Teacher;
-
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 public class CourseDTO {
 
     private long id;
 
-    private String level,name;
+    private String level, name;
 
-    private int lessons,duration;
+    private int lessons, duration;
     private Double price;
     private boolean active;
 

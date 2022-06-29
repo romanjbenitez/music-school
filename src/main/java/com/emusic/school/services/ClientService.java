@@ -12,4 +12,6 @@ public interface ClientService {
     List<ClientDTO> getClientsDTO();
 
     void saveClient (Client client);
+
+    Client getClientToken(String token);
 }

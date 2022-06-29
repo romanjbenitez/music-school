@@ -20,9 +20,19 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+<<<<<<< HEAD
 	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
+=======
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+>>>>>>> 40dca44ea4544e100c07250a1027f47c4180709f
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+bootRun {
+
+	sourceResources sourceSets.main
+
 }

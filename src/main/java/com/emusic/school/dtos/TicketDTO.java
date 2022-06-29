@@ -1,8 +1,5 @@
 package com.emusic.school.dtos;
 
-import com.emusic.school.models.Client;
-import com.emusic.school.models.CourseTicket;
-import com.emusic.school.models.PurchaseOrder;
 import com.emusic.school.models.Ticket;
 
 import java.util.HashSet;

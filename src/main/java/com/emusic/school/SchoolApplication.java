@@ -38,38 +38,113 @@ public class SchoolApplication {
 		return (args) -> {
 
 
-			Client client1 = new Client("Juan","Perez","dsada@gmail.com", passwordEncoder.encode("1234"), true);
+			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true);
+			client1.setVerified(true);
 			clientRepository.save(client1);
+			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
+			client2.setVerified(true);
+			clientRepository.save(client2);
+			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true);
+			client3.setVerified(true);
+			clientRepository.save(client3);
+			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
+			client4.setVerified(true);
+			clientRepository.save(client4);
 
-			Teacher teacher = new Teacher("ale","rodriguez","ale@gmail.com",passwordEncoder.encode("123456"));
+			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);
 			teacherRepository.save(teacher);
+			Teacher teacher1 = new Teacher("Mike","Thompson","mikethompson@gmail.com",passwordEncoder.encode("123456"), "Guitar",true);
+			teacherRepository.save(teacher1);
+			Teacher teacher2 = new Teacher("Richard","Kotzen","richiekotzen@gmail.com",passwordEncoder.encode("123456"), "Sing",true);
+			teacherRepository.save(teacher2);
+			Teacher teacher3 = new Teacher("Tom","Morello","tommorello@gmail.com",passwordEncoder.encode("123456"), "Bass",true);
+			teacherRepository.save(teacher3);
+			Teacher teacher4 = new Teacher("Maynard","Keenan","maynardkeenan@gmail.com",passwordEncoder.encode("123456"), "Piano",true);
+			teacherRepository.save(teacher4);
+			Teacher teacher5 = new Teacher("Joey","Jordison","joeyjordison@gmail.com",passwordEncoder.encode("123456"), "Sax",true);
+			teacherRepository.save(teacher5);
 
-			Course course = new Course("principiante","guitarra",4,20000D,20,true,teacher);
+
+			Course course = new Course("principiante","Guitar",4,20000D,20,true,teacher1);
 			courseRepository.save(course);
+			Course course1 = new Course("principiante", "Drums", 4, 30000D, 23, true,teacher);
+			courseRepository.save(course1);
+			Course course2 = new Course("principiante", "Sing", 8, 18500D, 25, true,teacher2);
+			courseRepository.save(course2);
+			Course course3 = new Course("expert", "Sax", 6, 15900D, 18, true,teacher5);
+			courseRepository.save(course3);
+			Course course4 = new Course("middle", "Bass", 6, 18500D, 21, true,teacher3);
+			courseRepository.save(course4);
+			Course course5 = new Course("expert", "Piano", 10, 12000D, 20, true,teacher4);
+			courseRepository.save(course5);
 
 
-			Merch merch1= new Merch(10,"Gorra",200,DEFAULT,true);
-			Merch merch2= new Merch(10,"Remara",200,m,true);
+
+			Merch merch1= new Merch(10,"cap",650,DEFAULT,true);
 			merchRepository.save(merch1);
+			Merch merch2= new Merch(10,"t-shirt",1200,m,true);
 			merchRepository.save(merch2);
+			Merch merch3= new Merch(10,"key-ring",250,m,true);
+			merchRepository.save(merch3);
+			Merch merch4= new Merch(10,"logbook",420,m,true);
+			merchRepository.save(merch4);
+			Merch merch5= new Merch(10,"cover",3700,m,true);
+			merchRepository.save(merch5);
+			Merch merch6= new Merch(10,"cup",450,m,true);
+			merchRepository.save(merch6);
+			Merch merch7= new Merch(10,"t-shirt",1200,m,true);
+			merchRepository.save(merch7);
+			Merch merch8= new Merch(10,"cap",650,m,true);
+			merchRepository.save(merch8);
+
 
 			Ticket ticket1 = new Ticket(500,client1);
+			Ticket ticket3 = new Ticket(500,client3);
+			Ticket ticket4 = new Ticket(500,client4);
+
+
 			ticketRepository.save(ticket1);
+			ticketRepository.save(ticket3);
+			ticketRepository.save(ticket4);
 
 			CourseTicket courseTicket = new CourseTicket(ticket1,course);
+			CourseTicket courseTicket2 = new CourseTicket(ticket3,course2);
+			CourseTicket courseTicket3 = new CourseTicket(ticket4,course3);
+
+
 			courseTicketRepository.save(courseTicket);
+			courseTicketRepository.save(courseTicket2);
+			courseTicketRepository.save(courseTicket3);
+
 
 			Ticket ticket2 = new Ticket(400,client1);
 			ticketRepository.save(ticket2);
+			Ticket ticket5 = new Ticket(300,client1);
+			ticketRepository.save(ticket5);
+			Ticket ticket6 = new Ticket(1000,client1);
+			ticketRepository.save(ticket6);
 
-			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1, 2);
-			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2, 3);
+			CourseTicket courseTicket4 = new CourseTicket(ticket5,course2);
+			CourseTicket courseTicket5 = new CourseTicket(ticket6,course5);
+			courseTicketRepository.save(courseTicket4);
+			courseTicketRepository.save(courseTicket5);
+
+
+			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1,2);
+			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2,1);
+			PurchaseOrder purchaseOrder3 = new PurchaseOrder(ticket6,merch5,2);
+			PurchaseOrder purchaseOrder4 = new PurchaseOrder(ticket5,merch3,3);
+
 			purchaseOrderRepository.save(purchaseOrder);
 			purchaseOrderRepository.save(purchaseOrder2);
+			purchaseOrderRepository.save(purchaseOrder3);
+			purchaseOrderRepository.save(purchaseOrder4);
 
 
 
-			System.out.println("Aplicacion iniciada");
+			System.out.println("---------------------------------");
+			System.out.println("EMusic App iniciada, Let's Rock! ");
+			System.out.println("---------------------------------");
 		};
 	}
 }

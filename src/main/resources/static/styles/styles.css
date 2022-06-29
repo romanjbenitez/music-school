@@ -94,7 +94,7 @@ margin-bottom: 5px;
   background-color: #000000 ;
   width: 95%;
   padding: 1rem;
-  margin: 2rem 2rem;
+  margin: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -107,22 +107,21 @@ margin-bottom: 5px;
 }
 
 .profileCard {
-
+  background-color: #000;
   transition: all 300ms;
+  width: 42.3rem;
   padding: 1rem;
-  width: 45%;
-  padding: 1rem;
-  margin: 2rem;
+  margin: .5rem .5rem 1rem .5rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  color: #c3c3c3;
 }
 
 .profileCard:hover {
-  transform: scale(1.05);
-  cursor: pointer
+ 
 }
 
-#panel_derecho {
+#students-right-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -166,12 +165,19 @@ margin-bottom: 5px;
 }
 
 .page-courses{
+  width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .courses-filter{
-  width: 20%;
+  min-width: 20%;
   box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
+}
+.notCourses{
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 }
 .level-img{
   height: 1rem;
@@ -187,7 +193,6 @@ margin-bottom: 5px;
   flex-wrap: wrap;
   justify-content: center;
   width: 80%;
-
 }
 
 #filter-wrapper {
@@ -197,6 +202,8 @@ margin-bottom: 5px;
 #collapse_filters .inner-scroller {
   padding-top: 25px;
   padding-bottom: 30px;
+  overflow: scroll;
+  height: 60vh;
 }
 .sidebar-filter.filter-level {
     margin: 0;
@@ -249,6 +256,7 @@ margin-bottom: 5px;
 }
 
 .courseCard{
+  height: fit-content;
   display: flex;
   flex-direction: column;
   transition: all 300ms;
@@ -515,6 +523,34 @@ margin-left: 2rem;
 .nav a:focus {
   color: white;
 }
+
+.student-cart-container{
+display: flex;
+align-items: center;
+}
+.cart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.cart-amount{
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--light);
+  font-weight: bold;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background-color: #ce0202;
+  margin: 0 0 1rem 5px;
+  top: 15px;
+}
+
 .underline-hover-effect {
   position: relative;
 }
@@ -540,6 +576,7 @@ margin-left: 2rem;
   border: solid 3px  var(--red);
   padding: 0.5rem 3rem;
   border-radius: 10px;
+  transition: all 0.3s;
 }
 #btn-login:hover {
   color: #ebebeb;
@@ -616,7 +653,49 @@ transition: all 0.3s;
 .logo-header:hover{
   transform: scale(0.95) ;
 }
+.student-header-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--smoke-color);
+  position: relative;
 
+}
+.student-header-container img{
+  height: 4rem;
+  border-radius: 50%;
+  border:solid 2px var(--red);
+}
+.student-header-container p{
+  margin-bottom: 0;
+  margin-right: 1rem;
+}
+.student-header-container ul{
+  width: 100%;
+  position: absolute;
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.7s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  top: 4rem;
+  background-color: #000;
+  flex-direction: column;
+  
+}
+.student-header-container:hover ul{
+  max-height: 300px;
+}
+.student-header-container li {
+  padding: 1rem 2rem;
+  height: 90px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.student-header-container >ul >li:hover , .student-header-container >ul >li > a:hover {
+  color: var(--red);
+}
 /*  ------------------------- Courses ------------------------- */
 
 .courses{
@@ -631,13 +710,11 @@ transition: all 0.3s;
 }
 
 .coursesCards-container{
-  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
-    justify-items: stretch;
-    align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+
 }
 
 .coursesCard {
@@ -726,8 +803,10 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
 }
 .filters-ul{
   padding: 0;
+  height: 100vh;
+  overflow: scroll;
 }
-.filters-li:first-child{
+/* .filters-li:first-child{
   color: #fff;
   background-color: #000;
 }
@@ -736,7 +815,7 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
   background-color: #000;
   cursor:default;
   border-right: 0 ;
-}
+} */
 .filters-li-divisor{
   height: 3rem;
   color: #fff;
@@ -784,6 +863,7 @@ position: relative;
 overflow: visible;
 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 margin: 2rem 1rem;
+border-radius: 5px;
 }
 
 .merch-card-img {
@@ -795,6 +875,7 @@ transition: .3s ease;
 }
 
 .merch-card-title{
+  text-transform: uppercase;
   font-weight: bold;
 }
 
@@ -874,7 +955,7 @@ background-color: #ce0202;
   height: 100%;
   background-color: #f1f1f1f5;
   border-radius: 2rem 0 0 2rem;
-  padding: 3rem;
+  padding: 1rem 2rem;
 }
 
 .students-subcontainer-two{
@@ -886,26 +967,62 @@ background-color: #ce0202;
   border-radius: 0 2rem 2rem 0;
   display: flex;
 }
+.merchItem{
+  width: 12rem;
+  height: 100%;
+  background-color: #0e0e0efd;
+  margin-left: .5rem;
+  padding: 1rem;
+  border-radius:1rem;
+  transition: all 0.3s;
+  font-size: .9rem;
+  overflow:hidden
+}
+.merchItem:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.merchItem img{
+  border-radius:1rem;
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
 
+}
+.w-auto{
+  width: 17.5rem !important;
+}
+
+.students-conatiner-home{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
 
 /*  ------------------------- Teachers ------------------------- */
 
 .teachers{
-  height: 50vh;
+  min-height: 50vh;
+  max-height: fit-content;
   background-color: #ebe9e9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.teachers-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .card {
   width: 17rem;
-  height: 25rem;
+  height: 21rem;
   border-radius: 1rem;
   padding: 2rem;
   background: #dadada;
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   transition: 0.4s ease-out;
   box-shadow:rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
   margin: 1rem;
@@ -939,6 +1056,7 @@ background-color: #ce0202;
  .text-title {
   font-size: 1.7rem;
   font-weight: 500;
+  text-shadow: 2px 2px 2px #000;
  }
  
  .text-body {
@@ -961,13 +1079,13 @@ background-color: #ce0202;
  }
  
 
- .card-img {
-  width: 100%;
+.card-img {
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-
+  filter: grayscale(2);
+  border-radius: 10px;
 }
 .card:hover {
 transform: translateY(5%);
@@ -990,14 +1108,30 @@ color: #f5f5f5;
 
 .container-footer{
   display: flex;
-  height: 40vh;
-  justify-content: space-between;
+  height: fit-content;
+  justify-content: space-around;
   flex-wrap: wrap;
   background-color: #000000ff;
   color: white;
   padding: 2rem 2rem;
 }
 
+.container-footer-col-1{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-2{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-3{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-4{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
 .logoFooter {
   display: flex;
   align-items: center;
@@ -1073,7 +1207,7 @@ ul > li >a:hover {
   border-radius: 4px 0px 0px 4px;
 }
 
-
+/*  ------------------------- Sweet Alert Subscribe ------------------------- */
 .swal2-title {
   font-weight: normal !important;
 }
@@ -1092,7 +1226,119 @@ ul > li >a:hover {
   background-color: #ce0202 !important;
 }
 
-@media (max-width: 350px) {
+/*  ------------------------- Checkout ------------------------- */
+.bg-checkout{
+  width: 100%;
+  height: 50vh;
+  --dark-opacity: 0.3;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, var(--dark-opacity)),
+      rgba(0, 0, 0, var(--dark-opacity))
+    ),
+    url("../assets/checkout.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+#main-checkout{
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.checkout-details-container{
+  width: 80%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow:rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -3px 0px inset;
+}
+.checkout-details-item{
+  width: 80%;
+  border-bottom: 1px solid rgb(218, 218, 218);
+  display: flex;
+  align-items: center;
+}
+.item-description{
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+.checkout-item{
+height: 100%;
+}
+
+
+
+@media (max-width: 545px) {
+  .container-footer-col-1{
+    margin-bottom: 0.5rem;
+  }
+  .container-footer-col-2{
+    display: none;
+  }
+  .container-footer-col-3{
+    margin-bottom: 0.5rem;
+  }
+  .container-footer-col-4{
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 843px) {
+  #student-2{
+    display: none;
+  }
+}
+
+@media (max-width: 1004px) {
+  .students{
+    height: 60vh;
+  }
+  .students-subcontainer-one{
+    height: 50vh;
+  }
+  .students-subcontainer-two{
+    height: 50vh;
+  }
+  .coursesCard{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 35vw;
+  }
+  .container-footer{
+    height: fit-content;
+  }
+}
+
+@media (max-width: 1035px) {
+  .nav-button-container{
+    display: none;
+  }
+}
+
+@media (max-width: 1227px) {
+  .students{
+    padding: 3rem 3rem;
+  }
+}
+
+@media (max-width: 1393px) {
+  .student-selected{
+    display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  #student-3{
+    display: none;
+  }
+}
+
+@media (max-width: 1760px) {
+  #student-4{
+    display: none;
+  }
 }
 
 
