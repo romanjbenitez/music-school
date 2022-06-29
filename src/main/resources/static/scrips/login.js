@@ -44,6 +44,7 @@ Vue.createApp({
 		register(){
 			axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,
 			{headers:{'content-type':'application/x-www-form-urlencoded'}})
+
 			.then(console.log('registered'))
 			.then(Swal.fire({
 				title: 'Now confirm your mail!',
@@ -54,6 +55,7 @@ Vue.createApp({
 				imageAlt: 'Custom image',
 				})
 			)
+
 		},
 
 	},

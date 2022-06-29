@@ -62,49 +62,19 @@ Vue.createApp({
                console.log(filteredByLevel);
 
           },     
-          // filterByPrice($event){
-          //      console.log($event.target.checked);
-          //      if($event.target.checked){
-          //      let lowerPrice = Number.parseInt($event.target.getAttribute('data-lower-price'))
-          //      console.log(lowerPrice);
-          //      let higherPrice = Number.parseInt($event.target.getAttribute('data-higher-price'));
-          //      console.log(higherPrice);
-          //      let result = this.courses.filter(course => course.price > lowerPrice && course.price < higherPrice)
-          //      // let result = this.filteredCourses.lenght > 0 ? this.filteredCourses.filter(course => course.price > lowerPrice && course.price < higherPrice) : this.courses;
-          //      console.log(result);
-          //      // this.filteredCourses = result
-          //      return result;
-          //      }
-          // },
-          price($event){
-
-               let coursesByPrice= [];
-               if(this.priceRange.length > 0){
-               this.priceRange.forEach(range => {
-                    if(range == '0-10k')
-                    coursesByPrice.push(this.courses.filter(course => course.price <= 10000))  
-                    
-                    if(range == '10k-20k')
-                    coursesByPrice.push(this.courses.filter(course => course.price >= 10000 && course.price <= 20000))                   
-                    
-                    if(range == '20k-30k')
-                    coursesByPrice.push(this.courses.filter(course => course.price >= 20000 && course.price <= 30000))                   
-                    // if(range == '30k-40k')
-                    //      coursesByPrice.push(this.courses.filter(course => course.price >= 20000 && course.price <= 30000))
-                    // if(range == '40k-50k')
-                    //      coursesByPrice.push(this.courses.filter(course => course.price >= 30000 && course.price <= 40000))
-                    
-                         
-                    })
-                    console.log('precio:',this.priceRange);
-                    console.log(coursesByPrice.flat());
-     //                
-                         
-                         
-          
+          filterByPrice($event){
+               if($event.target.checked){
+               let lowerPrice = Number.parseInt($event.target.getAttribute('data-lower-price'))
+               console.log(lowerPrice);
+               let higherPrice = Number.parseInt($event.target.getAttribute('data-higher-price'));
+               console.log(higherPrice);
+               let result = this.courses.filter(course => course.price >= lowerPrice && course.price <= higherPrice)
+              this.filteredCourses = result
+               }
+          },
+          getAll(){
+               this.filteredCourses = this.courses
           }
-     }
-     
 
      },
      computed: {

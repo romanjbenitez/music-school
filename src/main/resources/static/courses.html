@@ -101,40 +101,43 @@
               Piano
             </li>
             <li class="filters-li-divisor">PRICE</li>
-            <div id="prices" @change="price($event)">
-<span>{{priceRange}}</span>
+            <li class="filters-li">
+              <label>
+                <input @click="getAll" type="radio" name="price" class="mx-2"
+                  > All
+              </label>
+            </li>
               <li class="filters-li">
                 <label>
-                  <input type="checkbox" class="mx-2" value="0-10k" v-model="priceRange" data-lower-price="0" data-higher-price="10000"
-                    v-model="priceRange"> $0 - $10.0000
+                  <input @click="filterByPrice" type="radio" name="price" class="mx-2" value="0-10k" v-model="priceRange" data-lower-price="0" data-higher-price="10000"
+                    v-model="priceRange"> $0 - $10.000
                 </label>
               </li>
               <li class="filters-li">
                 <label>
-                  <input type="checkbox" class="mx-2" value="10k-20k" v-model="priceRange" data-lower-price="10000" data-higher-price="20000"
-                    v-model="priceRange"> $10.000 - $20.0000
+                  <input @click="filterByPrice" type="radio" name="price"  class="mx-2" value="10k-20k" v-model="priceRange" data-lower-price="10000" data-higher-price="20000"
+                    v-model="priceRange"> $10.000 - $20.000
                 </label>
               </li>
               <li class="filters-li">
                 <label>
-                  <input type="checkbox" class="mx-2" value="20k-30k" v-model="priceRange" data-lower-price="20000" data-higher-price="30000"
-                   > $20.000 - $30.0000
+                  <input @click="filterByPrice" type="radio" name="price"  class="mx-2" value="20k-30k" v-model="priceRange" data-lower-price="20000" data-higher-price="30000"
+                   > $20.000 - $30.000
                 </label>
               </li>
               <li class="filters-li">
                 <label>
-                  <input type="checkbox" class="mx-2" value="30k-40k" v-model="priceRange"  data-lower-price="40000" data-higher-price="50000"
-                   > $30.000 - $40.0000
+                  <input type="radio" name="price"  class="mx-2" value="30k-40k" v-model="priceRange"  data-lower-price="40000" data-higher-price="50000"
+                   > $30.000 - $40.000
                 </label>
               </li>
               <li class="filters-li">
                 <label>
                   <input type="checkbox" class="mx-2" value="40k-50k" v-model="priceRange" data-lower-price="50000" data-higher-price="60000"
-                   > $40.000 - $50.0000
+                   > $40.000 - $50.000
                 </label>
               </li>
 
-            </div>
             <li class="filters-li-divisor">TEACHERS</li>
             <li class="filters-li">
               <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
@@ -153,40 +156,48 @@
 
         <div class="courses-cards">
           <!--Courses Card-->
-          <div v-for="course in filteredCourses" class="courseCard">
-            <img src="./assets/new-fire.png" class="new-fire" id="fire">
-            <img v-if="course.name === 'Guitar'" class="courses_img" src="./assets/guitar.png" alt="Guitar player">
-            <img v-if="course.name === 'Drums'" class="courses_img" src="./assets/drums.png" alt="Drummer">
-            <img v-if="course.name === 'Sax'" class="courses_img" src="./assets/sax.png" alt="Saxophonist">
-            <img v-if="course.name === 'Sing'" class="courses_img" src="./assets/sing.png" alt="Singer">
-            <img v-if="course.name === 'Bass'" class="courses_img" src="./assets/bass.png" alt="Bass player">
-            <img v-if="course.name === 'Piano'" class="courses_img" src="./assets/piano.png" alt="Pianist">
-            <div class="content_courseCard">
-              <h2 class="bold">{{course.name}}</h2>
-              <ul class="p-0">
-                <li>Duration: {{course.duration}} hs.</li>
-                <li>Lessons: {{course.lessons}}</li>
-                <li>Level: {{course.level}}</li>
-                <li>Teacher: {{course.teacher.firstName}} {{course.teacher.lastName}}</li>
-              </ul>
-              <p class="price">${{course.price}}</p>
-              <figure>
-                <img src="./assets/btn_buy_course-06-06.png">
-                <figcaption>ADD TO THE CART
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus"
-                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ce0202" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="6" cy="19" r="2" />
-                    <circle cx="17" cy="19" r="2" />
-                    <path d="M17 17h-11v-14h-2" />
-                    <path d="M6 5l6.005 .429m7.138 6.573l-.143 .998h-13" />
-                    <path d="M15 6h6m-3 -3v6" />
-                  </svg>
-                </figcaption>
-              </figure>
+          <template v-if="filteredCourses.length > 0">
+            <div v-for="course in filteredCourses" class="courseCard">
+              <img src="./assets/new-fire.png" class="new-fire" id="fire">
+              <img v-if="course.name === 'Guitar'" class="courses_img" src="./assets/guitar.png" alt="Guitar player">
+              <img v-if="course.name === 'Drums'" class="courses_img" src="./assets/drums.png" alt="Drummer">
+              <img v-if="course.name === 'Sax'" class="courses_img" src="./assets/sax.png" alt="Saxophonist">
+              <img v-if="course.name === 'Sing'" class="courses_img" src="./assets/sing.png" alt="Singer">
+              <img v-if="course.name === 'Bass'" class="courses_img" src="./assets/bass.png" alt="Bass player">
+              <img v-if="course.name === 'Piano'" class="courses_img" src="./assets/piano.png" alt="Pianist">
+              <div class="content_courseCard">
+                <h2 class="bold">{{course.name}}</h2>
+                <ul class="p-0">
+                  <li>Duration: {{course.duration}} hs.</li>
+                  <li>Lessons: {{course.lessons}}</li>
+                  <li>Level: {{course.level}}</li>
+                  <li>Teacher: {{course.teacher.firstName}} {{course.teacher.lastName}}</li>
+                </ul>
+                <p class="price">${{course.price}}</p>
+                <figure>
+                  <img src="./assets/btn_buy_course-06-06.png">
+                  <figcaption>ADD TO THE CART
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus"
+                      width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ce0202" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <circle cx="6" cy="19" r="2" />
+                      <circle cx="17" cy="19" r="2" />
+                      <path d="M17 17h-11v-14h-2" />
+                      <path d="M6 5l6.005 .429m7.138 6.573l-.143 .998h-13" />
+                      <path d="M15 6h6m-3 -3v6" />
+                    </svg>
+                  </figcaption>
+                </figure>
+              </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <div class="notCourses">
+              <h5></h5>
+            </div>
+          </template>
+          
         </div>
       </div>
     </main>

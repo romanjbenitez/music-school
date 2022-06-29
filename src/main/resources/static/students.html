@@ -63,54 +63,48 @@
                          <div id="encabezado_students">
                               <img src="./assets/harvey.png" alt="student" class="student-avatar">
                               <div>
-                                   <h2>Hi Student's Name</h2>
+                                   <h2>Hi {{firstName}}</h2>
                                    <p>
-                                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                                   odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                                   turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-                                   posuere a, pede.
+                                   Welcome to your personal dashboard where you can see your courses, access them, you also have the option to see your purchases of both merchandise and courses, we also include a section where you can get more of them if you wish
                                    </p>
                               </div>
                          </div>
                          <div class="profileCard">
-                              <p class="no_margin"><span class="encabezados_chicos">Join now!</span></p>
-                              <h2 class="bold">Find the right course for you</h2>
-                              <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-                              posuere a, pede.
-                              </p>
+                              <p class="no_margin"><span class="encabezados_chicos">Active Courses!</span></p>
+                              <div class="d-flex p-1">
+                                   <div v-for="course in courses" class="merchItem d-flex flex-column align-items-center">
+                                        <img src="https://via.placeholder.com/125" alt="" srcset="" class="mb-2">
+                                        <p class="m-0">Name: {{course.name}}</p>
+                                        <p class="m-0">Level: {{course.level}}</p>
+                                        <p class="m-0">Lessons: {{course.lessons}}</p>
+                                        <p class="m-0">Teacher: {{course.teacher.firstName}} {{course.teacher.lastName}}</p>
+                                   </div>
+                              </div>
                          </div>
                          <div class="profileCard">
                               <p class="no_margin"><span class="encabezados_chicos">Your shipments</span></p>
-                              <h2 class="bold">Aliquam tincidunt mauris eu risus.</h2>
-                              <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-                              posuere a, pede.
-                              </p>
+                         <div class="d-flex p-1">
+                              <div v-for="merchandise in merch" class="merchItem d-flex flex-column align-items-center">
+                                   <img src="https://via.placeholder.com/125" alt="" srcset="" class="mb-2">
+                                   <p class="m-0">Type: {{merchandise.type}}</p>
+                                   <p class="m-0">Price: {{merchandise.price}}</p>
+                                   <p class="m-0">Waist: {{merchandise.waist}}</p>
+                                   <p class="m-0">Arive: tomorrow</p>
+                              </div>
                          </div>
-                         <div class="profileCard">
-                              <p class="no_margin"><span class="encabezados_chicos">Active Courses!</span></p>
-                              <h2 class="bold">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</h2>
-                              <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-                              posuere a, pede.
-                              </p>
+                            
+                             
                          </div>
-                         <div class="profileCard">
-                              <p class="no_margin"><span class="encabezados_chicos">Join now!</span></p>
-                              <h2 class="bold">Aliquam tincidunt mauris eu risus.</h2>
-                              <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-                              posuere a, pede.
+                         <div class="profileCard w-75">
+                              <p class="no_margin"><span class="encabezados_chicos">Gets more courses</span></p>
+                              <h2 class="bold">
+                                   Music is like the water of a river, impossible to stop.</h2>
+                              <p>Therefore, keep investing in yourself and get new courses which will make you a great musician and artist.
                               </p>
+                              <a class="mt-3" id="btn-login" href="./courses.html">Get more courses</a>
+                         </div>
+                         <div class="profileCard w-auto">
+                              <img src="./assets/logo-nav.png" alt="logo" class="w-100">
                          </div>
                     </div>
                     <!----------------- MAIN - Right Container ----------------->
@@ -129,36 +123,28 @@
                                              <th scope="col">Status</th>
                                         </tr>
                                    </thead>
-                                   <tbody>
-                                        <tr>
+                                   <tbody v-if="courses.length >= 6">
+                                        <tr v-for="course in courses">
                                              <th scope="row">1</th>
-                                             <td>Mark</td>
-                                             <td>Otto</td>
-                                             <td>@mdo</td>
+                                             <td>{{course.name}}</td>
+                                             <td>{{course.teacher.firstName}} {{course.teacher.lastName}}</td>
+                                             <td v-if="course.active"> Active</td>
+                                             <td v-else>Desactive</td>
                                         </tr>
-                                        <tr>
-                                             <th scope="row">2</th>
-                                             <td>Jacob</td>
-                                             <td>Thornton</td>
-                                             <td>@fat</td>
+                                   </tbody>
+                                   <tbody v-else>
+                                        <tr v-for="course in courses">
+                                             <th scope="row">1</th>
+                                             <td>{{course.name}}</td>
+                                             <td>{{course.teacher.firstName}} {{course.teacher.lastName}}</td>
+                                             <td v-if="course.active"> Active</td>
+                                             <td v-else>Desactive</td>
                                         </tr>
-                                        <tr>
-                                             <th scope="row">3</th>
-                                             <td>Larry the Bird</td>
-                                             <td>@twitter</td>
-                                             <td>@twitter</td>
-                                        </tr>
-                                        <tr>
-                                             <th scope="row">3</th>
-                                             <td>Larry the Bird</td>
-                                             <td>@twitter</td>
-                                             <td>@twitter</td>
-                                        </tr>
-                                        <tr>
-                                             <th scope="row">3</th>
-                                             <td>Larry the Bird</td>
-                                             <td>@twitter</td>
-                                             <td>@twitter</td>
+                                        <tr v-for="course in coursesFakes">
+                                             <th scope="row">#</th>
+                                             <td></td>
+                                             <td></td>
+                                             <td></td>
                                         </tr>
                                    </tbody>
                               </table>

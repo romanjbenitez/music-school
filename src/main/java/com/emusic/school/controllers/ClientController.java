@@ -31,7 +31,6 @@ public class ClientController {
     private ClientService clientService;
 
     @Autowired
-
     private PasswordEncoder passwordEncoder;
 
     @Autowired
