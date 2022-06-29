@@ -15,10 +15,9 @@ Vue.createApp({
 
      created() {          
      axios.get(`/api/courses`)
-     .then(datos => {
-          this.courses = datos.data
-          this.filteredCourses = datos.data
-          this.teachers = this.courses[0].teacher
+     .then(res => {
+          this.courses = res.data
+          this.filteredCourses = res.data
      })
      // axios
      // .get("/api/client/current").then(api => {
@@ -56,34 +55,63 @@ Vue.createApp({
                     title: 'Successfully subscribed!'
                })
           },
-          filterByLevel($event){
-               let attr = $event.target.getAttribute('data-filter-by')
-               let filteredByLevel = this.courses.filter(course => course.level == attr || course.name == attr )
-               this.filteredCourses = filteredByLevel;
-               console.log(attr);
-               console.log(filteredByLevel);
+          filterBy($event){
+               let filter = [];
+               let byLevel = this.filterByLevel($event);
+               let byInstr = this.filterByInstrument($event);
+               let byPrice = this.filterByPrice($event);
 
-          },     
+
+
+               if(byLevel.length > 0){
+                    byLevel.forEach(course => !filter.includes(course) && filter.push(course))
+               }
+               if(byInstr.length > 0){
+                    byInstr.forEach(course => !filter.includes(course) && filter.push(course))
+               }
+               if(byPrice.length > 0){
+                    byPrice.forEach(course => !filter.includes(course) && filter.push(course))
+               }
+               this.filteredCourses = filter;
+            
+          
+          },
+         filter(){
+
+         },
+          filterByLevel($event){
+
+               let attr = $event.target.getAttribute('data-filter-by')
+               let filteredByLevel = [];
+               filteredByLevel = this.courses.filter(course => course.level == attr )
+               return filteredByLevel
+
+          }, 
+          filterByInstrument($event){
+               let attr = $event.target.getAttribute('data-filter-by')
+               let filteredByInstr = this.courses.filter(course => course.name == attr)
+               return filteredByInstr;
+          },
           filterByPrice($event){
-               if($event.target.checked){
+             
                let lowerPrice = Number.parseInt($event.target.getAttribute('data-lower-price'))
                console.log(lowerPrice);
                let higherPrice = Number.parseInt($event.target.getAttribute('data-higher-price'));
                console.log(higherPrice);
                let result = this.courses.filter(course => course.price >= lowerPrice && course.price <= higherPrice)
-               this.filteredCourses = result
-               }
+               return result
+            
+          },
+          filterByTeacher(teacherEmail){
+               let coursesByTeacher = this.courses.filter(course => course.teacher.email == teacherEmail)
+               this.filteredCourses = coursesByTeacher;
           },
           getAll(){
                this.filteredCourses = this.courses
           },
-          getCoursesByTeacher(teacherEmail){
-               let coursesByTeacher = this.courses.filter(course => course.teacher.email == teacherEmail)
-               this.filteredCourses = coursesByTeacher;
-               console.log(teacherEmail, coursesByTeacher);
-          }
      },
      computed: {
+           
      headershow(){
      if( this.header != null){
           window.addEventListener("scroll", () => {
@@ -99,27 +127,6 @@ Vue.createApp({
           });      
      }
      },
-     // filterByPrice($){
-          // this.priceRange.forEach(price => { 
-          //       if(price == '0-10k'){
-          //           this.filteredByPrice = this.courses.fiterRange
-          //       }
-               
-               // switch(element){
-               //      case '0-10k':
-               //      this.filteredByPrice += this.courses.filter(course => course.price <= 10000);
-                    
-               //      case '10k-20k':
-               //      this.filteredByPrice += this.courses.filter(course => course.price >= 10000 && course.price <= 20000 );
-               
-               //      case '20k-30k':
-               //        this.filteredByPrice += this.courses.filter(course => course.price >= 20000 && course.price <= 30000 );
-               
-               //      case '30k-40k':
-               //           this.filteredByPrice = this.courses.filter(course => course.price >= 30000 && course.price <= 40000 );
-               // }
-          
-          // });
-     // }
+
      },
 }).mount("#app")
