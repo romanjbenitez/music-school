@@ -26,9 +26,10 @@ Vue.createApp({
 
      created() {
      
-     axios.get(`http://localhost:8080/api/merch`)
+     axios.get(`/api/merch`)
      .then(datos => {
           this.merchandises = datos.data
+          this.filteredMerch = datos.data
           console.log(this.merchandises);
 
           this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
@@ -38,7 +39,7 @@ Vue.createApp({
 
      })
 
-     axios.get(`http://localhost:8080/api/courses`)
+     axios.get(`/api/courses`)
      .then(datos => {
           this.courses = datos.data
           console.log(this.courses);
