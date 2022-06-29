@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="./styles/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/animations.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
     <title>Courses</title>
   </head>
 
   <body>
         <div id="app">
+
+          <div v-show="charging==true" class="header bg-hero">
+            <div class="preloader--container fade-out">
+              <div
+                class="heartbeat d-flex align-items-center justify-content-center"
+              >
+                <img src="./assets/logo-01.png" class="w-50 h-50 p-3" alt="logo" />
+              </div>
+            <div class="spinner">
+            <span>L</span>
+            <span>E</span>
+            <span>T</span>
+            <span>S</span>
+            <span></span>
+            <span>R</span>
+            <span>O</span>
+            <span>C</span>
+            <span>K</span>
+            <span>!</span>
+          </div>
+        </div>
+      </div>
+
+      <div v-show="charging==false">
           <header class="header bg-courses">
             <nav class="nav">
               <a href="./index.html"><img src="./assets/logo-nav.png" alt="logo" id="logo" class="logo-header"></a>
@@ -283,28 +311,31 @@
           <div class="subscribe-btns">
             <button type="button" class="buscribe-btn" @click="subscribeEmail()">Subscribe</button>
           </div>
-        </form>
+
+          </div>
+        </main>
       </div>
+      {{scroll}} {{ headershow }}
+    </div>
 
-    </footer>
-    {{ headershow }}
-  </div>
-
-  <!----------------------------- SCRIPTS ----------------------------->
-  <!--Chatbot Test-->
-  <script src="https://web.chatrace.com/webchat/plugin.js"></script>
-  <script>ktt10.setup({ pageId: 107945601966944, color: "#ce0202" });</script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    <!----------------------------- SCRIPTS ----------------------------->
+    <!--Chatbot Test-->
+    <script src="https://web.chatrace.com/webchat/plugin.js"></script>
+    <script>
+      ktt10.setup({ pageId: 107945601966944, color: "#ce0202" });
     </script>
-     <script
-     src="https://kit.fontawesome.com/2544a6d2ae.js"
-     crossorigin="anonymous"
- ></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://unpkg.com/vue@3"></script>
-  <script src="./scrips/courses.js"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/2544a6d2ae.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./scrips/courses.js"></script>
+  </body>
 </html>

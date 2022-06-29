@@ -2,6 +2,7 @@ Vue.createApp({
   data() {
     return {
       charging: true,
+      hidden: "",
       header: null,
       studentName: "Juan",
       studentCourse: "Bass",
@@ -14,7 +15,7 @@ Vue.createApp({
       students: [],
       teachers: "",
       studentsMax4: [],
-      hidden: "",
+ 
     }
   },
 
