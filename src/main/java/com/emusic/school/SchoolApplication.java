@@ -62,18 +62,19 @@ public class SchoolApplication {
 			teacherRepository.save(teacher5);
 
 
-			Course course = new Course("principiante","Guitar",4,20000D,20,true,teacher);
+			Course course = new Course("principiante","Guitar",4,20000D,20,true,teacher1);
 			courseRepository.save(course);
 			Course course1 = new Course("principiante", "Drums", 4, 30000D, 23, true,teacher);
 			courseRepository.save(course1);
-			Course course2 = new Course("principiante", "Sing", 8, 18500D, 25, true,teacher);
+			Course course2 = new Course("principiante", "Sing", 8, 18500D, 25, true,teacher2);
 			courseRepository.save(course2);
-			Course course3 = new Course("expert", "Sax", 6, 15900D, 18, true,teacher);
+			Course course3 = new Course("expert", "Sax", 6, 15900D, 18, true,teacher5);
 			courseRepository.save(course3);
-			Course course4 = new Course("middle", "Bass", 6, 18500D, 21, true,teacher);
+			Course course4 = new Course("middle", "Bass", 6, 18500D, 21, true,teacher3);
 			courseRepository.save(course4);
-			Course course5 = new Course("expert", "Piano", 10, 12000D, 20, true,teacher);
+			Course course5 = new Course("expert", "Piano", 10, 12000D, 20, true,teacher4);
 			courseRepository.save(course5);
+
 
 			Merch merch1= new Merch(10,"cap",650,df,true);
 			merchRepository.save(merch1);

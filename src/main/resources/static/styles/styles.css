@@ -165,7 +165,9 @@ margin-bottom: 5px;
 }
 
 .page-courses{
+  width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .courses-filter{
@@ -802,7 +804,7 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
   height: 100vh;
   overflow: scroll;
 }
-.filters-li:first-child{
+/* .filters-li:first-child{
   color: #fff;
   background-color: #000;
 }
@@ -811,7 +813,7 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
   background-color: #000;
   cursor:default;
   border-right: 0 ;
-}
+} */
 .filters-li-divisor{
   height: 3rem;
   color: #fff;

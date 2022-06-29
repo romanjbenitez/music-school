@@ -14,18 +14,20 @@ Vue.createApp({
      },
 
      created() {          
-     axios.get(`http://localhost:8080/api/courses`)
+     axios.get(`/api/courses`)
      .then(datos => {
           this.courses = datos.data
           this.filteredCourses = datos.data
           this.teachers = this.courses[0].teacher
      })
-     axios
-     .get("/api/client/current").then(api => {
-       this.firstName = api.data.firstName
-       this.lastName = api.data.lastName
-       this.isLogin = true;
-     })
+     // axios
+     // .get("/api/client/current").then(api => {
+     //   this.firstName = api.data.firstName
+     //   this.lastName = api.data.lastName
+     //   this.isLogin = true;
+     // })
+     axios.get('/api/teachers')
+     .then(res => this.teachers = res.data)
      },
      
      mounted(){
@@ -69,13 +71,17 @@ Vue.createApp({
                let higherPrice = Number.parseInt($event.target.getAttribute('data-higher-price'));
                console.log(higherPrice);
                let result = this.courses.filter(course => course.price >= lowerPrice && course.price <= higherPrice)
-              this.filteredCourses = result
+               this.filteredCourses = result
                }
           },
           getAll(){
                this.filteredCourses = this.courses
+          },
+          getCoursesByTeacher(teacherEmail){
+               let coursesByTeacher = this.courses.filter(course => course.teacher.email == teacherEmail)
+               this.filteredCourses = coursesByTeacher;
+               console.log(teacherEmail, coursesByTeacher);
           }
-
      },
      computed: {
      headershow(){

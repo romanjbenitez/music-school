@@ -57,6 +57,10 @@
       <div class="courses-filter">
           <ul class="filters-ul">
             <li class="filters-li">LEVELS</li>
+            <li class="filters-li" @click="getAll">
+              <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
+              All
+            </li>
             <li class="filters-li" @click="filterByLevel($event)" data-filter-by="principiante">
 
               <img alt="Level 1" src="/assets/skill-level-1.svg" class="level-img">
@@ -76,6 +80,10 @@
               Level 4
             </li>
             <li class="filters-li-divisor">COURSE TYPE</li>
+            <li class="filters-li" @click="getAll">
+              <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
+              All
+            </li>
             <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Guitar">
               <img alt="Guitar" src="/assets/filter-icons-01.png" class="instrument-img">
               Guitar
@@ -101,11 +109,9 @@
               Piano
             </li>
             <li class="filters-li-divisor">PRICE</li>
-            <li class="filters-li">
-              <label>
-                <input @click="getAll" type="radio" name="price" class="mx-2"
-                  > All
-              </label>
+            <li class="filters-li" @click="getAll">
+              <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
+              All
             </li>
               <li class="filters-li">
                 <label>
@@ -139,18 +145,16 @@
               </li>
 
             <li class="filters-li-divisor">TEACHERS</li>
-            <li class="filters-li">
-              <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
-              Roman Ciavarella
+            <li class="filters-li" @click="getAll">
+              <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
+              All
             </li>
-            <li class="filters-li">
-              <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
-              Alejandro Lennon
-            </li>
-            <li class="filters-li">
-              <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
-              Federico Rouyere
-            </li>
+            <div v-for="(teacher, index) in teachers" :key="index">
+              <li class="filters-li"  @click="getCoursesByTeacher(teacher.email)">
+                <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
+                {{teacher.firstName}} {{teacher.lastName}}
+              </li>
+            </div>
           </ul>
         </div>
 
@@ -194,7 +198,7 @@
           </template>
           <template v-else>
             <div class="notCourses">
-              <h5></h5>
+              <h2>No se encontraron cursos</h2>
             </div>
           </template>
           
