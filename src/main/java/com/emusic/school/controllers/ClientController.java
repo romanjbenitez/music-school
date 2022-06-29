@@ -34,6 +34,7 @@ public class ClientController {
 
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     private JavaMailSender javaMailSender;
 
 
