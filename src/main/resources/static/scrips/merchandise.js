@@ -4,6 +4,9 @@ Vue.createApp({
                header : null,
                courses: "",
                merchandises: [],
+               firstName : "",
+               lastName : "",
+               isLogin: false,
           }
      },
 
@@ -12,6 +15,12 @@ Vue.createApp({
      axios.get(`http://localhost:8080/api/merch`)
      .then(datos => {
           this.merchandises = datos.data
+     })
+     axios
+     .get("/api/client/current").then(api => {
+       this.firstName = api.data.firstName
+       this.lastName = api.data.lastName
+       this.isLogin = true;
      })
 
 
@@ -53,7 +62,12 @@ Vue.createApp({
                     icon: 'success',
                     title: 'Successfully subscribed!'
                })
-               }
+               },
+               logout() {
+                    axios
+                      .post("/api/logout")
+                      .then((response) => window.location.replace("./index.html"));
+                  },
 
      },
      computed: {

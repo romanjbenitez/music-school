@@ -37,8 +37,8 @@
                         </div>
                         <div class="student-header-container">
                             <p>{{firstName}}  {{lastName}}</p>
-                            <img src="./assets/harvey.png" alt="student" >
-                            <ul>
+                            <img :src="`./assets/${firstName.toLowerCase()}.png`" alt="student" >
+                            <ul @click="logout">
                                 <li class="d-flex justify-content-between align-items-center"><i class="fa-solid fa-right-from-bracket me-2"></i><p>Logout</p></li>
                             </ul>
                         </div>
