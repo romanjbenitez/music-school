@@ -94,7 +94,7 @@ margin-bottom: 5px;
   background-color: #000000 ;
   width: 95%;
   padding: 1rem;
-  margin: 2rem 2rem;
+  margin: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -107,19 +107,18 @@ margin-bottom: 5px;
 }
 
 .profileCard {
-
+  background-color: #000;
   transition: all 300ms;
+  width: 42.3rem;
   padding: 1rem;
-  width: 45%;
-  padding: 1rem;
-  margin: 2rem;
+  margin: .5rem .5rem 1rem .5rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  color: #c3c3c3;
 }
 
 .profileCard:hover {
-  transform: scale(1.05);
-  cursor: pointer
+ 
 }
 
 #students-right-container {
@@ -166,12 +165,19 @@ margin-bottom: 5px;
 }
 
 .page-courses{
+  width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .courses-filter{
-  width: 20%;
+  min-width: 20%;
   box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
+}
+.notCourses{
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 }
 .level-img{
   height: 1rem;
@@ -570,6 +576,7 @@ align-items: center;
   border: solid 3px  var(--red);
   padding: 0.5rem 3rem;
   border-radius: 10px;
+  transition: all 0.3s;
 }
 #btn-login:hover {
   color: #ebebeb;
@@ -670,9 +677,11 @@ transition: all 0.3s;
   overflow: hidden;
   transition: all 0.7s;
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
   top: 4rem;
   background-color: #000;
+  flex-direction: column;
   
 }
 .student-header-container:hover ul{
@@ -680,11 +689,11 @@ transition: all 0.3s;
 }
 .student-header-container li {
   padding: 1rem 2rem;
-  height: 70px;
+  height: 90px;
   cursor: pointer;
   transition: all 0.5s;
 }
-.student-header-container li:hover {
+.student-header-container >ul >li:hover , .student-header-container >ul >li > a:hover {
   color: var(--red);
 }
 /*  ------------------------- Courses ------------------------- */
@@ -701,13 +710,11 @@ transition: all 0.3s;
 }
 
 .coursesCards-container{
-  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
-    justify-items: stretch;
-    align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+
 }
 
 .coursesCard {
@@ -799,7 +806,7 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
   height: 100vh;
   overflow: scroll;
 }
-.filters-li:first-child{
+/* .filters-li:first-child{
   color: #fff;
   background-color: #000;
 }
@@ -808,7 +815,7 @@ box-shadow: 16px 4px 10px -8px rgba(0,0,0,0.18);
   background-color: #000;
   cursor:default;
   border-right: 0 ;
-}
+} */
 .filters-li-divisor{
   height: 3rem;
   color: #fff;
@@ -948,7 +955,7 @@ background-color: #ce0202;
   height: 100%;
   background-color: #f1f1f1f5;
   border-radius: 2rem 0 0 2rem;
-  padding: 3rem;
+  padding: 1rem 2rem;
 }
 
 .students-subcontainer-two{
@@ -960,15 +967,51 @@ background-color: #ce0202;
   border-radius: 0 2rem 2rem 0;
   display: flex;
 }
+.merchItem{
+  width: 12rem;
+  height: 100%;
+  background-color: #0e0e0efd;
+  margin-left: .5rem;
+  padding: 1rem;
+  border-radius:1rem;
+  transition: all 0.3s;
+  font-size: .9rem;
+  overflow:hidden
+}
+.merchItem:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.merchItem img{
+  border-radius:1rem;
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
 
+}
+.w-auto{
+  width: 17.5rem !important;
+}
+
+.students-conatiner-home{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
 
 /*  ------------------------- Teachers ------------------------- */
 
 .teachers{
-  height: 50vh;
+  min-height: 50vh;
+  max-height: fit-content;
   background-color: #ebe9e9;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.teachers-container{
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .card {
@@ -1065,14 +1108,30 @@ color: #f5f5f5;
 
 .container-footer{
   display: flex;
-  height: 40vh;
-  justify-content: space-between;
+  height: fit-content;
+  justify-content: space-around;
   flex-wrap: wrap;
   background-color: #000000ff;
   color: white;
   padding: 2rem 2rem;
 }
 
+.container-footer-col-1{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-2{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-3{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
+.container-footer-col-4{
+  width: 15rem;
+  margin-bottom: 2rem;
+}
 .logoFooter {
   display: flex;
   align-items: center;
@@ -1208,7 +1267,78 @@ ul > li >a:hover {
 height: 100%;
 }
 
-@media (max-width: 350px) {
+
+
+@media (max-width: 545px) {
+  .container-footer-col-1{
+    margin-bottom: 0.5rem;
+  }
+  .container-footer-col-2{
+    display: none;
+  }
+  .container-footer-col-3{
+    margin-bottom: 0.5rem;
+  }
+  .container-footer-col-4{
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 843px) {
+  #student-2{
+    display: none;
+  }
+}
+
+@media (max-width: 1004px) {
+  .students{
+    height: 60vh;
+  }
+  .students-subcontainer-one{
+    height: 50vh;
+  }
+  .students-subcontainer-two{
+    height: 50vh;
+  }
+  .coursesCard{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 35vw;
+  }
+  .container-footer{
+    height: fit-content;
+  }
+}
+
+@media (max-width: 1035px) {
+  .nav-button-container{
+    display: none;
+  }
+}
+
+@media (max-width: 1227px) {
+  .students{
+    padding: 3rem 3rem;
+  }
+}
+
+@media (max-width: 1393px) {
+  .student-selected{
+    display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  #student-3{
+    display: none;
+  }
+}
+
+@media (max-width: 1760px) {
+  #student-4{
+    display: none;
+  }
 }
 
 .offcanvas-end{

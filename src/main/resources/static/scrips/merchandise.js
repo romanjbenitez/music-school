@@ -1,10 +1,14 @@
 Vue.createApp({
      data() {
           return {
+               charging: true,
+               hidden: "",
+               header : null,
                header : null,
                courses: "",
                merchandises: [],
 
+               filteredMerch:[],
                firstName : "",
                lastName : "",
                isLogin: false,
@@ -51,7 +55,7 @@ Vue.createApp({
        this.isLogin = true;
      })
 
-
+     setTimeout(() => { this.charging = false }, 1500)
      },
      
      mounted(){
@@ -135,10 +139,33 @@ Vue.createApp({
                })
                
                Toast.fire({
-                    icon: 'success',
+                       icon: 'success',
                     title: 'Successfully subscribed!'
                })
-               }
+               },
+
+          filterBy($event){
+               console.log($event.target.getAttribute("data-merch-type"));
+               let type = $event.target.getAttribute("data-merch-type");
+               let allMerch = this.merchandises
+               let merchByType = allMerch.filter(product => product.type == type )
+               this.filteredMerch = merchByType
+               console.log(merchByType);
+          },
+          sortByCheapest(){
+               this.filteredMerch.sort((a,b)=> a.price - b.price)
+          },
+          sortByMostExpensives(){
+               this.filteredMerch.sort((a,b)=> b.price - a.price)
+          },
+          getAll(){
+               this.filteredMerch = this.merchandises
+          },
+          logout() {
+                    axios
+                      .post("/api/logout")
+                      .then((response) => window.location.replace("./index.html"));
+                  },
 
      },
      computed: {

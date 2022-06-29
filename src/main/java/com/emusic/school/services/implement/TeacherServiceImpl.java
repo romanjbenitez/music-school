@@ -18,7 +18,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<TeacherDTO> getTeachersDTO() {
-        return teacherRepository.findAll().stream().map(TeacherDTO::new).collect(Collectors.toList());
+        return teacherRepository.findAll().stream().filter(Teacher::isActive).map(TeacherDTO::new).collect(Collectors.toList());
     }
 
     @Override
@@ -34,5 +34,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher getTeacherById(Long id) {
         return teacherRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveTeacher(Teacher teacher) {
+        teacherRepository.save(teacher);
     }
 }

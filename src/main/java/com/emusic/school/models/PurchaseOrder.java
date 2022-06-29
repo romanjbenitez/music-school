@@ -20,11 +20,14 @@ public class PurchaseOrder {
     @JoinColumn(name="merch_id")
     private Merch merch;
 
+    private Integer quantity;
+
     public PurchaseOrder() {}
 
-    public PurchaseOrder(Ticket ticket, Merch merch) {
+    public PurchaseOrder(Ticket ticket, Merch merch, Integer quantity) {
         this.ticket = ticket;
         this.merch = merch;
+        this.quantity = quantity;
     }
 
     public Long getId() {return id;}
@@ -34,4 +37,12 @@ public class PurchaseOrder {
 
     public Merch getMerch() {return merch;}
     public void setMerch(Merch merch) {this.merch = merch;}
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 }
