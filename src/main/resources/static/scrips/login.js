@@ -46,7 +46,7 @@ Vue.createApp({
 			{headers:{'content-type':'application/x-www-form-urlencoded'}})
 			.then(response => 
 				console.log('registered'))
-			.then(this.signUp())
+			//.then(this.signUp())
 		},
 
 	},
