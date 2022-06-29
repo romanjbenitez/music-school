@@ -38,17 +38,14 @@ public class SchoolApplication {
 		return (args) -> {
 
 
-			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true);
-			client1.setVerified(true);
+
+			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true,true);
 			clientRepository.save(client1);
-			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
-			client2.setVerified(true);
+			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true,true);
 			clientRepository.save(client2);
-			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true);
-			client3.setVerified(true);
+			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true,true);
 			clientRepository.save(client3);
-			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
-			client4.setVerified(true);
+			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true,true);
 			clientRepository.save(client4);
 
 			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);
