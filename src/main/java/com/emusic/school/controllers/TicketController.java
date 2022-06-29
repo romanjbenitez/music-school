@@ -1,11 +1,8 @@
 package com.emusic.school.controllers;
 
 import com.emusic.school.dtos.MerchTicketDTO;
+import com.emusic.school.dtos.TicketDTO;
 import com.emusic.school.models.*;
-import com.emusic.school.repositories.CourseRepository;
-import com.emusic.school.repositories.CourseTicketRepository;
-import com.emusic.school.repositories.MerchRepository;
-import com.emusic.school.repositories.PurchaseOrderRepository;
 import com.emusic.school.services.ClientService;
 import com.emusic.school.services.CourseService;
 import com.emusic.school.services.MerchService;
@@ -16,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -33,8 +29,7 @@ public class TicketController {
     CourseService courseService;
 
     @PostMapping("/ticket_transaction")
-    public ResponseEntity<?> ticketTransaction(Authentication authentication, @RequestParam  List<Long> idsCourses,
-                                               @RequestBody List<MerchTicketDTO> merchTicketDTOS){
+    public ResponseEntity<?> ticketTransaction(Authentication authentication,@RequestParam List<Long> idsCourses, @RequestBody List<MerchTicketDTO> merchTicketDTOS){
 
         Client client = clientService.getClientByEmail(authentication.getName());
         AtomicReference<Double> totalPrice = new AtomicReference<>(0D);
@@ -42,6 +37,7 @@ public class TicketController {
         if (idsCourses.isEmpty() && merchTicketDTOS.isEmpty()){
             return new ResponseEntity<>("MISSING DATA", HttpStatus.FORBIDDEN);
         }
+
         boolean invalidData = merchTicketDTOS.stream().anyMatch(merchTicketDTO -> merchTicketDTO.getId() == null || merchTicketDTO.getQuantity()<0);
         if(invalidData){
             return new ResponseEntity<>("DATA INVALID", HttpStatus.FORBIDDEN);
@@ -61,7 +57,7 @@ public class TicketController {
         boolean invalidDataMerchStock = merchTicketDTOS.stream().anyMatch(merchTicketDTO ->
                 merchService.findByID(merchTicketDTO.getId()).getStock() < merchTicketDTO.getQuantity());
         if (invalidDataMerchStock){
-            return new ResponseEntity<>("DONT HAVE THIS STOCK", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("DONT HAVE STOCK OF ONE PRODUCT", HttpStatus.FORBIDDEN);
         }
 
         idsCourses.forEach(idCourse -> {
@@ -82,9 +78,15 @@ public class TicketController {
         });
 
         merchTicketDTOS.forEach(merchTicketDTO -> {
-            merchService.saveTicketMerch(merchService.findByID(merchTicketDTO.getId()), ticket);
+            for(int i = 0; i < merchTicketDTO.getQuantity(); i++){
+                merchService.saveTicketMerch(merchService.findByID(merchTicketDTO.getId()), ticket);
+            }
         });
+        return new ResponseEntity<>(ticket.getId(), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>("COMPLETE", HttpStatus.OK);
+    @GetMapping("tickets")
+    public List<TicketDTO> getTickets(){
+        return ticketService.getTickets();
     }
 }

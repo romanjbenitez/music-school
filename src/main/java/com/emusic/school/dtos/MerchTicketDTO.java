@@ -1,9 +1,5 @@
 package com.emusic.school.dtos;
 
-import com.emusic.school.models.Merch;
-
-import java.util.List;
-
 public class MerchTicketDTO {
     private Long id;
     private Integer quantity;
