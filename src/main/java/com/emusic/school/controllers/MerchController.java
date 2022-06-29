@@ -21,9 +21,6 @@ import java.util.stream.Collectors;
 public class MerchController {
 
     @Autowired
-    private MerchRepository merchRepository;
-
-    @Autowired
     private MerchService merchService;
     @GetMapping("/merch")
     public List<MerchDTO> getMerch(){
@@ -33,10 +30,9 @@ public class MerchController {
     @PostMapping("/create/merch")
     public ResponseEntity<Object> createMerch(@RequestBody NewMerchDTO newMerchDTO){
 
-        if(newMerchDTO.getStock() <0 || newMerchDTO.getPrice() <=0 || newMerchDTO.getType().isEmpty()){
+        if(newMerchDTO.getStock() <=0 || newMerchDTO.getPrice() <=0 || newMerchDTO.getType().isEmpty() || newMerchDTO.getWaist().name().isEmpty()){
             return new ResponseEntity<>("Missing Data", HttpStatus.FORBIDDEN);
         }
-
         Merch merch = new Merch(newMerchDTO.getStock(),newMerchDTO.getType(),newMerchDTO.getPrice(),newMerchDTO.getWaist(),true);
         merchService.saveMerch(merch);
         return new ResponseEntity<>("Created",HttpStatus.CREATED);
