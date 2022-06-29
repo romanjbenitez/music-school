@@ -61,8 +61,6 @@ public class ClientController {
         Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true);
 
 
-    
-
         String randomCode = generateToken(64);
         newClient.setToken(randomCode);
         newClient.setVerified(false);
