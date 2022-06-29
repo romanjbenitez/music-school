@@ -146,11 +146,11 @@
                             electronic typesetting
                         </p>
                         <div class="students-conatiner-home">
-                            <div v-for="student in students" class="student-container">
-                                <img v-if="student.firstName === 'Paul'" src="/assets/paul.png" alt="student" class="student" id="student-1">
-                                <img v-if="student.firstName === 'Juan'" src="./assets/harvey.png" alt="student" class="student" id="student-2">
-                                <img v-if="student.firstName === 'Emilia'" src="./assets/emilia.png" alt="student" class="student" id="student-3">
-                                <img v-if="student.firstName === 'Riley'" src="./assets/riley.png" alt="student" class="student" id="student-4">
+                            <div v-for="student in studentsMax4" class="student-container">
+                                <img v-if="student.firstName === 'Paul'" src="/assets/paul.png" @click="filterStudent('Paul')"  alt="student" class="student" id="student-1" >
+                                <img v-if="student.firstName === 'Juan'" src="./assets/juan.png" @click="filterStudent('Juan')" alt="student" class="student" id="student-2">
+                                <img v-if="student.firstName === 'Emilia'" src="./assets/emilia.png" @click="filterStudent('Emilia')" alt="student" class="student" id="student-3">
+                                <img v-if="student.firstName === 'Riley'" src="./assets/riley.png" @click="filterStudent('Riley')" alt="student" class="student" id="student-4">
                             </div>
                         </div>
                     </div>
