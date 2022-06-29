@@ -4,17 +4,22 @@ Vue.createApp({
                header : null,
                courses: "",
                merchandises: [],
+
+               filteredMerch:[]
+
                firstName : "",
                lastName : "",
                isLogin: false,
+
           }
      },
 
      created() {
      
-     axios.get(`http://localhost:8080/api/merch`)
-     .then(datos => {
-          this.merchandises = datos.data
+     axios.get(`/api/merch`)
+     .then(res => {
+          this.merchandises = res.data
+          this.filteredMerch = res.data
      })
      axios
      .get("/api/client/current").then(api => {
@@ -59,10 +64,30 @@ Vue.createApp({
                })
                
                Toast.fire({
-                    icon: 'success',
+                       icon: 'success',
                     title: 'Successfully subscribed!'
                })
                },
+
+          filterBy($event){
+               console.log($event.target.getAttribute("data-merch-type"));
+               let type = $event.target.getAttribute("data-merch-type");
+               let allMerch = this.merchandises
+               let merchByType = allMerch.filter(product => product.type == type )
+               this.filteredMerch = merchByType
+               console.log(merchByType);
+          },
+          sortByCheapest(){
+               this.filteredMerch.sort((a,b)=> a.price - b.price)
+          },
+          sortByMostExpensives(){
+               this.filteredMerch.sort((a,b)=> b.price - a.price)
+          },
+          getAll(){
+               this.filteredMerch = this.merchandises
+          }
+          
+
                logout() {
                     axios
                       .post("/api/logout")

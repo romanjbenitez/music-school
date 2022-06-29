@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -52,21 +52,46 @@
               <div class="filters">
                 <ul class="filters-ul">
                   <li class="filters-li">FILTERS</li>
-                  <li v-for="merch in merchandises" class="filters-li">
-                    <img v-if="merch.type == 'cup'" alt="Level 1" src="/assets/merch-icons-01.png" class="instrument-img">
-                    <img v-if="merch.type == 't-shirt'" alt="Level 1" src="/assets/merch-icons-02.png" class="instrument-img">
-                    <img v-if="merch.type == 'logbook'" alt="Level 1" src="/assets/merch-icons-03.png" class="instrument-img">
-                    <img v-if="merch.type == 'cover'" alt="Level 1" src="/assets/merch-icons-04.png" class="instrument-img">
-                    <img v-if="merch.type == 'key-ring'" alt="Level 1" src="/assets/merch-icons-05.png" class="instrument-img">
-                    <img v-if="merch.type == 'cap'" alt="Level 1" src="/assets/merch-icons-06.png" class="instrument-img">
-                    {{merch.type}}
+                  <li class="filters-li">
+                    <img alt="All" src="" class="instrument-img" @click="getAll">
+                    All
                   </li>
+                  <li class="filters-li" data-merch-type="cup" @click="filterBy($event)">
+                    <img alt="Cup" src="/assets/merch-icons-01.png" class="instrument-img">
+                    Cup
+                  </li>  
+                    <li class="filters-li" data-merch-type="t-shirt" @click="filterBy($event)">
+                      <img alt="T-shirt" src="/assets/merch-icons-02.png" class="instrument-img">
+                      T-shirt
+                    </li>
+                    <li class="filters-li" data-merch-type="logbook" @click="filterBy">
+                      <img alt="logbook" src="/assets/merch-icons-03.png" class="instrument-img">
+                      Logbook
+                    </li>
+                    <li class="filters-li" data-merch-type="cover" @click="filterBy">
+                      <img alt="cover" src="/assets/merch-icons-04.png" class="instrument-img">
+                      Cover
+                    </li>
+                    <li class="filters-li" data-merch-type="key-ring" @click="filterBy">
+                      <img alt="key-ring" src="/assets/merch-icons-05.png" class="instrument-img">
+                      Key-ring
+                    </li>
+                    <li class="filters-li" data-merch-type="cap" @click="filterBy">
+                      <img alt="Cap" src="/assets/merch-icons-06.png" class="instrument-img">
+                      Cap
+                    </li>
+
+                  
                   <li class="filters-li-divisor">PRICE</li>
                   <li class="filters-li">
-                    <input type="checkbox" class="mx-2"> Cheapest
+                    <label>
+                    <input type="radio" name="sort-by-price" class="mx-2" @click="sortByCheapest"> Cheapest
+                  </label>
                   </li>
                   <li class="filters-li">
-                    <input type="checkbox" class="mx-2"> Most Expensives
+                    <label>
+                      <input type="radio" name="sort-by-price" class="mx-2" @click="sortByMostExpensives"> Most Expensives
+                    </label>
                   </li>
                   <li class="filters-li-divisor">NEW STUFF</li>
                   <li class="filters-li">
@@ -85,9 +110,8 @@
               </div>
               <!-- Cards Container -->
               <div class="shop">
-                <button v-on:click="typeFilter">filtrar</button>
                   <!--Merchandise Card-->
-                  <div v-for="merch in merchandises" class="merch-card">
+                  <div v-for="merch in filteredMerch" class="merch-card">
                       <div class="merch-card-img"></div>
                       <div class="merch-card-info">
                         <p class="merch-card-title">{{merch.type}} </p>

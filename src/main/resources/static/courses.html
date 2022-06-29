@@ -61,21 +61,21 @@
               <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
               All
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="principiante">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="principiante">
 
               <img alt="Level 1" src="/assets/skill-level-1.svg" class="level-img">
               Level 1
 
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="middle">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="middle">
               <img alt="Level 2" src="/assets/skill-level-2.svg" class="level-img">
               Level 2
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="expert">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="expert">
               <img alt="Level 3" src="/assets/skill-level-3.svg" class="level-img">
               Level 3
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="level-4">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="level-4">
               <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
               Level 4
             </li>
@@ -84,27 +84,27 @@
               <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
               All
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Guitar">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Guitar">
               <img alt="Guitar" src="/assets/filter-icons-01.png" class="instrument-img">
               Guitar
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Bass">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Bass">
               <img alt="Guitar bass" src="/assets/filter-icons-02.png" class="instrument-img">
               Guitar Bass
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Drums">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Drums">
               <img alt="Drums" src="/assets/filter-icons-05.png" class="instrument-img">
               Drums
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Sax">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Sax">
               <img alt="Sax" src="/assets/filter-icons-06.png" class="instrument-img">
               Sax
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Sing">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Sing">
               <img alt="Sing" src="/assets/filter-icons-03.png" class="instrument-img">
               Sing
             </li>
-            <li class="filters-li" @click="filterByLevel($event)" data-filter-by="Piano">
+            <li class="filters-li" @click="filterBy($event)" data-filter-by="Piano">
               <img alt="Piano" src="/assets/filter-icons-04.png" class="instrument-img">
               Piano
             </li>
@@ -113,31 +113,31 @@
               <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
               All
             </li>
-              <li class="filters-li">
+              <li class="filters-li" @click="filterBy($event)">
                 <label>
-                  <input @click="filterByPrice" type="radio" name="price" class="mx-2" value="0-10k" v-model="priceRange" data-lower-price="0" data-higher-price="10000"
-                    v-model="priceRange"> $0 - $10.000
+                  <input  type="radio" name="price" class="mx-2" value="0-10k" data-lower-price="0" data-higher-price="10000"
+                 > $0 - $10.000
                 </label>
               </li>
-              <li class="filters-li">
+              <li class="filters-li" @click="filterBy($event)">
                 <label>
-                  <input @click="filterByPrice" type="radio" name="price"  class="mx-2" value="10k-20k" v-model="priceRange" data-lower-price="10000" data-higher-price="20000"
-                    v-model="priceRange"> $10.000 - $20.000
+                  <input  type="radio" name="price"  class="mx-2"  data-lower-price="10000" data-higher-price="20000"
+                   > $10.000 - $20.000
                 </label>
               </li>
-              <li class="filters-li">
+              <li class="filters-li" @click="filterBy($event)">
                 <label>
-                  <input @click="filterByPrice" type="radio" name="price"  class="mx-2" value="20k-30k" v-model="priceRange" data-lower-price="20000" data-higher-price="30000"
+                  <input type="radio" name="price"  class="mx-2"   data-lower-price="20000" data-higher-price="30000"
                    > $20.000 - $30.000
                 </label>
               </li>
-              <li class="filters-li">
+              <li class="filters-li" @click="filterBy($event)">
                 <label>
-                  <input type="radio" name="price"  class="mx-2" value="30k-40k" v-model="priceRange"  data-lower-price="40000" data-higher-price="50000"
+                  <input  type="radio" name="price"  class="mx-2" value="30k-40k" v-model="priceRange"  data-lower-price="40000" data-higher-price="50000"
                    > $30.000 - $40.000
                 </label>
               </li>
-              <li class="filters-li">
+              <li class="filters-li" @click="filterBy($event)">
                 <label>
                   <input type="checkbox" class="mx-2" value="40k-50k" v-model="priceRange" data-lower-price="50000" data-higher-price="60000"
                    > $40.000 - $50.000
@@ -149,8 +149,8 @@
               <img alt="Level 4" src="/assets/skill-level-4.svg" class="level-img">
               All
             </li>
-            <div v-for="(teacher, index) in teachers" :key="index">
-              <li class="filters-li"  @click="getCoursesByTeacher(teacher.email)">
+            <div v-for="teacher in teachers">
+              <li class="filters-li"  @click="filterByTeacher(teacher.email)">
                 <img alt="Level 1" src="/assets/skill-level-4.svg" class="level-img">
                 {{teacher.firstName}} {{teacher.lastName}}
               </li>
@@ -281,7 +281,7 @@
           Subscribe our Newsletter
           <input type="email" placeholder="@" class="newsletter-input">
           <div class="subscribe-btns">
-            <button type="button" class="buscribe-btn" v-on:click="subscribeEmail()">Subscribe</button>
+            <button type="button" class="buscribe-btn" @click="subscribeEmail()">Subscribe</button>
           </div>
         </form>
       </div>
