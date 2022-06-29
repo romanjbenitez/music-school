@@ -27,7 +27,7 @@ Vue.createApp({
 
         this.arrayObjectCourse = [1] 
         this.arrayJSONmerch = JSON.stringify(this.arrayObjectMerch)
-        this.email = "dsada@gmail.com"
+        this.email = "juanperez@gmail.com"
         this.password = "1234"
 
         this.loading = false;
