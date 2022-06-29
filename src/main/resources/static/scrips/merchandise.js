@@ -1,12 +1,14 @@
 Vue.createApp({
      data() {
           return {
+               charging: true,
+               hidden: "",
+               header : null,
                header : null,
                courses: "",
                merchandises: [],
 
                filteredMerch:[],
-
                firstName : "",
                lastName : "",
                isLogin: false,
@@ -28,7 +30,7 @@ Vue.createApp({
        this.isLogin = true;
      })
 
-
+     setTimeout(() => { this.charging = false }, 1500)
      },
      
      mounted(){
@@ -86,9 +88,7 @@ Vue.createApp({
           getAll(){
                this.filteredMerch = this.merchandises
           },
-          
-
-               logout() {
+          logout() {
                     axios
                       .post("/api/logout")
                       .then((response) => window.location.replace("./index.html"));
