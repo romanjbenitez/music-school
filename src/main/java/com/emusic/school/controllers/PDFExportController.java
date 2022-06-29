@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class PDFExportController {
     }
     @CrossOrigin
     @GetMapping("/pdf/generate/{idTicket}")
-    public void generatePDF(HttpServletResponse response, @PathVariable Long idTicket) throws IOException, DocumentException {
+    public void generatePDF(HttpServletResponse response, @PathVariable Long idTicket) throws IOException, DocumentException, URISyntaxException {
         Ticket ticket = ticketService.findById(idTicket);
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");

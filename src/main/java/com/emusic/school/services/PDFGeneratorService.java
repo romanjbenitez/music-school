@@ -4,6 +4,7 @@ import com.emusic.school.dtos.MerchTicketDTO;
 import com.emusic.school.models.Ticket;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
+import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -61,10 +65,10 @@ public class PDFGeneratorService {
             cell.setPhrase(new Phrase(order.getMerch().getType(), fontCells));
             table.addCell(cell);
 
-            cell.setPhrase(new Phrase(String.valueOf(order.getMerch().getPrice()), fontCells));
+            cell.setPhrase(new Phrase("$" + order.getMerch().getPrice(), fontCells));
             table.addCell(cell);
 
-            cell.setPhrase(new Phrase(String.valueOf(order.getQuantity() * order.getMerch().getPrice()), fontCells));
+            cell.setPhrase(new Phrase("$" +(order.getQuantity() * order.getMerch().getPrice()), fontCells));
             table.addCell(cell);
 
 //            table.addCell(String.valueOf(order.getQuantity()));
@@ -75,11 +79,11 @@ public class PDFGeneratorService {
         ticket.getCourseTickets().forEach(courseTicket -> {
             cell.setPhrase(new Phrase("1", fontCells));
             table.addCell(cell);
-            cell.setPhrase(new Phrase("CURSE:"+ courseTicket.getCourse().getName(), fontCells));
+            cell.setPhrase(new Phrase("Curse:"+ courseTicket.getCourse().getName(), fontCells));
             table.addCell(cell);
-            cell.setPhrase(new Phrase(String.valueOf(courseTicket.getCourse().getPrice()), fontCells));
+            cell.setPhrase(new Phrase("$" + courseTicket.getCourse().getPrice(), fontCells));
             table.addCell(cell);
-            cell.setPhrase(new Phrase(String.valueOf(courseTicket.getCourse().getPrice()), fontCells));
+            cell.setPhrase(new Phrase("$" + courseTicket.getCourse().getPrice(), fontCells));
             table.addCell(cell);
 
 
@@ -94,7 +98,6 @@ public class PDFGeneratorService {
         Paragraph total = new Paragraph("TOTAL", fontTotal);
         total.setAlignment(Paragraph.ALIGN_CENTER);
         PdfPCell cellTotal = new PdfPCell(total);
-        cellTotal.setBorderColor(Color.RED);
         cellTotal.setBackgroundColor(Color.BLACK);
         cellTotal.setColspan(3);
         table.addCell(cellTotal);
@@ -103,10 +106,9 @@ public class PDFGeneratorService {
 //        table.addCell(total);
 //        table.addCell("");
 //        table.addCell("");
-        Paragraph totalNumber = new Paragraph(String.valueOf(ticket.getTotalPrice()), fontTotal);
+        Paragraph totalNumber = new Paragraph("$" + (ticket.getTotalPrice()), fontTotal);
         PdfPCell cellTotalNumber = new PdfPCell(totalNumber);
         cellTotalNumber.setBackgroundColor(Color.BLACK);
-        cellTotalNumber.setBorderColor(Color.RED);
         table.addCell(cellTotalNumber);
 
 
@@ -119,17 +121,29 @@ public class PDFGeneratorService {
 //
     }
 
-    public void export(HttpServletResponse response, Ticket ticket) throws IOException, DocumentException {
+    public void export(HttpServletResponse response, Ticket ticket) throws IOException, DocumentException, URISyntaxException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
-
+        Path path = Paths.get(ClassLoader.getSystemResource("../resources/static/assets/logo-01.png").toURI());
+        Image img = Image.getInstance(path.toAbsolutePath().toString());
+        img.scalePercent(20f);
+        img.setAlignment(Element.ALIGN_CENTER);
+        document.add(img);
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTitle.setSize(25);
-        fontTitle.setColor(Color.black);
 
-        Paragraph paragraph = new Paragraph("Ticket #" + ticket.getId(), fontTitle);
+        fontTitle.setColor(Color.black);
+        Paragraph paragraph1 = new Paragraph("E-MusicSchool", fontTitle);
+        paragraph1.setAlignment(Paragraph.ALIGN_CENTER);
+//        String imageFile = "../resources/static/assets/logo-01.png";
+//        ImageData data = ImageDataFactory.create(imageFile);
+        document.add(paragraph1);
+
+        Font fontTicket = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        fontTicket.setSize(20);
+        Paragraph paragraph = new Paragraph("Ticket #" + ticket.getId(), fontTicket);
         paragraph.setAlignment(Paragraph.ALIGN_LEFT);
 
         PdfPTable table = new PdfPTable(4);
@@ -140,6 +154,8 @@ public class PDFGeneratorService {
         writeTableData(table, ticket);
 
         document.add(paragraph);
+        document.add(new Paragraph(""));
+        document.add(new Paragraph(""));
         document.add(table);
         document.close();
     }
