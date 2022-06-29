@@ -51,7 +51,7 @@
           <div v-else class="student-cart-container">
               <!------------------- Shop Car--------------------->
               <div class="cart">
-                  <div class="cart-amount">0</div>
+                  <div class="cart-amount">{{merchscart.length + coursescart.length}}</div>
                  <!--  <img src="/assets/cart-01.png"> -->
                  <a type="button" data-bs-toggle="offcanvas" href="#offcanvasRight" aria-controls="offcanvasExample">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="32"
@@ -134,21 +134,22 @@
           <div class="filters">
             <ul class="filters-ul">
               <li class="filters-li">FILTERS</li>
-              <li v-for="merch in merchandises" class="filters-li">
-                <img v-if="merch.type == 'cup'" alt="Level 1" src="/assets/merch-icons-01.png" class="instrument-img">
+              <li class="filters-li" @click="getAll()">All</li>
+              <li v-for="merch in merchFilters" class="filters-li" :data-merch-type="merch.type" @click="filterBy($event)">
+                <img v-if="merch.type == 'cup'" alt="Level 1" src="/assets/merch-icons-01.png" class="instrument-img" >
                 <img v-if="merch.type == 't-shirt'" alt="Level 1" src="/assets/merch-icons-02.png" class="instrument-img">
-                <img v-if="merch.type == 'logbook'" alt="Level 1" src="/assets/merch-icons-03.png" class="instrument-img">
-                <img v-if="merch.type == 'cover'" alt="Level 1" src="/assets/merch-icons-04.png" class="instrument-img">
-                <img v-if="merch.type == 'key-ring'" alt="Level 1" src="/assets/merch-icons-05.png" class="instrument-img">
-                <img v-if="merch.type == 'cap'" alt="Level 1" src="/assets/merch-icons-06.png" class="instrument-img">
+                <img v-if="merch.type == 'logbook'" alt="Level 1" src="/assets/merch-icons-03.png" class="instrument-img"  >
+                <img v-if="merch.type == 'cover'" alt="Level 1" src="/assets/merch-icons-04.png" class="instrument-img" >
+                <img v-if="merch.type == 'key-ring'" alt="Level 1" src="/assets/merch-icons-05.png" class="instrument-img" >
+                <img v-if="merch.type == 'cap'" alt="Level 1" src="/assets/merch-icons-06.png" class="instrument-img " >
                 {{merch.type}}
               </li>
               <li class="filters-li-divisor">PRICE</li>
-              <li class="filters-li">
-                <input type="checkbox" class="mx-2"> Cheapest
+              <li class="filters-li" @click="sortByCheapest">
+                <input type="radio" name="sort-by-price" class="mx-2" > Cheapest
               </li>
-              <li class="filters-li">
-                <input type="checkbox" class="mx-2"> Most Expensives
+              <li class="filters-li" @click="sortByMostExpensives">
+                <input type="radio" name="sort-by-price" class="mx-2" > Most Expensives
               </li>
               <li class="filters-li-divisor">NEW STUFF</li>
               <li class="filters-li">
@@ -168,7 +169,7 @@
           <!-- Cards Container -->
           <div class="shop slide-top">
               <!--Merchandise Card-->
-              <div v-for="merch in merchandises" class="merch-card">
+              <div v-for="merch in filteredMerch" class="merch-card">
                   <div class="merch-card-img"></div>
                   <div class="merch-card-info">
                     <p class="merch-card-title">{{merch.type}} </p>
