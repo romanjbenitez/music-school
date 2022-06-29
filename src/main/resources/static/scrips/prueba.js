@@ -15,17 +15,17 @@ Vue.createApp({
         this.arrayObjectMerch = [
             {
                 "id": 1,
-                "quantity": 1
+                "quantity": 3
             },
             {
                 "id": 2,
-                "quantity": 1
+                "quantity": 4
             }
         ]
 
 
 
-        this.arrayObjectCourse = [] 
+        this.arrayObjectCourse = [1] 
         this.arrayJSONmerch = JSON.stringify(this.arrayObjectMerch)
         this.email = "dsada@gmail.com"
         this.password = "1234"
@@ -42,32 +42,21 @@ Vue.createApp({
         },
         async ticketCompra(){
             var data = JSON.stringify(this.arrayObjectMerch);
-              
-            //   var config = {
-            //     method: 'post',
-            //     url: ,
-            //     headers: { 
-            //       'Content-Type': 'application/json'
-            //     },
-            //     data : data
-            //   };
-              
-            axios.post(`/api/ticket_transaction?idsCourses=${this.arrayObjectCourse}`, data, {headers:{'content-type':'application/json'}})
+
+            await axios.post(`/api/ticket_transaction?idsCourses=${this.arrayObjectCourse}`, this.arrayJSONmerch, {headers:{'content-type':'application/json'}})
             .then(function (response) {
-                var data1 = JSON.stringify(this.arrayObjectMerch);
-                console.log(response.data)
-                axios.post(`/pdf/generate/${response.data}`, data1, {headers:{'content-type':'application/json'}})
-                .then(function (response) {
-                    console.log("COMPLETE")
+                this.idTicket = response?.data
+                axios.get(`/pdf/generate/${this.idTicket}`)
+                .then(function(response){
+                    console.log("1")
+                    location.href=`/pdf/generate/${this.idTicket}`
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
-
-
+        }); 
                 // console.log(typeof response.data);
                 // console.log("COMPLETE")
-                
                 })
             .catch(function (error) {
             console.log(error);
@@ -99,6 +88,16 @@ Vue.createApp({
         //      }
         //      console.log(error.config);
         //    });
-         }
+         },
+         async descargarPDF(id){
+        axios.get(`/pdf/generate/${id}`)
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        }); 
+        }
+
     }
 }).mount('#app')

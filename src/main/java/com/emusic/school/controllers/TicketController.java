@@ -78,14 +78,13 @@ public class TicketController {
         });
 
         merchTicketDTOS.forEach(merchTicketDTO -> {
-            for(int i = 0; i < merchTicketDTO.getQuantity(); i++){
-                merchService.saveTicketMerch(merchService.findByID(merchTicketDTO.getId()), ticket);
-            }
+                merchService.saveTicketMerch(merchService.findByID(merchTicketDTO.getId()), ticket, merchTicketDTO.getQuantity());
+
         });
         return new ResponseEntity<>(ticket.getId(), HttpStatus.OK);
     }
 
-    @GetMapping("tickets")
+    @GetMapping("/tickets")
     public List<TicketDTO> getTickets(){
         return ticketService.getTickets();
     }

@@ -37,8 +37,8 @@ public class MerchServiceImpl implements MerchService {
     }
 
     @Override
-    public void saveTicketMerch(Merch merch, Ticket ticket) {
-        PurchaseOrder purchaseOrder = new PurchaseOrder(ticket,merch );
+    public void saveTicketMerch(Merch merch, Ticket ticket, Integer quantity) {
+        PurchaseOrder purchaseOrder = new PurchaseOrder(ticket,merch, quantity );
         purchaseOrderRepository.save(purchaseOrder);
     }
 }

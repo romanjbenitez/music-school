@@ -10,6 +10,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
@@ -22,6 +23,7 @@ public class PDFGeneratorService {
 
     @Autowired
     MerchService merchService;
+    @CrossOrigin
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
         cell.setBackgroundColor(Color.BLUE);
@@ -46,14 +48,15 @@ public class PDFGeneratorService {
         cell.setPhrase(new Phrase("AMOUNT", font));
         table.addCell(cell);
     }
-    private void writeTableData(PdfPTable table, List<MerchTicketDTO> merchTicketDTOS, Ticket ticket) throws BadElementException {
+    private void writeTableData(PdfPTable table, Ticket ticket) throws BadElementException {
 //        Font fontCells = FontFactory.getFont(FontFactory.COURIER_BOLDOBLIQUE);
 //        fontCells.setSize(14);
-        merchTicketDTOS.forEach(merchTicketDTO -> {
-            table.addCell(String.valueOf(merchTicketDTO.getQuantity()));
-            table.addCell(merchService.findByID(merchTicketDTO.getId()).getType());
-            table.addCell(String.valueOf(merchService.findByID(merchTicketDTO.getId()).getPrice()));
-            table.addCell(String.valueOf(merchTicketDTO.getQuantity() * merchService.findByID(merchTicketDTO.getId()).getPrice()));
+
+        ticket.getPurchaseOrder().forEach(order -> {
+            table.addCell(String.valueOf(order.getQuantity()));
+            table.addCell(order.getMerch().getType());
+            table.addCell(String.valueOf(order.getMerch().getPrice()));
+            table.addCell(String.valueOf(order.getQuantity() * order.getMerch().getPrice()));
         });
         ticket.getCourseTickets().forEach(courseTicket -> {
             table.addCell(String.valueOf(1));
@@ -92,11 +95,12 @@ public class PDFGeneratorService {
 //
     }
 
-    public void export(HttpServletResponse response, List<MerchTicketDTO> merchTicketDTOS, Ticket ticket) throws IOException, DocumentException {
+    public void export(HttpServletResponse response, Ticket ticket) throws IOException, DocumentException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
+
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTitle.setSize(18);
         fontTitle.setColor(Color.BLUE);
@@ -109,7 +113,7 @@ public class PDFGeneratorService {
 //        table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
         table.setSpacingBefore(8);
         writeTableHeader(table);
-        writeTableData(table, merchTicketDTOS, ticket);
+        writeTableData(table, ticket);
 
         document.add(paragraph);
         document.add(table);

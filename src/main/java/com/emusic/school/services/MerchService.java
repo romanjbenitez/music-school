@@ -13,5 +13,5 @@ public interface MerchService {
 
     Merch findByID(long id);
 
-    void saveTicketMerch(Merch byID, Ticket ticket);
+    void saveTicketMerch(Merch byID, Ticket ticket, Integer quantity);
 }

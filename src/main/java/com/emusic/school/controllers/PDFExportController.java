@@ -7,10 +7,7 @@ import com.emusic.school.services.TicketService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin
 @Controller
 public class PDFExportController {
 
@@ -31,9 +28,9 @@ public class PDFExportController {
     public PDFExportController(PDFGeneratorService pdfGeneratorService) {
         this.pdfGeneratorService = pdfGeneratorService;
     }
-
+    @CrossOrigin
     @GetMapping("/pdf/generate/{idTicket}")
-    public void generatePDF(HttpServletResponse response, @PathVariable Long idTicket, @RequestBody List<MerchTicketDTO> merchTicketDTOS) throws IOException, DocumentException {
+    public void generatePDF(HttpServletResponse response, @PathVariable Long idTicket) throws IOException, DocumentException {
         Ticket ticket = ticketService.findById(idTicket);
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
@@ -43,7 +40,7 @@ public class PDFExportController {
         String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        this.pdfGeneratorService.export(response, merchTicketDTOS, ticket);
+        this.pdfGeneratorService.export(response, ticket);
     }
 
 }
