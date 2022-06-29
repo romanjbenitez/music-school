@@ -286,10 +286,7 @@
   }
 }
 
-.hidden{
-  display: none;
-  overflow: hidden;
-}
+
 .show{
   display: block;
 }
