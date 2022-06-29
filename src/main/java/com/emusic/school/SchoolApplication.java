@@ -42,10 +42,13 @@ public class SchoolApplication {
 			client1.setVerified(true);
 			clientRepository.save(client1);
 			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
+			client2.setVerified(true);
 			clientRepository.save(client2);
 			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true);
+			client3.setVerified(true);
 			clientRepository.save(client3);
 			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
+			client4.setVerified(true);
 			clientRepository.save(client4);
 
 			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);
@@ -95,18 +98,44 @@ public class SchoolApplication {
 
 
 			Ticket ticket1 = new Ticket(500,client1);
+			Ticket ticket3 = new Ticket(500,client3);
+			Ticket ticket4 = new Ticket(500,client4);
+
+
 			ticketRepository.save(ticket1);
+			ticketRepository.save(ticket3);
+			ticketRepository.save(ticket4);
 
 			CourseTicket courseTicket = new CourseTicket(ticket1,course);
+			CourseTicket courseTicket2 = new CourseTicket(ticket3,course2);
+			CourseTicket courseTicket3 = new CourseTicket(ticket4,course3);
+
+
 			courseTicketRepository.save(courseTicket);
+			courseTicketRepository.save(courseTicket2);
+			courseTicketRepository.save(courseTicket3);
+
 
 			Ticket ticket2 = new Ticket(400,client1);
 			ticketRepository.save(ticket2);
+			Ticket ticket5 = new Ticket(300,client1);
+			ticketRepository.save(ticket5);
+			Ticket ticket6 = new Ticket(1000,client1);
+			ticketRepository.save(ticket6);
+
+			CourseTicket courseTicket4 = new CourseTicket(ticket5,course2);
+			CourseTicket courseTicket5 = new CourseTicket(ticket6,course5);
+			courseTicketRepository.save(courseTicket4);
+			courseTicketRepository.save(courseTicket5);
 
 			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1);
 			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2);
+			PurchaseOrder purchaseOrder3 = new PurchaseOrder(ticket6,merch5);
+			PurchaseOrder purchaseOrder4 = new PurchaseOrder(ticket5,merch3);
 			purchaseOrderRepository.save(purchaseOrder);
-			purchaseOrderRepository.save(purchaseOrder2);
+			purchaseOrderRepository.save(purchaseOrder3);
+			purchaseOrderRepository.save(purchaseOrder4);
+
 
 
 			System.out.println("---------------------------------");
