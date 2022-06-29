@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
-                .antMatchers("/api/**").permitAll();
+                .antMatchers("/**").permitAll();
 
 
         http.formLogin()

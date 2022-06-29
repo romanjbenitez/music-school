@@ -1,7 +1,7 @@
 package com.emusic.school.controllers;
 
 import com.emusic.school.dtos.TeacherDTO;
-import com.emusic.school.models.Merch;
+
 import com.emusic.school.models.Teacher;
 import com.emusic.school.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,10 @@ import java.util.List;
 public class TeacherController{
     @Autowired
     TeacherService teacherService;
+
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @GetMapping("/teachers")
     public List<TeacherDTO> getTeachers(){
         return teacherService.getTeachersDTO();
@@ -37,6 +39,7 @@ public class TeacherController{
         if(teacherService.getTeacherByEmail(email) != null){
             return new ResponseEntity<>("EMAIL ALREADY REGISTERED", HttpStatus.FORBIDDEN);
         }
+
         Teacher newTeacher = new Teacher(firstName,lastName,email,passwordEncoder.encode(password),subject,true);
         teacherService.saveTeacher(newTeacher);
         return new ResponseEntity<>("REGISTERED TEACHER", HttpStatus.CREATED);

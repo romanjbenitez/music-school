@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static com.emusic.school.models.MerchWaist.df;
+import static com.emusic.school.models.MerchWaist.DEFAULT;
 import static com.emusic.school.models.MerchWaist.m;
 
 @SpringBootApplication
@@ -79,7 +79,8 @@ public class SchoolApplication {
 			courseRepository.save(course5);
 
 
-			Merch merch1= new Merch(10,"cap",650,df,true);
+
+			Merch merch1= new Merch(10,"cap",650,DEFAULT,true);
 			merchRepository.save(merch1);
 			Merch merch2= new Merch(10,"t-shirt",1200,m,true);
 			merchRepository.save(merch2);
@@ -128,11 +129,14 @@ public class SchoolApplication {
 			courseTicketRepository.save(courseTicket4);
 			courseTicketRepository.save(courseTicket5);
 
-			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1);
-			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2);
-			PurchaseOrder purchaseOrder3 = new PurchaseOrder(ticket6,merch5);
-			PurchaseOrder purchaseOrder4 = new PurchaseOrder(ticket5,merch3);
+
+			PurchaseOrder purchaseOrder = new PurchaseOrder(ticket1,merch1,2);
+			PurchaseOrder purchaseOrder2 = new PurchaseOrder(ticket2,merch2,1);
+			PurchaseOrder purchaseOrder3 = new PurchaseOrder(ticket6,merch5,2);
+			PurchaseOrder purchaseOrder4 = new PurchaseOrder(ticket5,merch3,3);
+
 			purchaseOrderRepository.save(purchaseOrder);
+			purchaseOrderRepository.save(purchaseOrder2);
 			purchaseOrderRepository.save(purchaseOrder3);
 			purchaseOrderRepository.save(purchaseOrder4);
 
