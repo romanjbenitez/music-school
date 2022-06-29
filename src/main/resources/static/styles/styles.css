@@ -1211,4 +1211,6 @@ height: 100%;
 @media (max-width: 350px) {
 }
 
-
+.offcanvas-end{
+  min-width: 50vw !important;
+}

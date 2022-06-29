@@ -10,6 +10,15 @@ Vue.createApp({
      firstName : "",
      lastName : "",
      isLogin: false,
+
+     coursescart:[],
+     courseId:[],
+     coursesInStorage:[],
+
+     merchscart:[],
+     merchId:[],
+     merchsInStorage:[],
+
      }
      },
 
@@ -19,6 +28,22 @@ Vue.createApp({
           this.courses = datos.data
           this.filteredCourses = datos.data
           this.teachers = this.courses[0].teacher
+
+          this.coursesInStorage = JSON.parse(localStorage.getItem("cartCourse"))
+          if(this.coursesInStorage != null){
+               this.coursescart = this.coursesInStorage
+          }
+
+     })
+     axios.get(`http://localhost:8080/api/merch`)
+     .then(datos => {
+          this.merchandises = datos.data
+
+          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
+          if(this.merchsInStorage != null){
+               this.merchscart = this.merchsInStorage
+          }
+
      })
      axios
      .get("/api/client/current").then(api => {
@@ -26,6 +51,7 @@ Vue.createApp({
        this.lastName = api.data.lastName
        this.isLogin = true;
      })
+     
      },
      
      mounted(){
@@ -35,6 +61,63 @@ Vue.createApp({
      },
 
      methods: {
+
+          cartMerchs(merch){
+               this.merchId = this.merchscart.map(merch1 => merch1.id)
+               if(!this.merchId.includes(merch.id) && merch.stock > 0){
+                    merch.stock -= 1
+                    merch.unidadesAComprar = 1
+                    this.merchscart.push(merch)
+                    localStorage.setItem("cartMerch",JSON.stringify(this.merchscart))
+               }
+          },
+          
+          cartCourses(course){
+               this.courseId = this.coursescart.map(course1 => course1.id)
+               if(!this.courseId.includes(course.id)){
+                    this.coursescart.push(course)
+                    localStorage.setItem("cartCourse",JSON.stringify(this.coursescart))
+               }
+          },
+
+          deleteCartCourse(course){
+               this.coursesInStorage = this.coursesInStorage.filter(course1 => course1.id != course.id)
+               this.coursescart = this.coursesInStorage
+               localStorage.setItem("cartCourse",JSON.stringify(this.coursesInStorage))
+          },
+
+         
+
+          deleteCartMerchs(merch){
+               this.merchsInStorage = this.merchsInStorage.filter(merch1 => merch1.id != merch.id)
+               this.merchscart = this.merchsInStorage
+               localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
+          },
+
+          aumentarUnidadesAComprar(merch){
+               if ((merch.stock - merch.unidadesAComprar) > -1) {
+                    merch.unidadesAComprar++
+                  }
+          },
+
+          disminuirUnidadesAComprar(merch){
+               if (merch.unidadesAComprar > 0) {
+                    merch.unidadesAComprar--
+                  }
+          },
+
+          calcularSubtotalMerch(merch) {
+               return merch.price * merch.unidadesAComprar
+             },
+             calcularSubtotalCourse(course) {
+               return course.price
+             },
+             obtenerPrecioTotal() {
+               let precioTotal = 0
+               this.merchscart.forEach(producto => precioTotal += this.calcularSubtotalMerch(producto))
+               this.coursescart.forEach(course => precioTotal += this.calcularSubtotalCourse(course))
+               return precioTotal
+             },
      
           subscribeEmail(){
                const Toast = Swal.mixin({

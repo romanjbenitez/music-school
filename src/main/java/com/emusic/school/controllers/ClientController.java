@@ -34,6 +34,7 @@ public class ClientController {
 
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     private JavaMailSender javaMailSender;
 
 
@@ -58,7 +59,7 @@ public class ClientController {
         }
 
 
-        Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true);
+        Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true,true);
 
 
     
