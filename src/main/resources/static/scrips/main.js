@@ -91,6 +91,18 @@ Vue.createApp({
       localStorage.setItem("cartCourse",JSON.stringify(this.coursesInStorage))
  },
 
+ aumentarUnidadesAComprar(merch){
+  if ((merch.stock - merch.unidadesAComprar) > -1) {
+       merch.unidadesAComprar++
+     }
+},
+
+disminuirUnidadesAComprar(merch){
+  if (merch.unidadesAComprar > 0) {
+       merch.unidadesAComprar--
+     }
+},
+
  calcularSubtotalMerch(merch) {
   return merch.price * merch.unidadesAComprar
 },
