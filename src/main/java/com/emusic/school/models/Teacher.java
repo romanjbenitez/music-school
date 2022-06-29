@@ -13,17 +13,19 @@ public class Teacher {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String firstName, lastName, email, password, subject;
+    private boolean isActive;
 
     @OneToMany(mappedBy="teacher", fetch=FetchType.EAGER)
     private Set<Course> courses = new HashSet<>();
     public Teacher() {}
 
-    public Teacher(String firstName, String lastName, String email, String password, String subject) {
+    public Teacher(String firstName, String lastName, String email, String password, String subject, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.subject = subject;
+        this.isActive = isActive;
     }
 
     public Long getId() {
@@ -73,4 +75,12 @@ public class Teacher {
     public String getSubject() {return subject;}
 
     public void setSubject(String subject) {this.subject = subject;}
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

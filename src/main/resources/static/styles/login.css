@@ -393,4 +393,10 @@ background-size: cover;
     margin: 0.5rem;
     font-size: 2rem;
   }
+
+  /*-- Sweet Alert Login --*/
+  .swal2-styled {
+    background-color: #ce0202 !important ;
+  }
+
 }

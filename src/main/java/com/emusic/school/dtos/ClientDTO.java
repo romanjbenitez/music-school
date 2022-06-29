@@ -29,7 +29,7 @@ public class ClientDTO {
         this.email = client.getEmail();
         this.password = client.getPassword();
         this.isActive = client.isActive();
-        this.tickets = client.getTickets().stream().map(ticket -> new TicketDTO(ticket)).collect(toSet());
+        this.tickets = client.getTickets().stream().map(TicketDTO::new).collect(toSet());
         this.token = client.getToken();
         this.isVerified = client.isVerified();
     }

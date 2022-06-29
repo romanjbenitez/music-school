@@ -1,8 +1,6 @@
 package com.emusic.school.dtos;
 
-import com.emusic.school.models.Course;
 import com.emusic.school.models.CourseTicket;
-import com.emusic.school.models.Ticket;
 
 public class CourseTicketDTO {
 

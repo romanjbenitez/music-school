@@ -11,7 +11,7 @@ public interface CourseService {
 
     void saveCourse(Course course);
 
-    Course getCourseById(Long idCourse);
+    Course findById(long idCourse);
 
     void deleteCourse(Course course);
 
