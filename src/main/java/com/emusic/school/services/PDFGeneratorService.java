@@ -26,10 +26,10 @@ public class PDFGeneratorService {
     @CrossOrigin
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLUE);
+        cell.setBackgroundColor(Color.black);
         cell.setPadding(4);
 
-        Font font = FontFactory.getFont(FontFactory.HELVETICA);
+        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         font.setColor(Color.WHITE);
 
 //        cell.setPhrase(new Phrase("ID PRODUCT", font));
@@ -49,29 +49,53 @@ public class PDFGeneratorService {
         table.addCell(cell);
     }
     private void writeTableData(PdfPTable table, Ticket ticket) throws BadElementException {
-//        Font fontCells = FontFactory.getFont(FontFactory.COURIER_BOLDOBLIQUE);
-//        fontCells.setSize(14);
+        Font fontCells = FontFactory.getFont(FontFactory.TIMES);
+        fontCells.setSize(14);
+        PdfPCell cell = new PdfPCell();
+        cell.setBackgroundColor(Color.pink);
 
         ticket.getPurchaseOrder().forEach(order -> {
-            table.addCell(String.valueOf(order.getQuantity()));
-            table.addCell(order.getMerch().getType());
-            table.addCell(String.valueOf(order.getMerch().getPrice()));
-            table.addCell(String.valueOf(order.getQuantity() * order.getMerch().getPrice()));
+            cell.setPhrase(new Phrase(String.valueOf(order.getQuantity()), fontCells));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(order.getMerch().getType(), fontCells));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(String.valueOf(order.getMerch().getPrice()), fontCells));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(String.valueOf(order.getQuantity() * order.getMerch().getPrice()), fontCells));
+            table.addCell(cell);
+
+//            table.addCell(String.valueOf(order.getQuantity()));
+//            table.addCell(order.getMerch().getType());
+//            table.addCell(String.valueOf(order.getMerch().getPrice()));
+//            table.addCell(String.valueOf(order.getQuantity() * order.getMerch().getPrice()));
         });
         ticket.getCourseTickets().forEach(courseTicket -> {
-            table.addCell(String.valueOf(1));
-            table.addCell( "CURSE:"+ courseTicket.getCourse().getName());
-            table.addCell(String.valueOf(courseTicket.getCourse().getPrice()));
-            table.addCell(String.valueOf(courseTicket.getCourse().getPrice()));
+            cell.setPhrase(new Phrase("1", fontCells));
+            table.addCell(cell);
+            cell.setPhrase(new Phrase("CURSE:"+ courseTicket.getCourse().getName(), fontCells));
+            table.addCell(cell);
+            cell.setPhrase(new Phrase(String.valueOf(courseTicket.getCourse().getPrice()), fontCells));
+            table.addCell(cell);
+            cell.setPhrase(new Phrase(String.valueOf(courseTicket.getCourse().getPrice()), fontCells));
+            table.addCell(cell);
+
+
+            //            table.addCell(String.valueOf(1));
+//            table.addCell( "CURSE:"+ courseTicket.getCourse().getName());
+//            table.addCell(String.valueOf(courseTicket.getCourse().getPrice()));
+//            table.addCell(String.valueOf(courseTicket.getCourse().getPrice()));
         });
         Font fontTotal = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTotal.setSize(13);
-        fontTotal.setColor(Color.RED);
+        fontTotal.setColor(Color.WHITE);
         Paragraph total = new Paragraph("TOTAL", fontTotal);
         total.setAlignment(Paragraph.ALIGN_CENTER);
         PdfPCell cellTotal = new PdfPCell(total);
-        cellTotal.setBorderColor(Color.YELLOW);
-        cellTotal.setBackgroundColor(Color.black);
+        cellTotal.setBorderColor(Color.RED);
+        cellTotal.setBackgroundColor(Color.BLACK);
         cellTotal.setColspan(3);
         table.addCell(cellTotal);
 
@@ -81,8 +105,8 @@ public class PDFGeneratorService {
 //        table.addCell("");
         Paragraph totalNumber = new Paragraph(String.valueOf(ticket.getTotalPrice()), fontTotal);
         PdfPCell cellTotalNumber = new PdfPCell(totalNumber);
-        cellTotalNumber.setBackgroundColor(Color.black);
-        cellTotalNumber.setBorderColor(Color.YELLOW);
+        cellTotalNumber.setBackgroundColor(Color.BLACK);
+        cellTotalNumber.setBorderColor(Color.RED);
         table.addCell(cellTotalNumber);
 
 
@@ -102,11 +126,11 @@ public class PDFGeneratorService {
         document.open();
 
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-        fontTitle.setSize(18);
-        fontTitle.setColor(Color.BLUE);
+        fontTitle.setSize(25);
+        fontTitle.setColor(Color.black);
 
-        Paragraph paragraph = new Paragraph("Ticket N°" + ticket.getId(), fontTitle);
-        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        Paragraph paragraph = new Paragraph("Ticket #" + ticket.getId(), fontTitle);
+        paragraph.setAlignment(Paragraph.ALIGN_LEFT);
 
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100f);
