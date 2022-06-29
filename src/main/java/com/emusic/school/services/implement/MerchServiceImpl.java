@@ -17,7 +17,7 @@ public class MerchServiceImpl implements MerchService {
 
     @Override
     public List<MerchDTO> getMerch() {
-        return merchRepository.findAll().stream().filter(merch -> merch.isActive()).map(merch -> new MerchDTO(merch)).collect(Collectors.toList());
+        return merchRepository.findAll().stream().filter(Merch::isActive).map(MerchDTO::new).collect(Collectors.toList());
     }
 
     @Override

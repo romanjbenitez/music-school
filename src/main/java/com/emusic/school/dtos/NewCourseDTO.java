@@ -3,19 +3,11 @@ package com.emusic.school.dtos;
 import com.emusic.school.models.Teacher;
 
 public class NewCourseDTO {
-    private String level, name;
+    private String name, level;
     private Integer lessons, price, duration;
     private Long idTeacher;
 
     public NewCourseDTO() {
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
     }
 
     public String getName() {
@@ -24,6 +16,13 @@ public class NewCourseDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public Integer getLessons() {

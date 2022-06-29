@@ -51,11 +51,11 @@
               <div class="form sign-in">
                 <div class="input-group">
                   <i class="bx bxs-user"></i>
-                  <input type="text" placeholder="Email" v-model="email"/>
+                  <input type="text" placeholder="Email" v-model="email" required/>
                 </div>
                 <div class="input-group">
                   <i class="bx bxs-lock-alt"></i>
-                  <input type="password" placeholder="Password" v-model="password"/>
+                  <input type="password" placeholder="Password" v-model="password" required/>
                 </div>
                 <button @click="signUp">Sign in</button>
                 <p>

@@ -6,6 +6,7 @@ Vue.createApp({
 			lastName: "",
 			email: "",
 			password: "",
+			messageError: "",
 		}
 	},
 
@@ -39,13 +40,21 @@ Vue.createApp({
 			.then((res) => {
 					window.location.replace("./students.html")
 			})
+			.catch(error => {
+				console.log(error.response.data.error)
+				Swal.fire({
+				  icon: 'error',
+				  title: 'Oops...',
+				  text: 'Wrong email or password!',
+				  confirmButtonColor: '#2691d9'
+				})
+			})
 		},
 
 		register(){
 			axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,
 			{headers:{'content-type':'application/x-www-form-urlencoded'}})
 
-			.then(console.log('registered'))
 			.then(Swal.fire({
 				title: 'Now confirm your mail!',
 				text: 'Check your inbox',
@@ -55,6 +64,16 @@ Vue.createApp({
 				imageAlt: 'Custom image',
 				})
 			)
+			.catch(error => {
+				console.log(error.response.data)
+				this.messageError = error.response.data
+				Swal.fire({
+				  icon: 'error',
+				  title: this.messageError,
+				  confirmButtonColor: '#2691d9'
+				})
+			})
+			
 
 		},
 
