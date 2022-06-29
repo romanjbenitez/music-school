@@ -4,13 +4,11 @@ import com.emusic.school.dtos.ClientDTO;
 import com.emusic.school.models.Client;
 import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +16,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.emusic.school.Utils.Utils.deleteToken;
 import static com.emusic.school.Utils.Utils.generateToken;
@@ -46,7 +43,7 @@ public class ClientController {
             @RequestParam String email, @RequestParam String password) throws MessagingException, UnsupportedEncodingException {
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()){
-            return new ResponseEntity<>("Fill in all the fields.", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Complete all the fields.", HttpStatus.FORBIDDEN);
         }
 
         if (clientService.getClientByEmail(email) != null){
@@ -60,8 +57,6 @@ public class ClientController {
 
         Client newClient = new Client(firstName,lastName,email,passwordEncoder.encode(password),true);
 
-
-    
 
         String randomCode = generateToken(64);
         newClient.setToken(randomCode);
@@ -78,9 +73,11 @@ public class ClientController {
         String fromAddress = "e.music.school.verified@gmail.com";
         String senderName = "E Music School";
         String subject = "Please verify you registration";
-        String content = "<h2 style=\"color:black;\">Hi [[name]]</h2>"
-                + "<p style=\"color:black;\"> Please click the link below to verify your registration: </p>"
+        String content = "<h2 style=\"color:black; font-family:Poppins, sans-serif; \">Hi [[name]]</h2>"
+                + "<p style=\"color:black; font-family:Poppins, sans-serif; \"> Please click the link below to verify your registration: </p>"
+                + "<img src=\"https://i.imgur.com/I3EMJb4.png\" alt=\"logEMusicSchool\"/> <br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\" style=\"color:red;\">VERIFY YOUR ACCOUNT </a></h3>"
+                + "<h4 style=\"color:black; font-family:Poppins, sans-serif; \"> THANKS YOU FOR REGISTERING AND LONG LIVE ROCK'N'ROLL!</h4>"
                 ;
 
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -99,6 +96,7 @@ public class ClientController {
         helper.setText(content,true);
         javaMailSender.send(message);
     }
+
 
     @PatchMapping("/activateClient/{token}")
     private ResponseEntity<Object> activateClient (@PathVariable String token){
@@ -120,6 +118,5 @@ public class ClientController {
         Client client = clientService.getClientByEmail(authentication.getName());
         return new ClientDTO(client);
     }
-
 
 }

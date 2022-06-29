@@ -51,7 +51,12 @@ Vue.createApp({
                     icon: 'success',
                     title: 'Successfully subscribed!'
                })
-               }
+               },
+               logout() {
+                    axios
+                      .post("/api/logout")
+                      .then((response) => window.location.replace("./index.html"));
+                  },
 
      },
      computed: {

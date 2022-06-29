@@ -9,7 +9,7 @@ import java.util.Set;
 public class TeacherDTO {
     private Long id;
 
-    private String firstName, lastName, email, password, subject;
+    private String firstName, lastName, email, subject;
 
 
     public TeacherDTO() {

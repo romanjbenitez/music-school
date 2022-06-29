@@ -10,6 +10,7 @@ public class MerchDTO {
     private String type;
     private double price;
     private MerchWaist waist;
+    private boolean isActive;
 
     public MerchDTO() {
     }
@@ -20,6 +21,7 @@ public class MerchDTO {
         this.type = merch.getType();
         this.price = merch.getPrice();
         this.waist = merch.getWaist();
+        this.isActive = merch.isActive();
     }
 
     public long getId() {
@@ -51,5 +53,13 @@ public class MerchDTO {
     }
     public void setWaist(MerchWaist waist) {
         this.waist = waist;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

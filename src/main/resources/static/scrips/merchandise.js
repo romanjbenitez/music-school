@@ -4,7 +4,13 @@ Vue.createApp({
                header : null,
                courses: "",
                merchandises: [],
+
                filteredMerch:[]
+
+               firstName : "",
+               lastName : "",
+               isLogin: false,
+
           }
      },
 
@@ -14,6 +20,12 @@ Vue.createApp({
      .then(res => {
           this.merchandises = res.data
           this.filteredMerch = res.data
+     })
+     axios
+     .get("/api/client/current").then(api => {
+       this.firstName = api.data.firstName
+       this.lastName = api.data.lastName
+       this.isLogin = true;
      })
 
 
@@ -56,6 +68,7 @@ Vue.createApp({
                     title: 'Successfully subscribed!'
                })
                },
+
           filterBy($event){
                console.log($event.target.getAttribute("data-merch-type"));
                let type = $event.target.getAttribute("data-merch-type");
@@ -74,6 +87,13 @@ Vue.createApp({
                this.filteredMerch = this.merchandises
           }
           
+
+               logout() {
+                    axios
+                      .post("/api/logout")
+                      .then((response) => window.location.replace("./index.html"));
+                  },
+
      },
      computed: {
      headershow(){

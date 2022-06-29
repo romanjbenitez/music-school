@@ -19,12 +19,12 @@ Vue.createApp({
           this.courses = res.data
           this.filteredCourses = res.data
      })
-     // axios
-     // .get("/api/client/current").then(api => {
-     //   this.firstName = api.data.firstName
-     //   this.lastName = api.data.lastName
-     //   this.isLogin = true;
-     // })
+     axios
+     .get("/api/client/current").then(api => {
+       this.firstName = api.data.firstName
+       this.lastName = api.data.lastName
+       this.isLogin = true;
+     })
      axios.get('/api/teachers')
      .then(res => this.teachers = res.data)
      },
@@ -109,6 +109,19 @@ Vue.createApp({
           getAll(){
                this.filteredCourses = this.courses
           },
+
+          getCoursesByTeacher(teacherEmail){
+               let coursesByTeacher = this.courses.filter(course => course.teacher.email == teacherEmail)
+               this.filteredCourses = coursesByTeacher;
+               console.log(teacherEmail, coursesByTeacher);
+          },
+          logout() {
+               axios
+                 .post("/api/logout")
+                 .then((response) => window.location.replace("./index.html"));
+             },
+          
+
      },
      computed: {
            
