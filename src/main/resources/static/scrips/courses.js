@@ -7,6 +7,7 @@ Vue.createApp({
      courses: "",
      filteredCourses: [],
      teachers:[],
+     teacher:[],
      priceRange:[],
      filteredByPrice: [],
      firstName : "",
@@ -40,12 +41,10 @@ Vue.createApp({
      axios.get(`http://localhost:8080/api/merch`)
      .then(datos => {
           this.merchandises = datos.data
-
           this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
           if(this.merchsInStorage != null){
                this.merchscart = this.merchsInStorage
           }
-
      })
      axios
      .get("/api/client/current").then(api => {

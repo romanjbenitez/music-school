@@ -1,6 +1,7 @@
 package com.emusic.school.configurations;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,7 +19,16 @@ import javax.servlet.http.HttpSession;
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
-                .antMatchers("/**").permitAll();
+//                .antMatchers("/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/courses","/api/clients/courseReview","/api/teachers","/api/merch","/api/clients").permitAll()
+                .antMatchers("/index.html","/scrips/main.js/","/styles/**","/assets/**","/login.html","/merchandise.html","/courses.html","/aboutUs.html").permitAll()
+                .antMatchers("/students.html").hasAnyAuthority("CLIENT","ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/client/current").hasAnyAuthority("CLIENT","ADMIN")
+                .antMatchers("/manager/**","/h2-console/**","/api/**").hasAnyAuthority("ADMIN")
+
+        ;
+
 
 
         http.formLogin()

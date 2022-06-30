@@ -19,6 +19,8 @@ public class Client {
     private boolean isActive;
     private boolean isVerified;
     private String token;
+    private String reviewCourse;
+    private String course;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Ticket> tickets = new HashSet<>();
@@ -74,4 +76,19 @@ public class Client {
         this.token = "";
     }
 
+    public String getReviewCourse() {
+        return reviewCourse;
+    }
+
+    public void setReviewCourse(String reviewCurse) {
+        this.reviewCourse = reviewCurse;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String curse) {
+        this.course = curse;
+    }
 }

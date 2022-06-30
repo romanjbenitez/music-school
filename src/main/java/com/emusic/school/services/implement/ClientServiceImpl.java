@@ -1,6 +1,7 @@
 package com.emusic.school.services.implement;
 
 import com.emusic.school.dtos.ClientDTO;
+import com.emusic.school.dtos.ClientReviewDTO;
 import com.emusic.school.models.Client;
 import com.emusic.school.repositories.ClientRepository;
 import com.emusic.school.services.ClientService;
@@ -28,5 +29,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client getClientToken(String token) {
        return clientRepository.findByToken(token);
+    }
+
+    @Override
+    public List<ClientReviewDTO> getClientsReviewDTO() {
+        return clientRepository.findAll().stream().map(ClientReviewDTO::new).collect(Collectors.toList());
     }
 }

@@ -124,7 +124,7 @@ obtenerPrecioTotal() {
     filterStudent(studentCur) {
       let currentStudent = this.studentsMax4.filter(student => student.firstName === studentCur)
       let arrayRewiews = ["ds", 'Honestly I had an excellent learning in such a short time, the teachers are super friendly and great connoisseurs of music and rock. Thank you!',
-        'Since I was a child I always wanted to play the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.',
+        'Since ays wanted to pI was a child I alwlay the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.',
         'I started taking classes 2 weeks ago. For the moment very happy. They are very didactic and with excellent predisposition.',
         'Thanks to the piano course of this academy, I can fulfill my dream of playing professionally in a rock band, excellent quality of teachers']
       this.studentName = currentStudent[0].firstName
@@ -132,31 +132,35 @@ obtenerPrecioTotal() {
       this.studentImg = `./assets/${studentCur}.png`
       this.studentReview = arrayRewiews[currentStudent[0].id]
     },
-
-    subscribeEmail() {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Successfully subscribed!'
-      })
-    },
     logout() {
       axios
         .post("/api/logout")
         .then((response) => window.location.replace("./index.html"));
     },
-  },
+      subscribeEmail(){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Successfully subscribed!'
+        })
+      },
+      goToTeacherCourses(id){
+        window.location = `teacher-courses.html?id=${id}`
+      }
+    },
+    
+
   computed: {
     headershow() {
       if (this.header != null) {
