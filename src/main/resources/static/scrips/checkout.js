@@ -19,6 +19,7 @@ Vue.createApp({
         name:"",
         cvv:"",
         descripcion:"",
+        date:"",
 
         arrayObjectCourse: [],
         arrayJSONmerch: [],
@@ -87,7 +88,6 @@ Vue.createApp({
         },
 
         async ticketCompra(){
-            
             await axios.post(`/api/ticket_transaction?idsCourses=${this.arrayCourseId}`, this.merchFinal, {headers:{'content-type':'application/json'}})
             .then(function (response) {
                 this.idTicket = response?.data
@@ -95,6 +95,11 @@ Vue.createApp({
                 .then(function(response){
                     console.log("1")
                     location.href=`/pdf/generate/${this.idTicket}`
+                    localStorage.removeItem("cartMerch",this.merchsInStorage)
+                    localStorage.removeItem("cartCourse",this.coursesInStorage)
+                    this.merchsInStorage = []
+                    this.coursesInStorage = []
+                    setTimeout(() => { window.location.reload() }, 1500)
                     
                 })
                 .catch(function (error) {
@@ -119,7 +124,7 @@ Vue.createApp({
         },
 
        async payment(){
-            await axios.post("https://homebakingmindhub.herokuapp.com/api/clients/cards/payments",{cardNumber:this.cardNumber,cvv:this.cvv,amountPayment:this.totalAmount,description:this.descripcion,name:this.name},{headers:{'Access-Control-Allow-Origin':'*'}})
+            await axios.post(`https://homebakingmindhub.herokuapp.com/api/clients/cards/payments?thruDate=${this.date}`,{cardNumber:this.cardNumber,cvv:this.cvv,amountPayment:this.totalAmount,description:this.descripcion,name:this.name},{headers:{'Access-Control-Allow-Origin':'*'}})
             .then(response => {
                 this.ticketCompra()
                 console.log(response.data);
@@ -174,6 +179,10 @@ Vue.createApp({
     axios
       .post("/api/logout")
       .then((response) => window.location.replace("./index.html"));
+      localStorage.removeItem("cartMerch",this.merchsInStorage)
+      localStorage.removeItem("cartCourse",this.coursesInStorage)
+      this.merchsInStorage = []
+      this.coursesInStorage = []
   },
 	},
 	computed: {
