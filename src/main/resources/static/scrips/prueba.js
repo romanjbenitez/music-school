@@ -7,11 +7,31 @@ Vue.createApp({
     arrayJSONcourse: "",
     email: "",
     password: "",
-    idTicket: "" 
+    idTicket: "",
+    merchandises: [],
+    filteredMerch:[],
 
         }
     },
     created(){
+        axios.get(`/api/merch`)
+     .then(datos => {
+          this.merchandises = datos.data
+          this.filteredMerch = this.merchandises
+
+          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
+          if(this.merchsInStorage != null){
+               this.merchscart = this.merchsInStorage
+          }
+          let merchandisesType = this.filteredMerch
+          merchandisesType.forEach (merch => { 
+          if(!this.merchFilters.includes(merch.type)){
+               this.merchFilters.push(merch)
+          }  
+     });
+     })
+
+
         this.arrayObjectMerch = [
             {
                 "id": 1,
@@ -27,7 +47,7 @@ Vue.createApp({
 
         this.arrayObjectCourse = [1] 
         this.arrayJSONmerch = JSON.stringify(this.arrayObjectMerch)
-        this.email = "dsada@gmail.com"
+        this.email = "juanperez@gmail.com"
         this.password = "1234"
 
         this.loading = false;
@@ -55,39 +75,13 @@ Vue.createApp({
                 .catch(function (error) {
                     console.log(error);
         }); 
-                // console.log(typeof response.data);
-                // console.log("COMPLETE")
+               
                 })
             .catch(function (error) {
             console.log(error);
             });
 
-        //     await axios.post("/api/ticket_transaction",{
-        //         params: {
-        //             idsCourses: this.arrayObjectCourse
-        //         },
-        //         data: this.arrayObjectMerch,
-        //         dataType: "json",
-        //         contentType:'application/json'
-        //     })
-        //     .then(response => {
-        //      console.log("response")
-        //     }
-        //     )
-        //     .catch(function (error) {
-        //      if (error.response) {
-
-        //        console.log(error.response.data);
-        //        console.log(error.response.status);
-        //        console.log(error.response.headers);
-        //      } else if (error.request) {
-
-        //        console.log("error.request");
-        //      } else {
-        //         console.log('Error F', error.message);
-        //      }
-        //      console.log(error.config);
-        //    });
+     
          },
          async descargarPDF(id){
         axios.get(`/pdf/generate/${id}`)

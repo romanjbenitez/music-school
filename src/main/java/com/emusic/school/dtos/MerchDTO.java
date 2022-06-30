@@ -10,6 +10,7 @@ public class MerchDTO {
     private String type;
     private double price;
     private MerchWaist waist;
+    private String urlImage;
     private boolean isActive;
 
     public MerchDTO() {
@@ -22,6 +23,7 @@ public class MerchDTO {
         this.price = merch.getPrice();
         this.waist = merch.getWaist();
         this.isActive = merch.isActive();
+        this.urlImage = merch.getUrlImage();
     }
 
     public long getId() {
@@ -61,5 +63,13 @@ public class MerchDTO {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

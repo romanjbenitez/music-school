@@ -42,7 +42,6 @@ Vue.createApp({
                this.merchFilters.push(merch)
           }  
      });
-     console.log(this.merchFilters)
      })
 
      axios.get(`/api/courses`)
@@ -100,12 +99,16 @@ Vue.createApp({
                if ((merch.stock - merch.unidadesAComprar) > -1) {
                     merch.unidadesAComprar++
                   }
+                  localStorage.removeItem("cartMerch",this.merchsInStorage)
+           localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
           },
 
           disminuirUnidadesAComprar(merch){
                if (merch.unidadesAComprar > 0) {
                     merch.unidadesAComprar--
                   }
+                  localStorage.removeItem("cartMerch",this.merchsInStorage)
+           localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
           },
 
           calcularSubtotalMerch(merch) {
