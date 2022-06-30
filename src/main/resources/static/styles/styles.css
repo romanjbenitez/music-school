@@ -118,9 +118,6 @@ margin-bottom: 5px;
   color: #c3c3c3;
 }
 
-.profileCard:hover {
- 
-}
 
 #students-right-container {
   display: flex;
@@ -1270,13 +1267,6 @@ ul > li >a:hover {
 .checkout-item{
 height: 100%;
 }
-@media (max-width: 375px) {
-  .header-title{  
-      transform: scale(0.8);
-  }
-}
-
-
 @media (max-width: 545px) {
   .container-footer-col-1{
     margin-bottom: 0.5rem;
@@ -1292,11 +1282,20 @@ height: 100%;
   }
 }
 
-@media (max-width: 843px) {
-  #student-2{
-    display: none;
+@media (max-width: 800px) {
+  .header-title{
+    font-size: 3rem;
+  }
+  .header-button-title{
+    font-size: 1rem;
+  }
+  .header-container-title{
+    padding-left: 5rem;
   }
 }
+
+
+
 
 @media (max-width: 1004px) {
   .students{
@@ -1348,6 +1347,21 @@ height: 100%;
     display: none;
   }
 }
+@media (max-width: 843px) {
+  .students, .students-conatiner-home, .student-container{
+    display: none !important;
+  }
+}
+@media (max-width: 600px){
+  .coursesCard{
+    width: auto;
+  }
+  .carrousel-container h2, .carrousel-container h3,.carrousel-container div{
+    transform: scale(0.8);
+  }
+}
+
+
 .offcanvas{
   background-color: #111;
   color: var(--light);
