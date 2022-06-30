@@ -60,6 +60,10 @@ public class SchoolApplication {
 			client4.setVerified(true);
 			client4.setReviewCourse("Thanks to the piano course of this academy, I can fulfill my dream of playing professionally in a rock band, excellent quality of teachers");
 			client4.setCourse("Piano");
+
+			clientRepository.save(client1);
+			clientRepository.save(client2);
+			clientRepository.save(client3);
 			clientRepository.save(client4);
 
 			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);

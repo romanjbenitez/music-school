@@ -27,12 +27,13 @@ public class Client {
 
     public Client() {}
 
-    public Client(String firstName, String lastName, String email, String password, boolean isActive) {
+    public Client(String firstName, String lastName, String email, String password, boolean isActive,boolean isVerified) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.isActive = isActive;
+        this.isVerified = isVerified;
     }
 
     public Long getId() {return id;}
