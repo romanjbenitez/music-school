@@ -90,22 +90,28 @@ public class SchoolApplication {
 			courseRepository.save(course5);
 
 
+			String urlImageTshirt = "";
+			String urlImageCap = "";
+			String urlImageLogbook = "";
+			String urlImageCover = "";
+			String urlImageKeyring = "";
+			String urlImageCup = "";
 
-			Merch merch1= new Merch(10,"cap",650,DEFAULT,true);
+			Merch merch1= new Merch(10,"cap",650,DEFAULT,true,urlImageCap);
 			merchRepository.save(merch1);
-			Merch merch2= new Merch(10,"t-shirt",1200,m,true);
+			Merch merch2= new Merch(10,"t-shirt",1200,m,true,urlImageTshirt);
 			merchRepository.save(merch2);
-			Merch merch3= new Merch(10,"key-ring",250,m,true);
+			Merch merch3= new Merch(10,"key-ring",250,m,true,urlImageKeyring);
 			merchRepository.save(merch3);
-			Merch merch4= new Merch(10,"logbook",420,m,true);
+			Merch merch4= new Merch(10,"logbook",420,m,true,urlImageLogbook);
 			merchRepository.save(merch4);
-			Merch merch5= new Merch(10,"cover",3700,m,true);
+			Merch merch5= new Merch(10,"cover",3700,m,true,urlImageCover);
 			merchRepository.save(merch5);
-			Merch merch6= new Merch(10,"cup",450,m,true);
+			Merch merch6= new Merch(10,"cup",450,m,true,urlImageCup);
 			merchRepository.save(merch6);
-			Merch merch7= new Merch(10,"t-shirt",1200,m,true);
+			Merch merch7= new Merch(10,"t-shirt",1200,m,true, urlImageTshirt);
 			merchRepository.save(merch7);
-			Merch merch8= new Merch(10,"cap",650,m,true);
+			Merch merch8= new Merch(10,"cap",650,m,true, urlImageCap);
 			merchRepository.save(merch8);
 
 
