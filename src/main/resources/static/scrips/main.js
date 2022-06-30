@@ -16,10 +16,27 @@ Vue.createApp({
       teachers: "",
       studentsMax4: [],
  
+      merchscart:[],
+      merchId:[],
+      merchsInStorage:[],
+
+      coursescart:[],
+      courseId:[],
+      coursesInStorage:[],
     }
   },
 
   created() {
+    axios.get(`/api/merch`)
+     .then(datos => {
+          this.merchandises = datos.data
+
+          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
+          if(this.merchsInStorage != null){
+               this.merchscart = this.merchsInStorage
+          }
+     })
+
     axios
       .get("/api/client/current").then(api => {
         this.firstName = api.data.firstName
@@ -30,6 +47,11 @@ Vue.createApp({
       axios.get("/api/courses")
         .then(api => {
           this.courses = api.data
+
+          this.coursesInStorage = JSON.parse(localStorage.getItem("cartCourse"))
+          if(this.coursesInStorage != null){
+               this.coursescart = this.coursesInStorage
+          }
         }),
 
       axios.get("/api/clients")
@@ -56,6 +78,33 @@ Vue.createApp({
 
   },
   methods: {
+    deleteCartMerchs(merch){
+      this.merchsInStorage = this.merchsInStorage.filter(merch1 => merch1.id != merch.id)
+      this.merchscart = this.merchsInStorage
+      localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
+ },
+
+
+ deleteCartCourse(course){
+      this.coursesInStorage = this.coursesInStorage.filter(course1 => course1.id != course.id)
+      this.coursescart = this.coursesInStorage
+      localStorage.setItem("cartCourse",JSON.stringify(this.coursesInStorage))
+ },
+
+ calcularSubtotalMerch(merch) {
+  return merch.price * merch.unidadesAComprar
+},
+calcularSubtotalCourse(course) {
+  return course.price
+},
+obtenerPrecioTotal() {
+  let precioTotal = 0
+  this.merchscart.forEach(producto => precioTotal += this.calcularSubtotalMerch(producto))
+  this.coursescart.forEach(course => precioTotal += this.calcularSubtotalCourse(course))
+  return precioTotal
+},
+
+
     filterStudent(studentCur) {
       let currentStudent = this.studentsMax4.filter(student => student.firstName === studentCur)
       let arrayRewiews = ["ds", 'Honestly I had an excellent learning in such a short time, the teachers are super friendly and great connoisseurs of music and rock. Thank you!',
@@ -67,35 +116,31 @@ Vue.createApp({
       this.studentImg = `./assets/${studentCur}.png`
       this.studentReview = arrayRewiews[currentStudent[0].id]
     },
+
+    subscribeEmail() {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Successfully subscribed!'
+      })
+    },
     logout() {
       axios
         .post("/api/logout")
         .then((response) => window.location.replace("./index.html"));
     },
-      subscribeEmail(){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'success',
-          title: 'Successfully subscribed!'
-        })
-      },
-      goToTeacherCourses(id){
-        window.location = `teacher-courses.html${id}`
-      }
-    },
-    
-
+  },
   computed: {
     headershow() {
       if (this.header != null) {
