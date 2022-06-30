@@ -39,8 +39,6 @@ Vue.createApp({
              if(this.merchsInStorage != null){
                   this.merchscart = this.merchsInStorage
              }
-
-             console.log(this.merchscart);
    
         })
    
@@ -63,7 +61,6 @@ Vue.createApp({
       this.ticketStorage()
 
       this.ticketMerchinSorage = JSON.parse(localStorage.getItem("ticketMerch"))
-      console.log(this.ticketMerchinSorage);
 
       this.merchFinal = JSON.stringify(this.ticketMerchinSorage)
       
