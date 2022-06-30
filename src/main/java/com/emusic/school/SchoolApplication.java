@@ -38,19 +38,37 @@ public class SchoolApplication {
 		return (args) -> {
 
 
+			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true);
+			client1.setVerified(true);
+			client1.setReviewCourse("Honestly I had an excellent learning in such a short time, the teachers are super friendly and great connoisseurs of music and rock. Thank you!");
+			client1.setCourse("Guitar");
 
-			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true,true);
 			clientRepository.save(client1);
-			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true,true);
+			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
+			client2.setVerified(true);
+			client2.setReviewCourse("Since ays wanted to pI was a child I alwlay the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.");
+			client2.setCourse("Guitar");
+
 			clientRepository.save(client2);
-			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true,true);
+			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true);
+			client3.setVerified(true);
+			client3.setReviewCourse("I started taking classes 2 weeks ago. For the moment very happy. They are very didactic and with excellent predisposition.");
+			client3.setCourse("Sax");
+
 			clientRepository.save(client3);
-			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true,true);
+			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
+			client4.setVerified(true);
+			client4.setReviewCourse("Thanks to the piano course of this academy, I can fulfill my dream of playing professionally in a rock band, excellent quality of teachers");
+			client4.setCourse("Piano");
+
+			clientRepository.save(client1);
+			clientRepository.save(client2);
+			clientRepository.save(client3);
 			clientRepository.save(client4);
 
 			Teacher teacher = new Teacher("Mike","Portnoy","mikeportnoy@gmail.com",passwordEncoder.encode("123456"), "Drums",true);
 			teacherRepository.save(teacher);
-			Teacher teacher1 = new Teacher("Mike","Thompson","mikethompson@gmail.com",passwordEncoder.encode("123456"), "Guitar",true);
+			Teacher teacher1 = new Teacher("Robert","Thompson","mikethompson@gmail.com",passwordEncoder.encode("123456"), "Guitar",true);
 			teacherRepository.save(teacher1);
 			Teacher teacher2 = new Teacher("Richard","Kotzen","richiekotzen@gmail.com",passwordEncoder.encode("123456"), "Sing",true);
 			teacherRepository.save(teacher2);
@@ -62,11 +80,11 @@ public class SchoolApplication {
 			teacherRepository.save(teacher5);
 
 
-			Course course = new Course("principiante","Guitar",4,20000D,20,true,teacher1);
+			Course course = new Course("beginner","Guitar",4,20000D,20,true,teacher1);
 			courseRepository.save(course);
-			Course course1 = new Course("principiante", "Drums", 4, 30000D, 23, true,teacher);
+			Course course1 = new Course("beginner", "Drums", 4, 30000D, 23, true,teacher);
 			courseRepository.save(course1);
-			Course course2 = new Course("principiante", "Sing", 8, 18500D, 25, true,teacher2);
+			Course course2 = new Course("beginner", "Sing", 8, 18500D, 25, true,teacher2);
 			courseRepository.save(course2);
 			Course course3 = new Course("expert", "Sax", 6, 15900D, 18, true,teacher5);
 			courseRepository.save(course3);
