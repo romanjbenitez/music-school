@@ -1,6 +1,7 @@
 package com.emusic.school.controllers;
 
 import com.emusic.school.dtos.ClientDTO;
+import com.emusic.school.dtos.ClientReviewDTO;
 import com.emusic.school.models.Client;
 import com.emusic.school.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class ClientController {
                 + "<p style=\"color:black; font-family:Poppins, sans-serif; \"> Please click the link below to verify your registration: </p>"
                 + "<img src=\"https://i.imgur.com/I3EMJb4.png\" alt=\"logEMusicSchool\"/> <br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\" style=\"color:red;\">VERIFY YOUR ACCOUNT </a></h3>"
-                + "<h4 style=\"color:black; font-family:Poppins, sans-serif; \"> THANKS YOU FOR REGISTERING AND LONG LIVE ROCK'N'ROLL!</h4>"
+                + "<h4 style=\"color:black; font-family:Poppins, sans-serif; \"> THANKS YOU FOR REGISTERING, LET'S ROCK!</h4>"
                 ;
 
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -117,6 +118,11 @@ public class ClientController {
     public ClientDTO getCurrent(Authentication authentication){
         Client client = clientService.getClientByEmail(authentication.getName());
         return new ClientDTO(client);
+    }
+
+    @GetMapping("/clients/courseReview")
+    public List<ClientReviewDTO>  getClientsReviews (){
+        return clientService.getClientsReviewDTO();
     }
 
 }
