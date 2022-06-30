@@ -180,7 +180,6 @@ obtenerPrecioTotal() {
           let scrolltop = document.documentElement.scrollTop;
           for (let i = 0; i < hidden.length; i++) {
             let top = hidden[i].offsetTop;
-            console.log(scrolltop )
             if (top - 600 < scrolltop && scrolltop > 350) {
               hidden[i].style.opacity = 1;
               hidden[i].classList.add("showtop")
