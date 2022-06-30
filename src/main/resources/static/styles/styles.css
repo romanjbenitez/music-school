@@ -60,6 +60,7 @@ width: 100%;
   font-family: var(--jost);
 }
 #students-left-container {
+  margin: 1rem;
   display: flex;
   flex-wrap: wrap;
   width: 75%;
@@ -969,7 +970,7 @@ background-color: #ce0202;
 }
 .merchItem{
   width: 12rem;
-  height: 100%;
+  min-height: 100%;
   background-color: #0e0e0efd;
   margin-left: .5rem;
   padding: 1rem;
@@ -1340,7 +1341,55 @@ height: 100%;
     display: none;
   }
 }
-
+.offcanvas{
+  background-color: #111;
+  color: var(--light);
+}
+.offcanvas .table{
+  color: var(--smoke-color);
+}
 .offcanvas-end{
   min-width: 50vw !important;
 }
+.offcanvas-body {
+  height: 100%;
+}
+.offcanvas-body i{
+cursor: pointer;
+}
+
+.offcanvas .table tbody, td, tfoot,  tr {
+  border-color: inherit;
+  border-style: none !important;
+  border-width: 0;}
+ .offcanvas .table th {
+  border-color: var(--red);
+  border-width: 0px 0px 3px 0px;
+  color: #fff;
+  }
+  .offcanvas .table tr:hover {
+    background-color: rgb(37, 37, 37);
+    transition: all 0.1s ease-in;
+  }
+
+  .deletes{
+    color: var(--red);
+    cursor: pointer;
+  }
+
+  .checkout{
+    color: black;
+    background-color: var(--red);
+    border: solid 3px var(--red);
+    padding: 0.5rem 3rem;
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-top: 3rem;
+  }
+
+  .checkout:hover{
+    color: #ebebeb;
+    background-color: #00000000;
+    border: solid 3px  var(--red);
+    padding: 0.5rem 3rem;
+  }

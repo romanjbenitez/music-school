@@ -65,50 +65,51 @@
                   </svg>
                 </a>
                
-                 <!-- ---------------------offcanvas shop car ---------------------------- -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                  <div class="offcanvas-header">
-                    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">name</th>
-                          <th scope="col">price</th>
-                          <th scope="col">units</th>
-                          <th scope="col">subtotal</th>
-                          <th scope="col">Eliminar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="merch in merchscart">
-                          <td>{{merch.type}}</td>
-                          <td>{{merch.price}}</td>
-                          <td><div id="contador" class="d-flex">
-                            <button v-on:click="disminuirUnidadesAComprar(merch)">-</button>
-                            <input type="text" :value="merch.unidadesAComprar">
-                            <button v-on:click="aumentarUnidadesAComprar(merch)">+</button>
-                          </div></td>
-                          <td>{{calcularSubtotalMerch(merch)}}</td>
-                          <td><button v-on:click="deleteCartMerchs(merch)">Eliminar</button></td>
-                        </tr>
-                        <tr v-for="course in coursescart">
-                          <td>{{course.name}}</td>
-                          <td>{{course.price}}</td>
-                          <td></td>
-                          <td>{{calcularSubtotalCourse(course)}}</td>
-                          <td><button v-on:click="deleteCartCourse(course)">Eliminar</button></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div>
-                      <h4>Total: {{obtenerPrecioTotal()}}</h4>
-                      <a href="./checkout.html">Finalizar compra</a>
+                   <!-- ---------------------offcanvas shop car ---------------------------- -->
+                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                      <h5 id="offcanvasRightLabel" class="font fs-2">My cart</h5>
+                      <i class="fa-solid fa-x deletes fs-2" v-on:click="deleteCartMerchs(merch)" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+                    </div>
+                    <div class="offcanvas-body ">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center">Units</th>
+                            <th scope="col" class="text-center">Subtotal</th>
+                            <th scope="col" class="text-center">Remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="merch in merchscart">
+                            <td>{{merch.type}}</td>
+                            <td class="text-center">${{merch.price}}</td>
+                            <td><div id="contador" class="d-flex align-items-baseline justify-content-center">
+                              <i class="fa-solid fa-minus me-2 deletes" v-on:click="disminuirUnidadesAComprar(merch)"></i>
+                              <p class="text-center">{{merch.unidadesAComprar}}</p>
+                              <i class="fa-solid fa-plus ms-2 text-center deletes" v-on:click="aumentarUnidadesAComprar(merch)"></i>
+
+                            </div></td>
+                            <td class="text-center">${{calcularSubtotalMerch(merch)}}</td>
+                            <td class="text-center"><i class="fa-solid fa-x deletes" v-on:click="deleteCartMerchs(merch)"></i></td>
+                          </tr>
+                          <tr v-for="course in coursescart">
+                            <td>{{course.name}}</td>
+                            <td class="text-center">${{course.price}}</td>
+                            <td></td>
+                            <td class="text-center">${{calcularSubtotalCourse(course)}}</td>
+                            <td class="text-center"><i class="fa-solid fa-x deletes " v-on:click="deleteCartCourse(course)"></i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                        <h4 class="mb-4"> Total to pay: ${{obtenerPrecioTotal()}}</h4>
+                      <a href="./checkout.html" class="checkout">Finish purchase</a>
                     </div>
                   </div>
-                </div>
+              </div>
+                
               </div>
               <div class="student-header-container">
                 <p>{{firstName}}  {{lastName}}</p>
@@ -170,7 +171,7 @@
           <div class="shop slide-top">
               <!--Merchandise Card-->
               <div v-for="merch in filteredMerch" class="merch-card">
-                  <div class="merch-card-img"></div>
+                  <img :src="merch.urlImage" class="merch-card-img"/>
                   <div class="merch-card-info">
                     <p class="merch-card-title">{{merch.type}} </p>
                     <p class="merch-card-body">
