@@ -16,27 +16,10 @@ Vue.createApp({
       teachers: "",
       studentsMax4: [],
  
-      merchscart:[],
-      merchId:[],
-      merchsInStorage:[],
-
-      coursescart:[],
-      courseId:[],
-      coursesInStorage:[],
     }
   },
 
   created() {
-    axios.get(`/api/merch`)
-     .then(datos => {
-          this.merchandises = datos.data
-
-          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
-          if(this.merchsInStorage != null){
-               this.merchscart = this.merchsInStorage
-          }
-     })
-
     axios
       .get("/api/client/current").then(api => {
         this.firstName = api.data.firstName
@@ -47,11 +30,6 @@ Vue.createApp({
       axios.get("/api/courses")
         .then(api => {
           this.courses = api.data
-
-          this.coursesInStorage = JSON.parse(localStorage.getItem("cartCourse"))
-          if(this.coursesInStorage != null){
-               this.coursescart = this.coursesInStorage
-          }
         }),
 
       axios.get("/api/clients")
@@ -78,49 +56,10 @@ Vue.createApp({
 
   },
   methods: {
-    deleteCartMerchs(merch){
-      this.merchsInStorage = this.merchsInStorage.filter(merch1 => merch1.id != merch.id)
-      this.merchscart = this.merchsInStorage
-      localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
- },
-
-
- deleteCartCourse(course){
-      this.coursesInStorage = this.coursesInStorage.filter(course1 => course1.id != course.id)
-      this.coursescart = this.coursesInStorage
-      localStorage.setItem("cartCourse",JSON.stringify(this.coursesInStorage))
- },
-
- aumentarUnidadesAComprar(merch){
-  if ((merch.stock - merch.unidadesAComprar) > -1) {
-       merch.unidadesAComprar++
-     }
-},
-
-disminuirUnidadesAComprar(merch){
-  if (merch.unidadesAComprar > 0) {
-       merch.unidadesAComprar--
-     }
-},
-
- calcularSubtotalMerch(merch) {
-  return merch.price * merch.unidadesAComprar
-},
-calcularSubtotalCourse(course) {
-  return course.price
-},
-obtenerPrecioTotal() {
-  let precioTotal = 0
-  this.merchscart.forEach(producto => precioTotal += this.calcularSubtotalMerch(producto))
-  this.coursescart.forEach(course => precioTotal += this.calcularSubtotalCourse(course))
-  return precioTotal
-},
-
-
     filterStudent(studentCur) {
       let currentStudent = this.studentsMax4.filter(student => student.firstName === studentCur)
       let arrayRewiews = ["ds", 'Honestly I had an excellent learning in such a short time, the teachers are super friendly and great connoisseurs of music and rock. Thank you!',
-        'Since ays wanted to pI was a child I alwlay the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.',
+        'Since I was a child I always wanted to play the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.',
         'I started taking classes 2 weeks ago. For the moment very happy. They are very didactic and with excellent predisposition.',
         'Thanks to the piano course of this academy, I can fulfill my dream of playing professionally in a rock band, excellent quality of teachers']
       this.studentName = currentStudent[0].firstName
@@ -152,7 +91,7 @@ obtenerPrecioTotal() {
         })
       },
       goToTeacherCourses(id){
-        window.location = `teacher-courses.html?id=${id}`
+        window.location = `teacher-courses.html${id}`
       }
     },
     
