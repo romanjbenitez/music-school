@@ -90,12 +90,12 @@ public class SchoolApplication {
 			courseRepository.save(course5);
 
 
-			String urlImageTshirt = "";
-			String urlImageCap = "";
-			String urlImageLogbook = "";
-			String urlImageCover = "";
-			String urlImageKeyring = "";
-			String urlImageCup = "";
+			String urlImageTshirt = "./assets/tshirt-img.png";
+			String urlImageCap = "./assets/cap-img.png";
+			String urlImageLogbook = "./assets/logbook-img.png";
+			String urlImageCover = "./assets/cover-img.png";
+			String urlImageKeyring = "./assets/keyring-img.png";
+			String urlImageCup = "./assets/cup-img.png";
 
 			Merch merch1= new Merch(10,"cap",650,DEFAULT,true,urlImageCap);
 			merchRepository.save(merch1);

@@ -7,11 +7,31 @@ Vue.createApp({
     arrayJSONcourse: "",
     email: "",
     password: "",
-    idTicket: "" 
+    idTicket: "",
+    merchandises: [],
+    filteredMerch:[],
 
         }
     },
     created(){
+        axios.get(`/api/merch`)
+     .then(datos => {
+          this.merchandises = datos.data
+          this.filteredMerch = this.merchandises
+
+          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
+          if(this.merchsInStorage != null){
+               this.merchscart = this.merchsInStorage
+          }
+          let merchandisesType = this.filteredMerch
+          merchandisesType.forEach (merch => { 
+          if(!this.merchFilters.includes(merch.type)){
+               this.merchFilters.push(merch)
+          }  
+     });
+     })
+
+
         this.arrayObjectMerch = [
             {
                 "id": 1,
