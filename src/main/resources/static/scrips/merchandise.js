@@ -27,7 +27,7 @@ Vue.createApp({
 
      created() {
      
-     axios.get(`http://localhost:8080/api/merch`)
+     axios.get(`/api/merch`)
      .then(datos => {
           this.merchandises = datos.data
           this.filteredMerch = this.merchandises
@@ -45,7 +45,7 @@ Vue.createApp({
      console.log(this.merchFilters)
      })
 
-     axios.get(`http://localhost:8080/api/courses`)
+     axios.get(`/api/courses`)
      .then(datos => {
           this.courses = datos.data
 
