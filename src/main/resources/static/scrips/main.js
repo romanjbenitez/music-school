@@ -128,31 +128,35 @@ obtenerPrecioTotal() {
       this.studentImg = `./assets/${studentCur}.png`
       this.studentReview = arrayRewiews[currentStudent[0].id]
     },
-
-    subscribeEmail() {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'success',
-        title: 'Successfully subscribed!'
-      })
-    },
     logout() {
       axios
         .post("/api/logout")
         .then((response) => window.location.replace("./index.html"));
     },
-  },
+      subscribeEmail(){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Successfully subscribed!'
+        })
+      },
+      goToTeacherCourses(id){
+        window.location = `teacher-courses.html?id=${id}`
+      }
+    },
+    
+
   computed: {
     headershow() {
       if (this.header != null) {
