@@ -170,7 +170,7 @@
           <div class="shop slide-top">
               <!--Merchandise Card-->
               <div v-for="merch in filteredMerch" class="merch-card">
-                  <div class="merch-card-img"></div>
+                  <img :src="merch.urlImage" class="merch-card-img">
                   <div class="merch-card-info">
                     <p class="merch-card-title">{{merch.type}} </p>
                     <p class="merch-card-body">
