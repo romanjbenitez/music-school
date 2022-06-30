@@ -1,5 +1,6 @@
 package com.emusic.school.controllers;
 
+import com.emusic.school.dtos.ClientDTO;
 import com.emusic.school.dtos.MerchTicketDTO;
 import com.emusic.school.dtos.TicketDTO;
 import com.emusic.school.models.*;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -87,5 +89,11 @@ public class TicketController {
     @GetMapping("/tickets")
     public List<TicketDTO> getTickets(){
         return ticketService.getTickets();
+    }
+
+    @GetMapping("/clients/current/tickets")
+    public List<TicketDTO> getTicketsCurrentClient(Authentication authentication){
+        ClientDTO client = new ClientDTO(clientService.getClientByEmail(authentication.getName()));
+        return new ArrayList<>(client.getTickets());
     }
 }
