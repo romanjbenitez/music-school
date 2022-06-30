@@ -15,6 +15,7 @@ public class Merch {
     private int stock;
     private String type;
     private double price;
+    private String urlImage;
     private MerchWaist waist;
 
     private boolean active;
@@ -24,12 +25,13 @@ public class Merch {
 
     public Merch() {}
 
-    public Merch(int stock, String type, double price, MerchWaist waist,boolean active) {
+    public Merch(int stock, String type, double price, MerchWaist waist,boolean active, String urlImage) {
         this.stock = stock;
         this.type = type;
         this.price = price;
         this.waist = waist;
         this.active = active;
+        this.urlImage = urlImage;
     }
 
     public Long getId() {return id;}
@@ -63,5 +65,13 @@ public class Merch {
     }
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

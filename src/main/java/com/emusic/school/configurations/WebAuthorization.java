@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-    @EnableWebSecurity
-    @Configuration
-    public class WebAuthorization extends WebSecurityConfigurerAdapter {
+@EnableWebSecurity
+@Configuration
+public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
 //                .antMatchers("/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/courses","/api/clients/courseReview","/api/teachers","/api/merch","/api/clients").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/courses","/api/clients/courseReview","/api/teachers","/api/teacher/**","/api/merch","/api/clients").permitAll()
                 .antMatchers("/index.html","/scrips/main.js/","/styles/**","/assets/**","/login.html","/merchandise.html","/courses.html","/aboutUs.html").permitAll()
                 .antMatchers("/students.html").hasAnyAuthority("CLIENT","ADMIN")
                 .antMatchers(HttpMethod.GET,"/api/client/current").hasAnyAuthority("CLIENT","ADMIN")
@@ -64,7 +64,7 @@ import javax.servlet.http.HttpSession;
 
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 
-        }
+    }
 
     private void clearAuthenticationAttributes(HttpServletRequest request) {
 
