@@ -1270,7 +1270,11 @@ ul > li >a:hover {
 .checkout-item{
 height: 100%;
 }
-
+@media (max-width: 375px) {
+  .header-title{  
+      transform: scale(0.8);
+  }
+}
 
 
 @media (max-width: 545px) {
@@ -1441,3 +1445,4 @@ cursor: pointer;
     font-size: 1.5rem;
     margin-top: 1rem;
   }
+
