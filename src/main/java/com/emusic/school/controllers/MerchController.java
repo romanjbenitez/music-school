@@ -33,7 +33,7 @@ public class MerchController {
         if(newMerchDTO.getStock() <=0 || newMerchDTO.getPrice() <=0 || newMerchDTO.getType().isEmpty() || newMerchDTO.getWaist().name().isEmpty()){
             return new ResponseEntity<>("Missing Data", HttpStatus.FORBIDDEN);
         }
-        Merch merch = new Merch(newMerchDTO.getStock(),newMerchDTO.getType(),newMerchDTO.getPrice(),newMerchDTO.getWaist(),true);
+        Merch merch = new Merch(newMerchDTO.getStock(),newMerchDTO.getType(),newMerchDTO.getPrice(),newMerchDTO.getWaist(),true, newMerchDTO.getUrlImage());
         merchService.saveMerch(merch);
         return new ResponseEntity<>("Created",HttpStatus.CREATED);
     }

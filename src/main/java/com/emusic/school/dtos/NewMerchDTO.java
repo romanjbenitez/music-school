@@ -7,7 +7,9 @@ public class NewMerchDTO {
     private int stock;
     private String type;
     private double price;
+    private String urlImage;
     private MerchWaist waist;
+
 
     public NewMerchDTO() {
     }
@@ -38,5 +40,13 @@ public class NewMerchDTO {
     }
     public void setWaist(MerchWaist waist) {
         this.waist = waist;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }
