@@ -136,6 +136,10 @@ obtenerPrecioTotal() {
       axios
         .post("/api/logout")
         .then((response) => window.location.replace("./index.html"));
+        localStorage.removeItem("cartMerch",this.merchsInStorage)
+      localStorage.removeItem("cartCourse",this.coursesInStorage)
+      this.merchsInStorage = []
+      this.coursesInStorage = []
     },
       subscribeEmail(){
         const Toast = Swal.mixin({
