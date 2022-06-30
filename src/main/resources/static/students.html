@@ -166,7 +166,7 @@
                                    <p class="no_margin"><span class="encabezados_chicos">Your shipments</span></p>
                               <div class="d-flex p-1">
                                    <div v-for="merchandise in merch" class="merchItem d-flex flex-column align-items-center">
-                                        <img src="https://via.placeholder.com/125" alt="" srcset="" class="mb-2">
+                                        <img :src="merchandise.urlImage" alt="" srcset="" class="mb-2">
                                         <p class="m-0">Type: {{merchandise.type}}</p>
                                         <p class="m-0">Price: {{merchandise.price}}</p>
                                         <p class="m-0">Waist: {{merchandise.waist}}</p>

@@ -1,7 +1,8 @@
 Vue.createApp({
 	data() {
 	return {
-
+         charging: true,
+         hidden: "",
         isLogin: false,
         firstName : "",
         lastName : "",
@@ -27,6 +28,7 @@ Vue.createApp({
         ticketMerchinSorage:"",
         merchFinal:"",
         arrayCourseId:[]
+
 	}
 	},
 
@@ -63,7 +65,7 @@ Vue.createApp({
       this.ticketMerchinSorage = JSON.parse(localStorage.getItem("ticketMerch"))
 
       this.merchFinal = JSON.stringify(this.ticketMerchinSorage)
-      
+      setTimeout(() => { this.charging = false }, 1000)
 	},
 	
 
