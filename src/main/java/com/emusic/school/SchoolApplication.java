@@ -38,26 +38,22 @@ public class SchoolApplication {
 		return (args) -> {
 
 
-			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true);
-			client1.setVerified(true);
+			Client client1 = new Client("Juan","Perez","juanperez@gmail.com", passwordEncoder.encode("1234"), true,true);
 			client1.setReviewCourse("Honestly I had an excellent learning in such a short time, the teachers are super friendly and great connoisseurs of music and rock. Thank you!");
 			client1.setCourse("Guitar");
 
-			clientRepository.save(client1);
-			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true);
-			client2.setVerified(true);
+
+			Client client2 = new Client("Paul","Gray","paulgray@gmail.com", passwordEncoder.encode("1234"), true,true);
 			client2.setReviewCourse("Since ays wanted to pI was a child I alwlay the guitar, thanks to the guitar course that has become a reality. I am very happy with the quality of information and practical exercises that I have been given at the academy.");
 			client2.setCourse("Guitar");
 
-			clientRepository.save(client2);
-			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true);
-			client3.setVerified(true);
+
+			Client client3 = new Client("Emilia","Bailey","emiliabailey@gmail.com", passwordEncoder.encode("1234"), true,true);
 			client3.setReviewCourse("I started taking classes 2 weeks ago. For the moment very happy. They are very didactic and with excellent predisposition.");
 			client3.setCourse("Sax");
 
-			clientRepository.save(client3);
-			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true);
-			client4.setVerified(true);
+
+			Client client4 = new Client("Riley","Douglas","rileydouglas@gmail.com", passwordEncoder.encode("1234"), true,true);
 			client4.setReviewCourse("Thanks to the piano course of this academy, I can fulfill my dream of playing professionally in a rock band, excellent quality of teachers");
 			client4.setCourse("Piano");
 
