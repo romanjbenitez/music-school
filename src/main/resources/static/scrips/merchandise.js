@@ -16,6 +16,7 @@ Vue.createApp({
                merchscart:[],
                merchId:[],
                merchsInStorage:[],
+               merchFilters : [],
 
                coursescart:[],
                courseId:[],
@@ -29,20 +30,24 @@ Vue.createApp({
      axios.get(`/api/merch`)
      .then(datos => {
           this.merchandises = datos.data
-          this.filteredMerch = datos.data
-          console.log(this.merchandises);
+          this.filteredMerch = this.merchandises
 
           this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
           if(this.merchsInStorage != null){
                this.merchscart = this.merchsInStorage
           }
-
+          let merchandisesType = this.filteredMerch
+          merchandisesType.forEach (merch => { 
+          if(!this.merchFilters.includes(merch.type)){
+               this.merchFilters.push(merch)
+          }  
+     });
+     console.log(this.merchFilters)
      })
 
      axios.get(`/api/courses`)
      .then(datos => {
           this.courses = datos.data
-          console.log(this.courses);
 
           this.coursesInStorage = JSON.parse(localStorage.getItem("cartCourse"))
           if(this.coursesInStorage != null){
@@ -54,9 +59,10 @@ Vue.createApp({
        this.firstName = api.data.firstName
        this.lastName = api.data.lastName
        this.isLogin = true;
-     })
+     }).catch(err => null)
 
      setTimeout(() => { this.charging = false }, 1500)
+
      },
      
      mounted(){
@@ -116,14 +122,8 @@ Vue.createApp({
              },
 
           typeFilter(){
-               let merchandisesType = this.merchandises
-               let merchNew = []
-               merchandisesType.forEach (merch => { 
-                    if(!merchNew.includes(merch.type)){
-                         merchNew.push(merch.type)
-                    }  
-               });
-               console.log(merchNew)
+             
+              
           },
      
           subscribeEmail(){

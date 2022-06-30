@@ -12,10 +12,37 @@ Vue.createApp({
      charging: true,
      hidden: "",
 
+     merchscart:[],
+     merchId:[],
+     merchsInStorage:[],
+
+     coursescart:[],
+     courseId:[],
+     coursesInStorage:[],
+
      }
      },
 
      created() {
+          axios.get(`/api/merch`)
+     .then(datos => {
+
+          this.merchsInStorage = JSON.parse(localStorage.getItem("cartMerch"))
+          if(this.merchsInStorage != null){
+               this.merchscart = this.merchsInStorage
+          }
+
+     })
+
+     axios.get(`/api/courses`)
+     .then(datos => {
+
+          this.coursesInStorage = JSON.parse(localStorage.getItem("cartCourse"))
+          if(this.coursesInStorage != null){
+               this.coursescart = this.coursesInStorage
+          }
+     })
+
           axios
           .get("/api/client/current").then(api => {
                this.firstName = api.data.firstName
@@ -37,6 +64,44 @@ Vue.createApp({
      },
      methods: {
      
+          deleteCartMerchs(merch){
+               this.merchsInStorage = this.merchsInStorage.filter(merch1 => merch1.id != merch.id)
+               this.merchscart = this.merchsInStorage
+               localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
+          },
+         
+         
+          deleteCartCourse(course){
+               this.coursesInStorage = this.coursesInStorage.filter(course1 => course1.id != course.id)
+               this.coursescart = this.coursesInStorage
+               localStorage.setItem("cartCourse",JSON.stringify(this.coursesInStorage))
+          },
+
+          aumentarUnidadesAComprar(merch){
+               if ((merch.stock - merch.unidadesAComprar) > -1) {
+                    merch.unidadesAComprar++
+                  }
+          },
+
+          disminuirUnidadesAComprar(merch){
+               if (merch.unidadesAComprar > 0) {
+                    merch.unidadesAComprar--
+                  }
+          },
+         
+          calcularSubtotalMerch(merch) {
+           return merch.price * merch.unidadesAComprar
+         },
+         calcularSubtotalCourse(course) {
+           return course.price
+         },
+         obtenerPrecioTotal() {
+           let precioTotal = 0
+           this.merchscart.forEach(producto => precioTotal += this.calcularSubtotalMerch(producto))
+           this.coursescart.forEach(course => precioTotal += this.calcularSubtotalCourse(course))
+           return precioTotal
+         },
+
           subscribeEmail(){
                const Toast = Swal.mixin({
                     toast: true,
