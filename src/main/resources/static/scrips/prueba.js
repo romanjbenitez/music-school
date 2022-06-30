@@ -55,39 +55,13 @@ Vue.createApp({
                 .catch(function (error) {
                     console.log(error);
         }); 
-                // console.log(typeof response.data);
-                // console.log("COMPLETE")
+               
                 })
             .catch(function (error) {
             console.log(error);
             });
 
-        //     await axios.post("/api/ticket_transaction",{
-        //         params: {
-        //             idsCourses: this.arrayObjectCourse
-        //         },
-        //         data: this.arrayObjectMerch,
-        //         dataType: "json",
-        //         contentType:'application/json'
-        //     })
-        //     .then(response => {
-        //      console.log("response")
-        //     }
-        //     )
-        //     .catch(function (error) {
-        //      if (error.response) {
-
-        //        console.log(error.response.data);
-        //        console.log(error.response.status);
-        //        console.log(error.response.headers);
-        //      } else if (error.request) {
-
-        //        console.log("error.request");
-        //      } else {
-        //         console.log('Error F', error.message);
-        //      }
-        //      console.log(error.config);
-        //    });
+     
          },
          async descargarPDF(id){
         axios.get(`/pdf/generate/${id}`)
