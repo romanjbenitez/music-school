@@ -81,12 +81,16 @@ Vue.createApp({
                if ((merch.stock - merch.unidadesAComprar) > -1) {
                     merch.unidadesAComprar++
                   }
+                  localStorage.removeItem("cartMerch",this.merchsInStorage)
+           localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
           },
 
           disminuirUnidadesAComprar(merch){
                if (merch.unidadesAComprar > 0) {
                     merch.unidadesAComprar--
                   }
+                  localStorage.removeItem("cartMerch",this.merchsInStorage)
+           localStorage.setItem("cartMerch",JSON.stringify(this.merchsInStorage))
           },
          
           calcularSubtotalMerch(merch) {
@@ -150,7 +154,6 @@ Vue.createApp({
                    let scrolltop = document.documentElement.scrollTop;
                    for (let i = 0; i < hidden.length; i++) {
                      let top = hidden[i].offsetTop;
-                     console.log(scrolltop )
                      if (top - 600 < scrolltop && scrolltop > 350) {
                        hidden[i].style.opacity = 1;
                        hidden[i].classList.add("showtop")
