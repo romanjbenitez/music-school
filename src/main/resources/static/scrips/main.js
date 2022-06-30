@@ -90,8 +90,8 @@ Vue.createApp({
           title: 'Successfully subscribed!'
         })
       },
-      goToTeacherCourses(teacher){
-        window.location = "courses.html"
+      goToTeacherCourses(id){
+        window.location = `teacher-courses.html?id=${id}`
       }
     },
     
