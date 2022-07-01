@@ -18,7 +18,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests()
+        http.authorizeRequests()
 //                .antMatchers("/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/courses","/api/clients/courseReview","/api/teachers","/api/teacher/**","/api/merch","/api/clients").permitAll()
