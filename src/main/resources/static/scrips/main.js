@@ -4,6 +4,7 @@ Vue.createApp({
       charging: true,
       hidden: "",
       header: null,
+      navResponsive: null,
       studentName: "Juan",
       studentCourse: "Bass",
       studentImg: "./assets/juan.png",
@@ -15,7 +16,7 @@ Vue.createApp({
       students: [],
       teachers: "",
       studentsMax4: [],
- 
+      
       merchscart:[],
       merchId:[],
       merchsInStorage:[],
@@ -73,6 +74,7 @@ Vue.createApp({
     this.$nextTick(function () {
       this.header = document.querySelector(".nav");
       this.hidden = document.querySelectorAll('.hidden');
+      this.navResponsive = document.querySelectorAll('.navResponsive');
     })
 
 
@@ -161,7 +163,7 @@ obtenerPrecioTotal() {
       },
       goToTeacherCourses(id){
         window.location = `teacher-courses.html?id=${id}`
-      }
+      },
     },
     
 

@@ -42,6 +42,7 @@
       <div v-show="charging==false">
         <header class="header bg-hero">
           <nav class="nav slide-bottom">
+
             <a href="./index.html"
               ><img
                 src="./assets/logo-nav.png"
@@ -65,9 +66,9 @@
                 >About us</a
               >
             </div>
-
             <div v-if="!isLogin">
-              <a href="./login.html" id="btn-login">Login</a>
+              <a href="./login.html" id="btn-login" class="btn-responsive-login">Login</a>
+              <i class="fa-solid fa-bars responsive" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
             </div>
             <div v-else class="student-cart-container">
               <!------------------- Shop Car --------------------->
@@ -513,6 +514,34 @@
             </form>
           </div>
         </footer>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <a class="underline-hover-effect fs-1 ms-3 me-3" href="./index.html"
+                >Home</a
+              >
+              <a class="underline-hover-effect fs-1 ms-3 me-3" href="./courses.html"
+                >Courses</a
+              >
+              <a
+                class="underline-hover-effect fs-1 ms-3 me-3"
+                href="./merchandise.html"
+                >Merchandise</a
+              >
+              <a class="underline-hover-effect fs-1 ms-3 me-3" href="./aboutUs.html"
+                >About us</a
+              >
+              <a class="underline-hover-effect fs-1 ms-3 me-3" href="./login.html"
+                >Login</a
+              >
+            </div>
+       
+            </div>
+          </div>
+        </div>
         {{scroll}} {{ headershow }}
       </div>
     </div>
